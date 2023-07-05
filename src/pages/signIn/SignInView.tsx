@@ -10,7 +10,7 @@ import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import InputText, { focusRef } from '../../components/common/InputText'
 
-export const SignIn = () => {
+const SignInView = () => {
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -58,6 +58,7 @@ export const SignIn = () => {
     </StyledCommonGreenLightWrap>
   )
 }
+export default SignInView;
 
 const StyledFolderContainer = styled.div`
   position: relative;

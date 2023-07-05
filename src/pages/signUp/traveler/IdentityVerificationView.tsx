@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../../styles/variables'
 
-export const IdentityVerificationView = () => {
+const IdentityVerificationView = () => {
 
-}
+};
+export default IdentityVerificationView;

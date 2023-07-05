@@ -1,13 +1,10 @@
-import React from 'react';
-// import './App.css'
-import { SignIn } from './pages/signIn/SignIn';
+import React from 'react'
 
 function App() {
   return (
     <>
-       <SignIn/>
-  </>
-  );
+    </>
+  )
 }
 
-export default App;
+export default App

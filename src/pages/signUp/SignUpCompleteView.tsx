@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 
-export const SignUpCompleteView = () => {
+const SignUpCompleteView = () => {
 
-}
+};
+export default SignUpCompleteView;
