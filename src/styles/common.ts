@@ -4,7 +4,6 @@ import { colors } from "./variables"
 export const StyledCommonWrap = styled.main`
   padding: 0 20px;
   margin: 0 auto;
-  background-color: black;
   height: 100%;
   @media (min-width: 769px) {
     width: 768px;
@@ -36,10 +35,28 @@ export const StyledCommonButton = styled.button<{
   border-radius: 20px;
   border-style: none;
   font-size: 16px;
+  font-weight: 700;
 `;
 export const StyledCommonBlackButton = styled(StyledCommonButton)`
   color: white;
   background-color: black;
+  &:hover {
+    background-color: ${colors.gray4};
+  }
+`;
+export const StyledCommonGrayBorderWhiteButton = styled(StyledCommonButton)`
+  color: ${colors.gray2};
+  background-color: white;
+  border: 1.5px ${colors.gray2} solid;
+  &:hover {
+    background-color: ${colors.gray3};
+  }
+`;
+export const StyledCommonBlackBottomButton = styled(StyledCommonButton)`
+  color: white;
+  background-color: black;
+  position: sticky;
+  bottom: 2%;
   &:hover {
     background-color: ${colors.gray4};
   }
