@@ -56,8 +56,7 @@ export const StyledCommonColumnPostitionOuterWrap = styled.div<{
     font-weight: 900;
     color: ${colors.gray5}
   }
-`
-  ;
+`;
 export const StyledCommonColumnPostitionInnerWrap = styled.div<{
   top?: string;
   position?: string;
