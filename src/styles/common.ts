@@ -9,10 +9,10 @@ export const StyledCommonWrap = styled.main`
   @media (min-width: 769px) {
     width: 768px;
   }
-`
+`;
 export const StyledCommonGreenLightWrap = styled(StyledCommonWrap)`
   background-color: ${colors.greenLight};
-`
+`;
 export const StyledCommonFlexContainer = styled.div<{
   align?: string;
   justify?:string;
@@ -56,8 +56,7 @@ export const StyledCommonColumnPostitionOuterWrap = styled.div<{
     font-weight: 900;
     color: ${colors.gray5}
   }
-`
-  ;
+`;
 export const StyledCommonColumnPostitionInnerWrap = styled.div<{
   top?: string;
   position?: string;
