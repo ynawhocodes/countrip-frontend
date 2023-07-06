@@ -5,18 +5,17 @@ import { colors } from '../../styles/variables'
 import {
   StyledCommonBlackButton,
   StyledCommonGrayBorderWhiteButton,
-  StyledCommonWrap,
+  StyledCommonWhiteWrap,
   StyledCommonBlackBottomButton,
 } from '../../styles/common'
 import { StyledProgressBar, StyledTitle } from '../../styles/signUp-styles'
 
 const SelectUserTypeView = () => {
-  const totalSteps = 5
-  const currentStep = 3
+
   return (
     <>
       <Header />
-      <StyledCommonWrap>
+      <StyledCommonWhiteWrap>
         <StyledTitle>컨트립이 처음이시군요!</StyledTitle>
         <StyledProgressBar totalSteps={5} currentStep={1} />
         <StyledContent>어떤 목적으로 이용하시나요?</StyledContent>
@@ -26,7 +25,7 @@ const SelectUserTypeView = () => {
         <StyledCommonGrayBorderWhiteButton>
           가이드
         </StyledCommonGrayBorderWhiteButton>
-      </StyledCommonWrap>
+      </StyledCommonWhiteWrap>
       <StyledCommonBlackBottomButton>다음</StyledCommonBlackBottomButton>
     </>
   )

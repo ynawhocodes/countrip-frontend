@@ -13,6 +13,7 @@ export const StyledProgressBar = styled.div<StyledProgressBarProps>`
   height: 10px;
   margin-top: 5%;
   margin-bottom: 10%;
+  border-radius: 10px;
   background: linear-gradient(
     to right,
     ${colors.green} 0%,

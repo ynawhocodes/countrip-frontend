@@ -4,13 +4,16 @@ import { colors } from "./variables"
 export const StyledCommonWrap = styled.main`
   padding: 0 20px;
   margin: 0 auto;
-  height: 100%;
   @media (min-width: 769px) {
     width: 768px;
   }
 `;
 export const StyledCommonGreenLightWrap = styled(StyledCommonWrap)`
   background-color: ${colors.greenLight};
+  height: 100%;
+`;
+export const StyledCommonWhiteWrap = styled(StyledCommonWrap)`
+  padding-top: 8%;
 `;
 export const StyledCommonFlexContainer = styled.div<{
   align?: string;
@@ -55,10 +58,15 @@ export const StyledCommonGrayBorderWhiteButton = styled(StyledCommonButton)`
 export const StyledCommonBlackBottomButton = styled(StyledCommonButton)`
   color: white;
   background-color: black;
-  position: sticky;
   bottom: 2%;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
   &:hover {
     background-color: ${colors.gray4};
+  }
+  @media (min-width: 769px) {
+    width: 768px;
   }
 `;
 export const StyledCommonColumnPostitionOuterWrap = styled.div<{
