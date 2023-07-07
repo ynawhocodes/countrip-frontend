@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/countrip/static/css/main.8c3a8774.css",
+    "main.js": "/countrip/static/js/main.9880468f.js",
+    "static/js/787.c3537075.chunk.js": "/countrip/static/js/787.c3537075.chunk.js",
+    "index.html": "/countrip/index.html",
+    "main.8c3a8774.css.map": "/countrip/static/css/main.8c3a8774.css.map",
+    "main.9880468f.js.map": "/countrip/static/js/main.9880468f.js.map",
+    "787.c3537075.chunk.js.map": "/countrip/static/js/787.c3537075.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8c3a8774.css",
+    "static/js/main.9880468f.js"
+  ]
+}
