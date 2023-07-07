@@ -27,7 +27,6 @@ const StyledTabContainer = styled.div`
   padding: 15px 0;
   border-bottom: ${colors.gray1} 1px solid;
 `;
-
 const StyledTabItem = styled.div<{ active: boolean }>`
   padding: 10px;
   color: ${({ active }) => (active ? `${colors.green}` : `${colors.gray4}`)};
@@ -37,7 +36,6 @@ const StyledTabItem = styled.div<{ active: boolean }>`
   text-align: center;
   font-weight: 700;
 `;
-
 const StyledDot = styled.span`
   position: absolute;
   bottom: -2px;
