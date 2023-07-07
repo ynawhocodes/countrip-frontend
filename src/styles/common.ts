@@ -2,17 +2,18 @@ import styled from "styled-components"
 import { colors } from "./variables"
 
 export const StyledCommonWrap = styled.main`
-  padding: 0 20px;
   margin: 0 auto;
   @media (min-width: 769px) {
     width: 768px;
   }
 `;
 export const StyledCommonGreenLightWrap = styled(StyledCommonWrap)`
+  padding: 0 20px;
   background-color: ${colors.greenLight};
   height: 100%;
 `;
 export const StyledCommonWhiteWrap = styled(StyledCommonWrap)`
+  padding: 0 20px;
   padding-top: 15%;
 `;
 export const StyledCommonFullHeigthWhiteWrap = styled(StyledCommonWrap)`

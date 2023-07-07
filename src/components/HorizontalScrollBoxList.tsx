@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { fontRegular } from '../styles/font';
 
 const HorizontalScrollBoxList = () => {
   return (
@@ -17,7 +18,7 @@ export default HorizontalScrollBoxList;
 const StyledListContainer = styled.div`
   display: flex;
   overflow-x: auto;
-  padding: 10px;
+  padding: 0 10px 0 20px;
   height: 25%;
   &::-webkit-scrollbar {
     width: 0;
@@ -29,7 +30,7 @@ const HorizontalScrollBoxItem = () => {
   return (
     <>
       <StyledBoxContainer>
-        <StyledBoxTitle>호박소 계곡</StyledBoxTitle>
+        <StyledBoxTitle style={fontRegular}>호박소 계곡</StyledBoxTitle>
       </StyledBoxContainer>
     </>
   )
@@ -47,6 +48,5 @@ const StyledBoxTitle = styled.p`
   font-size: 15px;
   top: 10px;
   left: 20px;
-  font-weight: 500;
   color: white;
 `

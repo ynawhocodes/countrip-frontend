@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { colors } from '../../styles/variables'
+import { colors } from '../../styles/variables';
+import { fontBold } from '../../styles/font';
 
 type tabTypes = {
   items: string[];
@@ -13,7 +14,7 @@ const Tab = ({ items }: tabTypes) => {
   };
   return (
     <StyledTabContainer>
-      {items.map((item, index) => (<StyledTabItem  active={activeTab === index} onClick={() => handleTabClick(index)}>
+      {items.map((item, index) => (<StyledTabItem  active={activeTab === index} onClick={() => handleTabClick(index)} style={fontBold}>
         {item}{activeTab === index && <StyledDot />}
       </StyledTabItem>))}
     </StyledTabContainer>
@@ -34,7 +35,7 @@ const StyledTabItem = styled.div<{ active: boolean }>`
   cursor: pointer;
   width: 100%;
   text-align: center;
-  font-weight: 700;
+  font-size: 12px;
 `;
 const StyledDot = styled.span`
   position: absolute;
