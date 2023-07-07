@@ -8,7 +8,7 @@ import { colors } from '../../styles/variables'
 const TravelCourseView = () => {
   return (
     <>
-      <StyledCommonFullHeigthWhiteWrap>
+      <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         <StyledHeaderContent/>
         <Header />
         <SpotItem/>

@@ -16,8 +16,10 @@ export const StyledCommonWhiteWrap = styled(StyledCommonWrap)`
   padding: 0 20px;
   padding-top: 15%;
 `;
-export const StyledCommonFullHeigthWhiteWrap = styled(StyledCommonWrap)`
-  padding-top: 80px;
+export const StyledCommonFullHeigthWhiteWrap = styled(StyledCommonWrap) <{
+  paddingHorizontal?: number 
+}>
+` padding: ${props => props.paddingHorizontal ? `80px ${props.paddingHorizontal}px 0 ${props.paddingHorizontal}px`:`80px 0 0 0`};
   height: 100%;
   overflow: auto;
   scrollbar-width: none; /* Firefox*/

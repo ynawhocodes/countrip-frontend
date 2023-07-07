@@ -1,4 +1,5 @@
 import React from 'react'
+import TravelCourseView from './pages/course/TravelCourseView'
 import TravelerHomeView from './pages/home/traveler/TravelerHomeView'
 import SignInView from './pages/signIn/SignInView'
 import SelectUserTypeView from './pages/signUp/SelectUserTypeView'
@@ -10,7 +11,7 @@ import TermsOfUseView from './pages/signUp/traveler/TermsOfUseView'
 function App() {
   return (
     <>
-      <TravelerHomeView/>
+      <TravelCourseView/>
     </>
   )
 }
