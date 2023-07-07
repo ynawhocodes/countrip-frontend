@@ -20,7 +20,7 @@ const StyledHeader = styled.header`
   position: fixed;
   top: 0;
   left: 50%;
-  height: 5%;
+  height: 50px;
   width: 100%;
   backdrop-filter: blur(5px);
   transform: translateX(-50%);
