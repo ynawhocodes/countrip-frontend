@@ -2,7 +2,6 @@ import styled from 'styled-components'
 import { colors } from './variables'
 
 export const StyledTitle = styled.h1`
-  margin-top: 5%;
   font-size: 20px;
 `
 interface StyledProgressBarProps {

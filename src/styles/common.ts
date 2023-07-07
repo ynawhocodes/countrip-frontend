@@ -13,7 +13,18 @@ export const StyledCommonGreenLightWrap = styled(StyledCommonWrap)`
   height: 100%;
 `;
 export const StyledCommonWhiteWrap = styled(StyledCommonWrap)`
-  padding-top: 8%;
+  padding-top: 15%;
+`;
+export const StyledCommonFullHeigthWhiteWrap = styled(StyledCommonWrap)`
+  padding-top: 80px;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none; /* Firefox*/
+  -ms-overflow-style: none; /*IE, Edge*/
+  &::-webkit-scrollbar {
+  width: 0;
+  background: transparent;
+}
 `;
 export const StyledCommonFlexContainer = styled.div<{
   align?: string;
