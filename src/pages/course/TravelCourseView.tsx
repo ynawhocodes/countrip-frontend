@@ -10,9 +10,11 @@ const TravelCourseView = () => {
     <>
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         <StyledHeaderContent/>
-        <Header />
+        <Header/>
         <SpotItem/>
-
+        <SpotItem/>
+        <SpotItem/>
+        <SpotItem/>
       </StyledCommonFullHeigthWhiteWrap>
     </>
   )
