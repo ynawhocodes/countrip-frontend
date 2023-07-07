@@ -17,9 +17,9 @@ const TravelerHomeView = () => {
         <StyledSectionTitle style={fontBold}>지금 당장 가야하는 여행지 Top 10</StyledSectionTitle>
         <HorizontalScrollBoxList/>
         <StyledSectionTitle style={fontBold}>경험하기 좋은 농촌 체험</StyledSectionTitle>
-        <RectangleBoxItem/>
-        <RectangleBoxItem/>
-        <RectangleBoxItem/>
+        <RectangleBoxItem margin={20}/>
+        <RectangleBoxItem margin={20}/>
+        <RectangleBoxItem margin={20}/>
       </StyledCommonFullHeigthWhiteWrap>
     </>
   )
