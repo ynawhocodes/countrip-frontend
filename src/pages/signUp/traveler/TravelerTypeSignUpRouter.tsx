@@ -14,6 +14,7 @@ const TravelerTypeSignUpRouter = () => {
   return (
     <>
       <Routes>
+        {/* TODO: path 통일 */}
         <Route index element={<SelectUserTypeView />} />
         <Route path="/step2" element={<TermsOfUseAgreeView />} />
         <Route path="/step3" element={<IdentityVerificationView />} />
