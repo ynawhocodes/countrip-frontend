@@ -9,6 +9,7 @@ import {
 import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import InputText, { focusRef } from '../../components/common/InputText'
+import { useNavigate } from 'react-router-dom';
 
 const SignInView = () => {
   const [userInfo, setUserInfo] = useState({
@@ -16,6 +17,11 @@ const SignInView = () => {
     password: '',
   })
   const passwordRef = useRef<focusRef>(null)
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    navigate('/');
+  };
   const onChangeInput = () => {}
   return (
     <StyledCommonGreenLightWrap>
@@ -52,7 +58,7 @@ const SignInView = () => {
               <StyledButton>아이디/비밀번호 찾기</StyledButton>
             </StyledCommonFlexContainer>
           </StyledFolderContainer>
-          <StyledCommonBlackButton>로그인</StyledCommonBlackButton>
+          <StyledCommonBlackButton onClick={handleNext}>로그인</StyledCommonBlackButton>
         </StyledCommonColumnPostitionInnerWrap>
       </StyledCommonColumnPostitionOuterWrap>
     </StyledCommonGreenLightWrap>

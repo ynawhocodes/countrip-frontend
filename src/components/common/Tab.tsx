@@ -14,7 +14,7 @@ const Tab = ({ items }: tabTypes) => {
   };
   return (
     <StyledTabContainer>
-      {items.map((item, index) => (<StyledTabItem  active={activeTab === index} onClick={() => handleTabClick(index)} style={fontBold}>
+      {items.map((item, index) => (<StyledTabItem  active={activeTab === index} onClick={() => handleTabClick(index)} style={fontBold} key={index}>
         {item}{activeTab === index && <StyledDot />}
       </StyledTabItem>))}
     </StyledTabContainer>

@@ -8,14 +8,20 @@ import {
 } from '../../../styles/common'
 import { StyledProgressBar, StyledTitle } from '../../../styles/signUp-styles'
 import { colors } from '../../../styles/variables'
+import { useNavigate } from 'react-router-dom';
 
 const TermsOfUseAgreeView = () => {
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+    navigate('/signup/step3');
+  };
   return (
     <>
       <Header />
       <StyledCommonWhiteWrap>
         <StyledTitle>이용 약관</StyledTitle>
-        <StyledProgressBar totalSteps={5} currentStep={2} />
+        <StyledProgressBar totalsteps={5} currentstep={2} />
         <StyledFlexWrap>
           <Checkbox/>
           <StyledAgreeTitle>모두 확인, 동의합니다.</StyledAgreeTitle>
@@ -30,7 +36,7 @@ const TermsOfUseAgreeView = () => {
           <StyledContent>개인정보 처리방침 (필수)</StyledContent>
         </StyledFlexWrap>
       </StyledCommonWhiteWrap>
-      <StyledCommonBlackBottomButton>다음</StyledCommonBlackBottomButton>
+      <StyledCommonBlackBottomButton onClick={handleNext}>다음</StyledCommonBlackBottomButton>
     </>
   )
 }

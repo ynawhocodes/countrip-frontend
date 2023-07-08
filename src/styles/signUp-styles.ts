@@ -5,8 +5,8 @@ export const StyledTitle = styled.h1`
   font-size: 20px;
 `
 interface StyledProgressBarProps {
-  totalSteps?: number;
-  currentStep?: number;
+  totalsteps?: number;
+  currentstep?: number;
 }
 export const StyledProgressBar = styled.div<StyledProgressBarProps>`
   height: 10px;
@@ -16,8 +16,8 @@ export const StyledProgressBar = styled.div<StyledProgressBarProps>`
   background: linear-gradient(
     to right,
     ${colors.green} 0%,
-    ${colors.green} ${props => ((props.currentStep ?? 0) / (props.totalSteps ?? 1)) * 100}%,
-    ${colors.gray1} ${props => ((props.currentStep ?? 0) / (props.totalSteps ?? 1)) * 100}%,
+    ${colors.green} ${props => ((props.currentstep ?? 0) / (props.totalsteps ?? 1)) * 100}%,
+    ${colors.gray1} ${props => ((props.currentstep ?? 0) / (props.totalsteps ?? 1)) * 100}%,
     ${colors.gray1} 100%
   );
 `
