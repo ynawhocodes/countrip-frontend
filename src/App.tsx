@@ -1,15 +1,13 @@
 import React from 'react'
-import SearchResultView from './pages/home/traveler/SearchResultView'
+import GuideHomeView from './pages/home/guide/GuideHomeView'
 import Router from './Router'
-
 
 function App() {
   return (
     <>
-      <SearchResultView/>
+      <GuideHomeView/>
       {/* <Router/> */}
     </>
   )
-}
-
-export default App
+};
+export default App;
