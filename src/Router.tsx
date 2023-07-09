@@ -27,7 +27,7 @@ import GuideHomeView from './pages/home/guide/GuideHomeView';
 
 import TravelerTypeSignUpRouter from './pages/signUp/traveler/TravelerTypeSignUpRouter';
 const Router = () => (
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
     <Route path="/signup/*" element={<TravelerTypeSignUpRouter />}/>
       <Route path="/signup/complete" element={<SignUpCompleteView />} />
@@ -36,7 +36,7 @@ const Router = () => (
       <Route path="/" element={<TravelerHomeView />} />
       <Route path="/" element={<SearchResultView />} />
       <Route path="/" element={<TravelCourseListView />} />
-      <Route path="/" element={<TravelCourseView />} />
+      <Route path="/course" element={<TravelCourseView />} />
       <Route path="/" element={<MagazineHomeView />} />
       <Route path="/" element={<MagazineListView />} />
       <Route path="/" element={<MagazineSearchView />} />
