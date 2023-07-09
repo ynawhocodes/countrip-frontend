@@ -1,8 +1,0 @@
-branchName: '${issue.number}'
-branches:
- - label: bug
-   prefix: bug#
- - label: '*'
-   prefix: feature#
-autoCloseIssue: true
-commentMessage: 'Branch `${branchName}`가 생성되었습니다. **${assignee.login}**님, 이번 이슈도 파이팅 🔥'
