@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/countrip-frontend/static/css/main.02c5e209.css",
-    "main.js": "/countrip-frontend/static/js/main.dde14a0f.js",
+    "main.js": "/countrip-frontend/static/js/main.60662d11.js",
     "static/js/787.c3537075.chunk.js": "/countrip-frontend/static/js/787.c3537075.chunk.js",
     "index.html": "/countrip-frontend/index.html",
     "main.02c5e209.css.map": "/countrip-frontend/static/css/main.02c5e209.css.map",
-    "main.dde14a0f.js.map": "/countrip-frontend/static/js/main.dde14a0f.js.map",
+    "main.60662d11.js.map": "/countrip-frontend/static/js/main.60662d11.js.map",
     "787.c3537075.chunk.js.map": "/countrip-frontend/static/js/787.c3537075.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.02c5e209.css",
-    "static/js/main.dde14a0f.js"
+    "static/js/main.60662d11.js"
   ]
 }
