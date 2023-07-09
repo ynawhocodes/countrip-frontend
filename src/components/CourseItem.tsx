@@ -8,7 +8,7 @@ const CourseItem = () => {
   return (
     <StyledCourseContainer>
       <StyledTitle style={fontBold}>박물관을 포함한 자연 경관</StyledTitle>
-        <StyledGuideInfo style={fontRegular}>양파링 가이드님</StyledGuideInfo>
+      <StyledGuideInfo style={fontRegular}>양파링 가이드님</StyledGuideInfo>
       <HorizontalScrollSquareBoxList />
       <StyledInfoWrap>
         <StyledPrice style={fontMedium}>예상 금액</StyledPrice>
@@ -16,9 +16,8 @@ const CourseItem = () => {
       </StyledInfoWrap>
     </StyledCourseContainer>
   )
-}
-
-export default CourseItem
+};
+export default CourseItem;
 
 const StyledCourseContainer = styled.div`
   padding: 30px 0;
