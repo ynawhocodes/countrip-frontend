@@ -7,21 +7,29 @@ interface SectionType {
   title: string
   isMore?: boolean
   url?: string
+  paddingHorizontal?: number
 }
-const SectionTitle = ({ title, isMore, url }: SectionType) => {
+const SectionTitle = ({
+  title,
+  isMore,
+  url,
+  paddingHorizontal,
+}: SectionType) => {
   return (
-    <SectionWrap>
+    <SectionWrap paddingHorizontal={paddingHorizontal}>
       <StyledSectionTitle style={fontBold}>{title}</StyledSectionTitle>
-      {isMore && <StyledMoreButton/>}
+      {isMore && <StyledMoreButton />}
     </SectionWrap>
   )
 }
 export default SectionTitle
 
-const SectionWrap = styled.div`
+const SectionWrap = styled.div<{ paddingHorizontal?: number }>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding: ${({ paddingHorizontal }) =>
+    paddingHorizontal ? `0 ${paddingHorizontal}px` : 0};
 `
 const StyledSectionTitle = styled.p`
   font-size: 18px;
