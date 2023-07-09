@@ -1,4 +1,4 @@
-const MagazineIcon = ({ active = false, ...props }: { active?: boolean; props?: any }) => (
+const DiskIcon = ({ active = false, ...props }: { active?: boolean; props?: any }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={24}
@@ -11,8 +11,8 @@ const MagazineIcon = ({ active = false, ...props }: { active?: boolean; props?: 
       strokeLinecap="round"
       strokeLinejoin="round"
       strokeWidth={2}
-      d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2V3ZM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7V3Z"
+      d="M22 12H2M5.45 5.11 2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11ZM6 16h.01M10 16h.01"
     />
   </svg>
 );
-export default MagazineIcon;
+export default DiskIcon;
