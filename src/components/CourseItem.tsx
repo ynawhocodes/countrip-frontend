@@ -57,6 +57,7 @@ const StyledPrice = styled.p`
 `
 const StyledPriceValue = styled.p`
   font-size: 14px;
+  margin-right: 20px;
   &::before {
     content: '₩ ';
   }
