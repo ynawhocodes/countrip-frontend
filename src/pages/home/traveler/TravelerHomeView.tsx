@@ -1,18 +1,18 @@
 import React from 'react'
 import styled from 'styled-components'
 import HorizontalScrollBoxList from '../../../components/HorizontalScrollBoxList'
-import Header from '../../../components/common/Header'
 import Tab from '../../../components/common/Tab'
 import { StyledCommonFullHeigthWhiteWrap } from '../../../styles/common'
 import { colors } from '../../../styles/variables'
 import RectangleBoxItem from '../../../components/RectangleBoxItem'
-import { fontBold } from '../../../styles/font'
 import SectionTitle from '../../../components/SectionTitle'
 import Navigation from '../../../components/common/Navigation'
+import MyPageIcon from '../../../assets/MyPageIcon'
+import TitleWithIconHeader from '../../../components/common/TitleWithIconHeader'
 const TravelerHomeView = () => {
   return (
     <>
-      <Header />
+      <TitleWithIconHeader title={"강릉시"} icon={<MyPageIcon style={{marginRight: 20}}/> } />
       <StyledCommonFullHeigthWhiteWrap>
         <StyledSearchContainer />
         <Tab items={['Now', '농촌 체험', '맛집', '관광지', '자연 경관']} />
@@ -23,7 +23,7 @@ const TravelerHomeView = () => {
         <RectangleBoxItem margin={20}/>
         <RectangleBoxItem margin={20}/>
       </StyledCommonFullHeigthWhiteWrap>
-      <Navigation userType={'traveler'} />
+      <Navigation userType={'traveler'}/>
     </>
   )
 };

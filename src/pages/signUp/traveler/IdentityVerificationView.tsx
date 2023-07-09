@@ -1,11 +1,10 @@
 import React, {useState, useRef} from 'react'
 import styled from 'styled-components'
-import Header from '../../../components/common/Header';
 import RoundInputText, { RoundfocusRef } from '../../../components/common/RoundInputText';
 import { StyledCommonBlackBottomButton, StyledCommonWhiteWrap } from '../../../styles/common';
 import { StyledProgressBar, StyledTitle } from '../../../styles/signUp-styles';
-import { colors } from '../../../styles/variables'
 import { useNavigate } from 'react-router-dom';
+import GoBackHeader from '../../../components/common/GoBackHeader';
 
 const IdentityVerificationView = () => {
   const [userInfo, setUserInfo] = useState({
@@ -22,7 +21,7 @@ const IdentityVerificationView = () => {
   };
   return (
     <>
-      <Header />
+      <GoBackHeader />
       <StyledCommonWhiteWrap>
         <StyledTitle>휴대폰 본인인증</StyledTitle>
         <StyledProgressBar totalsteps={5} currentstep={3} />

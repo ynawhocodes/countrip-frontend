@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../../components/common/Header';
+import GoBackHeader from '../../components/common/GoBackHeader';
 import SpotItem from '../../components/common/SpotItem';
 import { StyledCommonFullHeigthWhiteWrap } from '../../styles/common';
 import { colors } from '../../styles/variables'
@@ -10,7 +10,7 @@ const TravelCourseView = () => {
     <>
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         <StyledHeaderContent/>
-        <Header/>
+        <GoBackHeader/>
         <SpotItem/>
         <SpotItem/>
         <SpotItem/>

@@ -1,7 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../../components/common/Header'
-import { colors } from '../../styles/variables'
 import {
   StyledCommonBlackButton,
   StyledCommonGrayBorderWhiteButton,
@@ -10,6 +8,7 @@ import {
 } from '../../styles/common'
 import { StyledProgressBar, StyledTitle } from '../../styles/signUp-styles'
 import { useNavigate } from 'react-router-dom';
+import GoBackHeader from '../../components/common/GoBackHeader'
 
 const SelectUserTypeView = () => {
   const navigate = useNavigate();
@@ -19,7 +18,7 @@ const SelectUserTypeView = () => {
   };
   return (
     <>
-      <Header />
+      <GoBackHeader />
       <StyledCommonWhiteWrap>
         <StyledTitle>컨트립이 처음이시군요!</StyledTitle>
         <StyledProgressBar totalsteps={5} currentstep={1} />

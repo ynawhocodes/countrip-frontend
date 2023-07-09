@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../../../components/common/Header';
+import GoBackHeader from '../../../components/common/GoBackHeader';
 import { StyledCommonBlackBottomButton, StyledCommonWhiteWrap } from '../../../styles/common';
 import { StyledTitle } from '../../../styles/signUp-styles';
 import { colors } from '../../../styles/variables'
@@ -8,7 +8,7 @@ import { colors } from '../../../styles/variables'
 const TermsOfUseView = () => {
   return (
     <>
-      <Header />
+      <GoBackHeader />
       <StyledCommonWhiteWrap>
         <StyledTitle>서비스 이용약관</StyledTitle>
         <StyledContent>{text}</StyledContent>

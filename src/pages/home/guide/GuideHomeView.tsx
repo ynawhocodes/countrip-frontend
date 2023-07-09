@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Header from '../../../components/common/Header'
+import TitleWithIconHeader from '../../../components/common/TitleWithIconHeader'
 import GuideScheduleTicket from '../../../components/GuideScheduleTicket'
 import SectionTitle from '../../../components/SectionTitle'
 import { StyledCommonFullHeigthWhiteWrap } from '../../../styles/common'
@@ -10,7 +10,7 @@ import { colors } from '../../../styles/variables'
 const GuideHomeView = () => {
   return (
     <>
-      <Header />
+      <TitleWithIconHeader />
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         <StyledGuideCalendar />
         <SectionTitle title="오늘의 가이딩 일정" isMore={true}/>
