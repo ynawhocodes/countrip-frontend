@@ -6,7 +6,7 @@ import { colors } from '../../styles/variables';
 
 interface GoBackHeaderType {
   title?: string;
-  firstInfo?: string;
+  firstInfo?: string | undefined;
   secondInfo?: string;
   icon?: any;
 }
@@ -17,7 +17,7 @@ const GoBackHeader = ({ title, firstInfo, secondInfo, icon }: GoBackHeaderType) 
         <StyledFlexWrap>
           <LeftArrowIcon style={{ marginLeft: 20 }} />
           <StyledContentWrap>
-            <StyledTitle style={fontBold}>{title}</StyledTitle>
+            <StyledTitle style={fontBold} hasInfo={firstInfo ? true : false}>{title}</StyledTitle>
             <StyledInfoWrap>
               <StyledFirstInfo>{firstInfo}</StyledFirstInfo>
               <StyledSecondInfo>{secondInfo}</StyledSecondInfo>
@@ -53,8 +53,8 @@ const StyledFlexWrap = styled.div`
 const StyledContentWrap = styled.div`
   margin-left: 20px;
 `
-const StyledTitle = styled.p`
-  margin: 0 0 7px 0;
+const StyledTitle = styled.p<{hasInfo: boolean}>`
+  margin: ${({ hasInfo }) => hasInfo ? '0 0 7px 0' : '0'};
   font-size: 18px;
 `
 const StyledInfoWrap = styled.div`
