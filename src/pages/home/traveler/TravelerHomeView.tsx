@@ -8,6 +8,7 @@ import { colors } from '../../../styles/variables'
 import RectangleBoxItem from '../../../components/RectangleBoxItem'
 import { fontBold } from '../../../styles/font'
 import SectionTitle from '../../../components/SectionTitle'
+import Navigation from '../../../components/common/Navigation'
 const TravelerHomeView = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const TravelerHomeView = () => {
         <RectangleBoxItem margin={20}/>
         <RectangleBoxItem margin={20}/>
       </StyledCommonFullHeigthWhiteWrap>
+      <Navigation userType={'traveler'} />
     </>
   )
 };
