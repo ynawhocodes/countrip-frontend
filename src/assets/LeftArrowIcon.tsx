@@ -16,5 +16,5 @@ const LeftArrowIcon = (props: any) => (
       d="m15 18-6-6 6-6"
     />
   </svg>
-)
-export default LeftArrowIcon
+);
+export default LeftArrowIcon;

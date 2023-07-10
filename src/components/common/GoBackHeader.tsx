@@ -1,9 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import LeftArrowIcon from '../../assets/LeftArrowIcon'
 import { fontBold } from '../../styles/font'
 import { colors } from '../../styles/variables';
-
+import GoBackButton from './GoBackButton';
 interface GoBackHeaderType {
   title?: string;
   firstInfo?: string | undefined;
@@ -11,11 +10,12 @@ interface GoBackHeaderType {
   icon?: any;
 }
 const GoBackHeader = ({ title, firstInfo, secondInfo, icon }: GoBackHeaderType) => {
+
   return (
     <>
       <StyledHeader>
         <StyledFlexWrap>
-          <LeftArrowIcon style={{ marginLeft: 20 }} />
+          <GoBackButton/>
           <StyledContentWrap>
             <StyledTitle style={fontBold} hasInfo={firstInfo ? true : false}>{title}</StyledTitle>
             <StyledInfoWrap>
