@@ -2,13 +2,12 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 // ----------------------------------------common----------------------------------------
 // sign up
-import SelectUserTypeView from './pages/signUp/SelectUserTypeView'
-import TermsOfUseAgreeView from './pages/signUp/traveler/TermsOfUseAgreeView'
-import TermsOfUseView from './pages/signUp/traveler/TermsOfUseView'
-import IdentityVerificationView from './pages/signUp/traveler/IdentityVerificationView'
+import TravelerTypeSignUpRouter from './pages/signUp/traveler/TravelerTypeSignUpRouter';
 import SignUpCompleteView from './pages/signUp/SignUpCompleteView'
 // sign in
 import SignInView from './pages/signIn/SignInView'
+// travel
+import TravelSpotView from './pages/course/TravelSpotView';
 // ----------------------------------------traveler----------------------------------------
 // home
 import TravelerHomeView from './pages/home/traveler/TravelerHomeView'
@@ -25,11 +24,10 @@ import MagazineSearchResultView from './pages/magazine/traveler/MagazineSearchRe
 // home
 import GuideHomeView from './pages/home/guide/GuideHomeView';
 
-import TravelerTypeSignUpRouter from './pages/signUp/traveler/TravelerTypeSignUpRouter';
 const Router = () => (
   <BrowserRouter basename={process.env.PUBLIC_URL}>
     <Routes>
-    <Route path="/signup/*" element={<TravelerTypeSignUpRouter />}/>
+      <Route path="/signup/*" element={<TravelerTypeSignUpRouter />}/>
       <Route path="/signup/complete" element={<SignUpCompleteView />} />
       <Route path="/signin" element={<SignInView />} />
       {/* traveler 일 경우 */}
@@ -37,10 +35,11 @@ const Router = () => (
       <Route path="/" element={<SearchResultView />} />
       <Route path="/" element={<TravelCourseListView />} />
       <Route path="/course" element={<TravelCourseView />} />
-      <Route path="/" element={<MagazineHomeView />} />
-      <Route path="/" element={<MagazineListView />} />
-      <Route path="/" element={<MagazineSearchView />} />
-      <Route path="/" element={<MagazineSearchResultView />} />
+      <Route path="/magazine" element={<MagazineHomeView />} />
+      <Route path="/magazine/all" element={<MagazineListView />} />
+      <Route path="/magazine/:postId" element={<TravelSpotView />} />
+      <Route path="/magazine/search" element={<MagazineSearchView />} />
+      <Route path="/magazine/search" element={<MagazineSearchResultView />} />
       {/* guide 일 경우 */}
       <Route path="/" element={<GuideHomeView />} />
     </Routes>

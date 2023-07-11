@@ -17,7 +17,7 @@ const TravelerHomeView = () => {
  
   return (
     <>
-      <TitleWithIconHeader title={"강릉시"} icon={<MyPageIcon style={{marginRight: 20}}/> } />
+      <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{marginRight: 20}}/> } />
       <StyledCommonFullHeigthWhiteWrap>
         <StyledSearchContainer />
         <Tab items={['Now', '농촌 체험', '맛집', '관광지', '자연 경관']} activeTab={activeTab} handleTabClick={handleTabClick} />

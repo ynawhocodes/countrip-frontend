@@ -57,7 +57,6 @@ const Navigation = ({ userType }: NavigationType) => {
     <StyledNavigationContainer hidden={hidden}>
       {navigationIconList.map((item, index) => (
         <StyledNavigationItemContainer key={index} onClick={() => { handleTabClick(index); goToPage(navigationUrlList[index]) }}>
-          {/* TODO: default selected가 home이 되도록 해야함 */}
           <StyledNavigationItem selected={index === activeNavigationTab}>
             {item.type === HomeIcon && (<HomeIcon active={index === activeNavigationTab} />)}
             {userType === 'traveler' ? (
