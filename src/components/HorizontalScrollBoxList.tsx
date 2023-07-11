@@ -3,13 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import SpotDto from '../@types/SpotDto';
 import { fontRegular } from '../styles/font';
-interface SpotsType {
+interface SpotsProps {
   datas: SpotDto[]
 }
-interface SpotType {
+interface SpotProps {
   data: SpotDto
 }
-const HorizontalScrollBoxList = ({ datas }: SpotsType) => {
+const HorizontalScrollBoxList = ({ datas }: SpotsProps) => {
   return (
     <StyledListContainer>
       {datas.map((item, index) => <HorizontalScrollBoxItem key={index} data={item} />)}
@@ -30,7 +30,7 @@ const StyledListContainer = styled.div`
   }
 `;
 
-const HorizontalScrollBoxItem = ({ data }: SpotType) => {
+const HorizontalScrollBoxItem = ({ data }: SpotProps) => {
   const navigate = useNavigate();
 
   return (
