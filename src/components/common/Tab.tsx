@@ -68,7 +68,7 @@ export const TabView = ({ activeTab, children }: TabViewProps) => {
   );
 };
 const StyledTabViewWrap = styled.div`
-  overflow: hidden;
+  overflow-x: hidden;
   width: 100%;
 `
 const StyledTabViewContainer = styled.div<{transformValue: string}>`
