@@ -6,6 +6,7 @@ import FlagIcon from '../../assets/FlagIcon'
 import HomeIcon from '../../assets/HomeIcon'
 import MagazineIcon from '../../assets/MagazineIcon'
 import { colors } from '../../styles/variables'
+import { useNavigate } from 'react-router-dom'
 
 interface NavigationType {
   userType: string
@@ -13,6 +14,7 @@ interface NavigationType {
 const Navigation = ({ userType }: NavigationType) => {
   const [hidden, setHidden] = useState(false)
   const [activeNavigationTab, setActiveNavigationTab] = useState(0)
+  const navigate = useNavigate();
 
   useEffect(() => {
     let prevScrollPos = window.pageYOffset
@@ -33,21 +35,29 @@ const Navigation = ({ userType }: NavigationType) => {
     setActiveNavigationTab(index)
   }
 
-  const travelerTypeNavigationIconList = [
-    <MagazineIcon />,
-    <HomeIcon />,
-    <BriefcaseIcon />,
-  ]
-  const guideTypeNavigationIconList = [<FlagIcon />, <HomeIcon />, <DiskIcon />]
+  const travelerTypeNavigationIconList = [<MagazineIcon />, <HomeIcon />, <BriefcaseIcon />];
+  const guideTypeNavigationIconList = [<FlagIcon />, <HomeIcon />, <DiskIcon />];
   const navigationIconList =
     userType === 'traveler'
       ? travelerTypeNavigationIconList
-      : guideTypeNavigationIconList
+      : guideTypeNavigationIconList;
 
+  const travelerTypeUrl = ['/magazine', '/', '/mytrip'];
+  const guideTypeUrl = ['/myguide', '/', '/mycourse'];
+  const navigationUrlList =
+    userType === 'traveler'
+      ? travelerTypeUrl
+      : guideTypeUrl;
+  
+  const goToPage = (url: string) => {
+    navigate(url);
+  }
+  
   return (
     <StyledNavigationContainer hidden={hidden}>
       {navigationIconList.map((item, index) => (
-        <StyledNavigationItemContainer key={index} onClick={() => handleTabClick(index)}>
+        <StyledNavigationItemContainer key={index} onClick={() => { handleTabClick(index); goToPage(navigationUrlList[index]) }}>
+          {/* TODO: default selected가 home이 되도록 해야함 */}
           <StyledNavigationItem selected={index === activeNavigationTab}>
             {item.type === HomeIcon && (<HomeIcon active={index === activeNavigationTab} />)}
             {userType === 'traveler' ? (
