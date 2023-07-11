@@ -32,9 +32,9 @@ const Router = () => (
       <Route path="/signin" element={<SignInView />} />
       {/* traveler 일 경우 */}
       <Route path="/" element={<TravelerHomeView />} />
-      <Route path="/" element={<SearchResultView />} />
-      <Route path="/" element={<TravelCourseListView />} />
-      <Route path="/course" element={<TravelCourseView />} />
+      <Route path="/search" element={<SearchResultView />} />
+      <Route path="/course/all" element={<TravelCourseListView />} />
+      <Route path="/course/:postId" element={<TravelCourseView />} />
       <Route path="/magazine" element={<MagazineHomeView />} />
       <Route path="/magazine/all" element={<MagazineListView />} />
       <Route path="/magazine/:postId" element={<TravelSpotView />} />

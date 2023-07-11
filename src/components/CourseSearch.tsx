@@ -6,11 +6,13 @@ import { fontRegular, fontMedium } from '../styles/font';
 import ModalBottom from "./common/ModalBottom";
 import Tab from "./common/Tab";
 import { MODAL_TYPE } from "../constants";
+import { useNavigate } from "react-router-dom";
 
 const CourseSearch = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   // TODO: useState, useRef 고민
   const [modalContentType, setModalContentType] = useState("");
+  const navigate = useNavigate();
 
   const handleOpenModal = () => {
     setIsModalOpen(true)
@@ -18,14 +20,15 @@ const CourseSearch = () => {
   const handleCloseModal = () => {
     setIsModalOpen(false)
   };
-
+  const goToPage = () => { navigate('/search') };
+  
   return (
     <>
       <StyledSearchContainer>
         <StyledInput onClick={() => { handleOpenModal(); setModalContentType(MODAL_TYPE.WHERE) }} style={fontRegular}>어디로 떠나시나요?</StyledInput>
         <StyledInput onClick={() => { handleOpenModal(); setModalContentType(MODAL_TYPE.WHEN) }}>여행 날짜</StyledInput>
         <StyledInput onClick={() => { handleOpenModal(); setModalContentType(MODAL_TYPE.WITH_WHOM) }}>누구와 함께 하시나요?</StyledInput>
-        <StyledButton onClick={handleOpenModal} style={fontMedium}>현지인 추천 코스 보러 가기</StyledButton>
+        <StyledButton onClick={goToPage} style={fontMedium}>현지인 추천 코스 보러 가기</StyledButton>
         <ModalBottom isOpen={isModalOpen} handleClose={handleCloseModal} contentType={modalContentType} />
       </StyledSearchContainer>
     </>
