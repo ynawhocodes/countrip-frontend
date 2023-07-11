@@ -1,17 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, ReactNode } from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/variables';
 import { fontBold } from '../../styles/font';
 
-type tabTypes = {
+type TabProps = {
   items: string[];
+  activeTab: number;
+  handleTabClick: Function;
 }
-const Tab = ({ items }: tabTypes) => {
-  const [activeTab, setActiveTab] = useState(0);
+const Tab = ({ items, activeTab, handleTabClick }: TabProps) => {
 
-  const handleTabClick = (index: number) => {
-    setActiveTab(index);
-  };
   return (
     <StyledTabContainer>
       {items.map((item, index) => (<StyledTabItem  active={activeTab === index} onClick={() => handleTabClick(index)} style={fontBold} key={index}>
@@ -46,4 +44,33 @@ const StyledDot = styled.span`
   height: 4px;
   background-color: ${colors.green};
   border-radius: 50%;
+`;
+
+type TabViewProps = {
+  activeTab: number;
+  children: ReactNode[];
+}
+export const TabView = ({ activeTab, children }: TabViewProps) => {
+  const transformValue = `translateX(-${activeTab * 100}%)`;
+  return (
+    <>
+      <StyledTabViewContainer transformValue={transformValue}>
+        {children.map((child, index) => (
+        <StyledTabViewItem key={index}>
+          {child}
+        </StyledTabViewItem>
+      ))}
+        {children[activeTab]}
+      </StyledTabViewContainer>
+    </>
+  );
+};
+
+const StyledTabViewContainer = styled.div<{transformValue: string}>`
+  display: flex;
+  transition: transform 0.3s ease;
+  transform: ${ ({transformValue}) => transformValue};
+`;
+const StyledTabViewItem = styled.div`
+  flex: 0 0 100%;
 `;
