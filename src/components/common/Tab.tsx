@@ -54,18 +54,23 @@ export const TabView = ({ activeTab, children }: TabViewProps) => {
   const transformValue = `translateX(-${activeTab * 100}%)`;
   return (
     <>
-      <StyledTabViewContainer transformValue={transformValue}>
-        {children.map((child, index) => (
-        <StyledTabViewItem key={index}>
-          {child}
-        </StyledTabViewItem>
-      ))}
-        {children[activeTab]}
-      </StyledTabViewContainer>
+      <StyledTabViewWrap>
+        <StyledTabViewContainer transformValue={transformValue}>
+          {children.map((child, index) => (
+          <StyledTabViewItem key={index}>
+            {child}
+          </StyledTabViewItem>
+        ))}
+          {children[activeTab]}
+        </StyledTabViewContainer>
+      </StyledTabViewWrap>
     </>
   );
 };
-
+const StyledTabViewWrap = styled.div`
+  overflow: hidden;
+  width: 100%;
+`
 const StyledTabViewContainer = styled.div<{transformValue: string}>`
   display: flex;
   transition: transform 0.3s ease;
