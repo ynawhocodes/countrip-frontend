@@ -4,9 +4,9 @@ import { fontRegular } from '../styles/font';
 import { useNavigate } from 'react-router-dom';
 
 interface RectangleBoxItemProps {
-  margin?: number;
+  marginHorizontal?: number;
 }
-const RectangleBoxItem = ({ margin }: RectangleBoxItemProps) => {
+const RectangleBoxItem = ({ marginHorizontal }: RectangleBoxItemProps) => {
   const navigate = useNavigate();
 
   const handleNext = () => {
@@ -14,7 +14,7 @@ const RectangleBoxItem = ({ margin }: RectangleBoxItemProps) => {
   };
   return (
     <>
-      <StyledBoxContainer margin={margin} onClick={handleNext} >
+      <StyledBoxContainer marginHorizontal={marginHorizontal} onClick={handleNext} >
         <StyledBoxTitle style={fontRegular}>호박소 계곡</StyledBoxTitle>
       </StyledBoxContainer>
     </>
@@ -23,7 +23,7 @@ const RectangleBoxItem = ({ margin }: RectangleBoxItemProps) => {
 export default RectangleBoxItem;
 
 const StyledBoxContainer = styled.div<{
-  margin?: number;
+  marginHorizontal?: number;
 }>
 `
   flex: 0 0 220px;
@@ -32,7 +32,7 @@ const StyledBoxContainer = styled.div<{
   margin-right: 10px;
   border-radius: 20px;
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
-  margin: ${props => props.margin ? `10px  ${props.margin}px;` : `10px 0px`};
+  margin: ${({ marginHorizontal } ) => marginHorizontal ? `10px  ${marginHorizontal}px;` : `10px 0px`};
   cursor: pointer;
 `;
 const StyledBoxTitle = styled.p`
