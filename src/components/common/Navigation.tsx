@@ -13,7 +13,7 @@ interface NavigationType {
 }
 const Navigation = ({ userType }: NavigationType) => {
   const [hidden, setHidden] = useState(false)
-  const [activeNavigationTab, setActiveNavigationTab] = useState(0)
+  const [activeNavigationTab, setActiveNavigationTab] = useState(1)
   const navigate = useNavigate();
 
   useEffect(() => {
