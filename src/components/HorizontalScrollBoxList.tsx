@@ -1,14 +1,18 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
+import SpotDto from '../@types/SpotDto';
 import { fontRegular } from '../styles/font';
-
-const HorizontalScrollBoxList = () => {
+interface SpotsType {
+  datas: SpotDto[]
+}
+interface SpotType {
+  data: SpotDto
+}
+const HorizontalScrollBoxList = ({ datas }: SpotsType) => {
   return (
     <StyledListContainer>
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
+      {datas.map((item, index) => <HorizontalScrollBoxItem key={index} data={item} />)}
     </StyledListContainer>
   );
 };
@@ -26,11 +30,13 @@ const StyledListContainer = styled.div`
   }
 `;
 
-const HorizontalScrollBoxItem = () => {
+const HorizontalScrollBoxItem = ({ data }: SpotType) => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <StyledBoxContainer>
-        <StyledBoxTitle style={fontRegular}>호박소 계곡</StyledBoxTitle>
+      <StyledBoxContainer onClick={() => navigate(`/magazine/${data.postId}`)}>
+        <StyledBoxTitle style={fontRegular}>{data.title}</StyledBoxTitle>
       </StyledBoxContainer>
     </>
   )
