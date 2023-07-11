@@ -2,20 +2,22 @@ import React from 'react';
 import styled from 'styled-components';
 import { fontRegular } from '../styles/font';
 import { useNavigate } from 'react-router-dom';
+import SpotDto from '../@types/SpotDto';
 
 interface RectangleBoxItemProps {
   marginHorizontal?: number;
+  data: SpotDto
 }
-const RectangleBoxItem = ({ marginHorizontal }: RectangleBoxItemProps) => {
+const RectangleBoxItem = ({ marginHorizontal, data }: RectangleBoxItemProps) => {
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    navigate('/course');
+  const handleNext = (postId: number) => {
+    navigate(`/magazine/${postId}`);
   };
   return (
     <>
-      <StyledBoxContainer marginHorizontal={marginHorizontal} onClick={handleNext} >
-        <StyledBoxTitle style={fontRegular}>호박소 계곡</StyledBoxTitle>
+      <StyledBoxContainer marginHorizontal={marginHorizontal} onClick={() => handleNext(data.postId)} >
+        <StyledBoxTitle style={fontRegular}>{data.title}</StyledBoxTitle>
       </StyledBoxContainer>
     </>
   )
