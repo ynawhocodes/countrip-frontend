@@ -2,18 +2,18 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import { fontMedium } from '../../styles/font'
-import RectangleBoxItem from '../RectangleBoxItem'
+
 const SpotItem = () => {
   const InfoTitleList = ['주소', '전화번호', '홈페이지']
   return (
     <>
       <StyledContainer>
         <StyledTitle style={fontMedium}>1. 오죽헌</StyledTitle>
-        <RectangleBoxItem />
+        <StyledBoxContainer />
         <StyledInfoContainer>
           {InfoTitleList.map((infoTitle, index) => (
-            <StyledInfoItemContainer>
-              <StyledInfoTitle key={index} style={fontMedium}>
+            <StyledInfoItemContainer key={index}>
+              <StyledInfoTitle style={fontMedium}>
                 {infoTitle}
               </StyledInfoTitle>
               <StyledInfoContent style={fontMedium}>data</StyledInfoContent>
@@ -24,8 +24,8 @@ const SpotItem = () => {
       </StyledContainer>
     </>
   )
-}
-export default SpotItem
+};
+export default SpotItem;
 
 const StyledContainer = styled.div`
   padding-top: 30px;
@@ -34,6 +34,15 @@ const StyledTitle = styled.p`
   font-size: 16px;
   margin-bottom: 30px;
 `
+const StyledBoxContainer = styled.div<{
+  marginHorizontal?: number;
+}>
+`
+  height: 200px;
+  border-radius: 20px;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  margin: ${({ marginHorizontal } ) => marginHorizontal ? `10px  ${marginHorizontal}px;` : `10px 0px`};
+`;
 const StyledContent = styled.p`
   font-size: 12px;
   white-space: pre-wrap;
