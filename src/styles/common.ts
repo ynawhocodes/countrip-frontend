@@ -56,7 +56,7 @@ export const StyledCommonButton = styled.button<{
 `;
 export const StyledCommonBlackButton = styled(StyledCommonButton)`
   color: white;
-  background-color: black;
+  background-color: ${colors.gray5};
   &:hover {
     background-color: ${colors.gray4};
   }
@@ -71,7 +71,7 @@ export const StyledCommonGrayBorderWhiteButton = styled(StyledCommonButton)`
 `;
 export const StyledCommonBlackBottomButton = styled(StyledCommonButton)`
   color: white;
-  background-color: black;
+  background-color: ${colors.gray5};
   bottom: 2%;
   position: absolute;
   left: 50%;
