@@ -9,20 +9,38 @@ import {
 import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import InputText, { focusRef } from '../../components/common/InputText'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom'
+import { login } from '../../api/authApi'
 
 const SignInView = () => {
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
-  })
-  const passwordRef = useRef<focusRef>(null)
+  });
+  const passwordRef = useRef<focusRef>(null);
+  const [isValid, setIsValid] = useState(true);
   const navigate = useNavigate();
 
-  const handleNext = () => {
-    navigate('/');
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.currentTarget
+    setUserInfo((currVal) => ({
+      ...currVal,
+      [name]: value,
+    }))
   };
-  const onChangeInput = () => {}
+  const onClickLogin = async () => {
+    const response = await login(userInfo);
+    if (response) {
+      navigate('/');
+    }
+    else {
+      // TODO: isValid 사용
+      setIsValid(false);
+      alert('로그인 실패!');
+    }
+    setIsValid(true);
+  };
+
   return (
     <StyledCommonGreenLightWrap>
       <StyledCommonColumnPostitionOuterWrap>
@@ -53,17 +71,19 @@ const SignInView = () => {
               text="비밀번호"
               onChangeInput={onChangeInput}
             />
-            <StyledCommonFlexContainer justify='space-between'>
+            <StyledCommonFlexContainer justify="space-between">
               <StyledButton>회원가입</StyledButton>
               <StyledButton>아이디/비밀번호 찾기</StyledButton>
             </StyledCommonFlexContainer>
           </StyledFolderContainer>
-          <StyledCommonBlackButton onClick={handleNext}>로그인</StyledCommonBlackButton>
+          <StyledCommonBlackButton onClick={onClickLogin}>
+            로그인
+          </StyledCommonBlackButton>
         </StyledCommonColumnPostitionInnerWrap>
       </StyledCommonColumnPostitionOuterWrap>
     </StyledCommonGreenLightWrap>
   )
-}
+};
 export default SignInView;
 
 const StyledFolderContainer = styled.div`
@@ -91,7 +111,6 @@ const StyledFolderUnselectTypeContainer = styled(StyledFolderTypeContainer)`
   color: ${colors.gray2};
   left: 50%;
   border-radius: 20px 20px 0 20px;
-
 `
 const StyledFolderSelectTypeContainer = styled(StyledFolderTypeContainer)`
   background-color: white;
@@ -104,4 +123,4 @@ const StyledButton = styled.button`
   color: ${colors.gray5};
   margin-top: 10px;
   padding: 0 5px;
-  `
+`
