@@ -3,9 +3,14 @@ import styled from 'styled-components'
 import { StyledCommonBlackButton } from '../styles/common';
 import { fontMedium, fontBold, fontRegular } from '../styles/font';
 import { colors } from '../styles/variables';
+import CenterModal from './CenterModal';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
 
-const ReservationPendingCourseItem = () => {
+interface CenterModalProps {
+  isOpen: boolean;
+  setIsOpen: any;
+}
+const ReservationPendingCourseItem = ({ isOpen, setIsOpen}: CenterModalProps) => {
   return (
     <>
       <StyledContainer>
@@ -21,7 +26,7 @@ const ReservationPendingCourseItem = () => {
           <StyledContent style={fontRegular}>숨겨진 맛집 소개해주세요.</StyledContent>
           <StyledButtonWrap>
             <StyledButton>수락</StyledButton>
-            <StyledButton style={{marginLeft: 15}}>취소</StyledButton>
+            <StyledButton style={{ marginLeft: 15 }} onClick={() => setIsOpen(!isOpen)}>취소</StyledButton>
           </StyledButtonWrap>
         </StyledItemContainer>
       </StyledContainer>
