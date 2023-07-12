@@ -21,7 +21,7 @@ const LocationList = ({ datas }: LocationListProps) => {
           selected={selectedSquare === index}
           onClick={() => handleSquareClick(index)}
         >
-          <StyledText style={fontRegular}>{data}</StyledText>
+          <StyledText suffix={index === 0} style={fontRegular}>{data}</StyledText>
         </StyledSquare>
       ))}
     </StyledWrap>
@@ -46,11 +46,14 @@ const StyledSquare = styled.div<{ selected: boolean }>`
   cursor: pointer;
   color: ${(props) => (props.selected ? '#fff' : `${colors.gray2}`)};
   border: ${(props) =>
-    props.selected ? '#000 1px solid' : `${colors.gray2} 1px solid`};
+  props.selected ? '#000 1px solid' : `${colors.gray2} 1px solid`};
 `
-const StyledText = styled.p`
+const StyledText = styled.p<{ suffix: boolean }>`
   text-align: center;
   font-size: 14px;
   margin: 0;
   line-height: 40px;
+  &::after {
+    content: ${(props) => props.suffix ? "' 전체'" : ''};
+  };
 `

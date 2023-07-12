@@ -1,26 +1,33 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Tab, { TabView } from './common/Tab'
 import { fontBold } from '../styles/font'
 import styled from 'styled-components'
 import LocationList from './LocationList'
+import LocationDto from '../@types/LocationDto'
 
 const LocationPicker = () => {
   const [activeTab, setActiveTab] = useState(1)
+  const [location, setLocation] = useState<LocationDto[]>(testList);
 
   const handleTabClick = (index: number) => {
     setActiveTab(index)
   }
+
+  useEffect(() => { }, []);
+
+  const locationList = location?.map( item => item.name );
+  const locationTabContentDatas = location.map(item => item.cities.map(item => item.name))
+  const locationTabContents = location.map((_, index) => (<LocationList key={index} datas={locationTabContentDatas[index]} />))
+
   return (
     <>
       <StyledTitle style={fontBold}>지역을 선택하세요</StyledTitle>
       <Tab
-        items={['서울', '경기', '인천', '강원', '대전', '충북', '충남', '부산']}
+        items={locationList}
         activeTab={activeTab}
         handleTabClick={handleTabClick}
       />
       <TabView activeTab={activeTab}>{locationTabContents}</TabView>
-      
-
     </>
   )
 }
@@ -30,5 +37,66 @@ const StyledTitle = styled.p`
   font-size: 20px;
 `
 
-const locationList = ['강원도 전체', '강릉시', '고성군', '동해시'];
-const locationTabContents = [(<LocationList datas={locationList} />), (<LocationList datas={locationList} />), (<LocationList datas={locationList} />)];
+const testList = [{
+  "id": 1,
+  "name": "서울",
+  "cities": [
+    {
+      "id": 1,
+      "name": "서울시"
+    },
+    {
+      "id": 18,
+      "name": "강남구"
+    },
+    {
+      "id": 19,
+      "name": "강동구"
+    },
+    {
+      "id": 20,
+      "name": "강북구"
+    },
+    {
+      "id": 21,
+      "name": "강서구"
+    },
+    {
+      "id": 22,
+      "name": "관악구"
+    },
+    {
+      "id": 23,
+      "name": "광진구"
+    }
+  ]},
+  {
+  "id": 2,
+  "name": "경기도",
+  "cities": [
+    {
+      "id": 18,
+      "name": "강남구"
+    },
+    {
+      "id": 19,
+      "name": "강동구"
+    },
+    {
+      "id": 20,
+      "name": "강북구"
+    },
+    {
+      "id": 21,
+      "name": "강서구"
+    },
+    {
+      "id": 22,
+      "name": "관악구"
+    },
+    {
+      "id": 23,
+      "name": "광진구"
+    }
+  ]}    
+]
