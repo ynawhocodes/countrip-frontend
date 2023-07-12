@@ -40,6 +40,7 @@ const StyledGuideInfo = styled.p`
   color: ${colors.gray2};
   font-size: 12px;
   line-height: 12px;
+  margin-bottom: 25px;
 `
 // 모두 가이드 미포함으로 변경되어 가이드 포함 태그가 사라짐
 // const StyledWithGuideTag = styled.div`
