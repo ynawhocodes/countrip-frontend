@@ -9,11 +9,12 @@ import { colors } from '../../styles/variables'
 import { useNavigate } from 'react-router-dom'
 
 interface NavigationType {
-  userType: string
+  userType: string;
+  initTabIndex: number;
 }
-const Navigation = ({ userType }: NavigationType) => {
+const Navigation = ({ userType, initTabIndex }: NavigationType) => {
   const [hidden, setHidden] = useState(false)
-  const [activeNavigationTab, setActiveNavigationTab] = useState(1)
+  const [activeNavigationTab, setActiveNavigationTab] = useState(initTabIndex)
   const navigate = useNavigate();
 
   useEffect(() => {
