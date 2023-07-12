@@ -7,15 +7,17 @@ import { ko } from 'date-fns/locale';
 import TitleWithIconHeader from './TitleWithIconHeader';
 import MyPageIcon from '../../assets/MyPageIcon';
 import SideModal from './SideModal';
+import convertToDateArray from '../../utils/convertToDateArray';
 interface ReadOnlyCalendarProps {
   datas: string[];
 }
 const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const bookedDays = [new Date(2023, 6, 20), new Date(2023, 6, 30)];
   const bookedStyle = { backgroundColor:`${colors.green}`, fontWeight: `700`, borderBottom: `${colors.green} 3px solid`, color: `white`, width: '28px', height: '28px', marginLeft: '7px', paddingTop: '2px', fontSize: '13px' };
   const [booked, setBooked] = React.useState(false);
+  const bookedDays = convertToDateArray(datas);
 
+  // TODO: booked 상태에 따라 동적인 변화가 없다면 지울 것
   // const handleDayClick: DayClickEventHandler = (day, modifiers) => {
   //   setBooked(day && modifiers.booked);
   // };

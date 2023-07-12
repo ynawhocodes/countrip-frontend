@@ -21,21 +21,17 @@ const GuideHomeView = () => {
     <>
       <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal} />} />
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
-      <SideModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>ss</SideModal>
-      <ReadOnlyCalendar />
-      <SectionTitle title="오늘의 가이딩 일정" isMore={true}/>
-      <GuideScheduleTicket/>
-      <GuideScheduleTicket/>
-      <GuideScheduleTicket/>
+        <SideModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>ss</SideModal>
+        <ReadOnlyCalendar datas={dummyDateDatas} />
+        <SectionTitle title="오늘의 가이딩 일정" isMore={true} />
+        <GuideScheduleTicket />
+        <GuideScheduleTicket />
+        <GuideScheduleTicket />
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType={'guide'} initTabIndex={1} />
     </>
   )
-}
-export default GuideHomeView
+};
+export default GuideHomeView;
 
-const StyledGuideCalendar = styled.div`
-  background-color: ${colors.gray1};
-  height: 30%;
-  border-radius: 30px;
-`
+const dummyDateDatas = ['2023-07-19', '2023-07-30', '2023-08-03']
