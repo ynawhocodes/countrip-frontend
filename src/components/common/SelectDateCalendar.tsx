@@ -5,13 +5,13 @@ import 'react-day-picker/dist/style.css'
 import { colors } from '../../styles/variables';
 import { fontMedium } from '../../styles/font';
 
-interface CalendarProps {
+interface SelectDateCalendarProps {
   selected: Date;
   // TODO: setSelected type 정확히
   setSelected: any;
   // handleValueChange: (newValue: Date) => void;
 }
-const Calendar = ({ selected, setSelected }: CalendarProps) => {
+const SelectDateCalendar = ({ selected, setSelected }: SelectDateCalendarProps) => {
   // const [selected, setSelected] = useState<Date>()
   const today = new Date();
   const month = today.getMonth() + 1;
@@ -45,7 +45,7 @@ const Calendar = ({ selected, setSelected }: CalendarProps) => {
     </>
   )
 };
-export default Calendar;
+export default SelectDateCalendar;
 
 const css = `
   .rdp {

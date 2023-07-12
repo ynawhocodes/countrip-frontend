@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Calendar from './common/Calendar'
+import SelectDateCalendar from './common/SelectDateCalendar'
 import { fontBold } from '../styles/font'
 import styled from 'styled-components'
 import { StyledCommonBlackButton } from '../styles/common'
@@ -22,7 +22,7 @@ const DatePicker = () => {
       <StyledCalendarWrap>
         <div>
           <StyledTitle style={fontBold}>날짜를 선택하세요</StyledTitle>
-          <Calendar selected={date} setSelected={setDate} />
+          <SelectDateCalendar selected={date} setSelected={setDate} />
         </div>
       </StyledCalendarWrap>
       <StyledFooter>{formatDate(date)}</StyledFooter>
