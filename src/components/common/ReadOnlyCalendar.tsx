@@ -1,15 +1,24 @@
 import React, { useState } from 'react';
 import styled from 'styled-components'
 import { format } from 'date-fns';
-import { DayPicker } from 'react-day-picker';
+import { DayPicker, DayClickEventHandler } from 'react-day-picker';
 import { colors } from '../../styles/variables'
 import { ko } from 'date-fns/locale';
 import TitleWithIconHeader from './TitleWithIconHeader';
 import MyPageIcon from '../../assets/MyPageIcon';
 import SideModal from './SideModal';
-
-const ReadOnlyCalendar = () => {
+interface ReadOnlyCalendarProps {
+  datas: string[];
+}
+const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const bookedDays = [new Date(2023, 6, 20), new Date(2023, 6, 30)];
+  const bookedStyle = { backgroundColor:`${colors.green}`, fontWeight: `700`, borderBottom: `${colors.green} 3px solid`, color: `white`, width: '28px', height: '28px', marginLeft: '7px', paddingTop: '2px', fontSize: '13px' };
+  const [booked, setBooked] = React.useState(false);
+
+  // const handleDayClick: DayClickEventHandler = (day, modifiers) => {
+  //   setBooked(day && modifiers.booked);
+  // };
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -24,6 +33,9 @@ const ReadOnlyCalendar = () => {
         <DayPicker
           locale={ko}
           mode="single"
+          modifiers={{ booked: bookedDays }}
+          modifiersStyles={{ booked: bookedStyle }}
+          // onDayClick={handleDayClick}
         />
       </StyledGuideCalendar>
     </>
@@ -37,7 +49,7 @@ const StyledGuideCalendar = styled.div`
   border-radius: 30px;
   display: flex;
   justify-content: center;
-  padding: 5px 0 30px 0;
+  padding: 5px 0 40px 0;
 `
 const css = `
   .rdp {
