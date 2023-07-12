@@ -28,27 +28,44 @@ import TravelSpotView from './pages/course/TravelSpotView'
 import GuideHomeView from './pages/home/guide/GuideHomeView'
 // myguide
 import MyGuideView from './pages/myguide/MyGuideView'
+// mycourse
+import MyCourseView from './pages/mycourse/MyCourseView'
+import { USER_TYPE } from './constants'
 
-const Router = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/signup/*" element={<TravelerTypeSignUpRouter />} />
-      <Route path="/signup/complete" element={<SignUpCompleteView />} />
-      <Route path="/signin" element={<SignInView />} />
-      {/* guide 일 경우 */}
-      <Route path="/" element={<GuideHomeView />} />
-      <Route path="/myguide" element={<MyGuideView />} />
-      {/* traveler 일 경우 */}
-      <Route path="/" element={<TravelerHomeView />} />
-      <Route path="/search" element={<SearchResultView />} />
-      <Route path="/course/all" element={<TravelCourseListView />} />
-      <Route path="/course/:postId" element={<TravelCourseView />} />
-      <Route path="/magazine" element={<MagazineHomeView />} />
-      <Route path="/magazine/all" element={<MagazineListView />} />
-      <Route path="/magazine/:postId" element={<TravelSpotView />} />
-      <Route path="/magazine/search" element={<MagazineSearchView />} />
-      <Route path="/magazine/search" element={<MagazineSearchResultView />} />
-    </Routes>
-  </BrowserRouter>
-)
+const Router = () => {
+  const USERTYPE = 'TRAVELER'
+    return (
+      <>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/signup/*" element={<TravelerTypeSignUpRouter />} />
+            <Route path="/signup/complete" element={<SignUpCompleteView />} />
+            <Route path="/signin" element={<SignInView />} />
+            {
+              USERTYPE === `${USER_TYPE.GUIDE}` &&
+              <>
+                <Route path="/" element={<GuideHomeView />} />
+                <Route path="/myguide" element={<MyGuideView />} />
+                <Route path="/mycourse" element={<MyCourseView />} />
+              </>
+            }
+            {
+              USERTYPE === `${USER_TYPE.TRAVELER}` &&
+              <>
+                <Route path="/" element={<TravelerHomeView />} />
+                <Route path="/search" element={<SearchResultView />} />
+                <Route path="/course/all" element={<TravelCourseListView />} />
+                <Route path="/course/:postId" element={<TravelCourseView />} />
+                <Route path="/magazine" element={<MagazineHomeView />} />
+                <Route path="/magazine/all" element={<MagazineListView />} />
+                <Route path="/magazine/:postId" element={<TravelSpotView />} />
+                <Route path="/magazine/search" element={<MagazineSearchView />} />
+                <Route path="/magazine/search" element={<MagazineSearchResultView />} />
+              </>
+            }
+          </Routes>
+        </BrowserRouter>
+      </>
+    )
+};
 export default Router
