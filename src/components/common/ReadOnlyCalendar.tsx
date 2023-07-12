@@ -7,7 +7,7 @@ import { ko } from 'date-fns/locale';
 import TitleWithIconHeader from './TitleWithIconHeader';
 import MyPageIcon from '../../assets/MyPageIcon';
 import SideModal from './SideModal';
-import convertToDateArray from '../../utils/convertToDateArray';
+import convertToDateArray from '../../utils/dateUtil';
 interface ReadOnlyCalendarProps {
   datas: string[];
 }
