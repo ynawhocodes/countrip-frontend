@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useLocation } from 'react-router-dom';
 import MyPageIcon from "../../assets/MyPageIcon";
 import CenterModal from '../../components/CenterModal';
 import Navigation from '../../components/common/Navigation';
@@ -10,7 +11,9 @@ import StoredCourseItem from '../../components/StoredCourseItem';
 import { StyledCommonFullHeigthWhiteWrap } from '../../styles/common';
 
 const MyGuideView = () => {
-  const [activeTab, setActiveTab] = useState(1);
+  const location = useLocation();
+  const locationState = { ...location.state };
+  const [activeTab, setActiveTab] = useState(locationState.initTabIndex | 0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   // TODO: isCenterModalOpen 전역 상태 관리
   const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
@@ -21,7 +24,6 @@ const MyGuideView = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-
   const tabContents = [(<><StoredCourseItem></StoredCourseItem></>), (<><ReservationPendingCourseItem isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}></ReservationPendingCourseItem></>)]
   return (
     <>
