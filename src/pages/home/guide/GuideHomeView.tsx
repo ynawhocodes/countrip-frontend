@@ -28,7 +28,7 @@ const GuideHomeView = () => {
       <GuideScheduleTicket/>
       <GuideScheduleTicket/>
       </StyledCommonFullHeigthWhiteWrap>
-      <Navigation userType={'guide'}/>
+      <Navigation userType={'guide'} initTabIndex={1} />
     </>
   )
 }

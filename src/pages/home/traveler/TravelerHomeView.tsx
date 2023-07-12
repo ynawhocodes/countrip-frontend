@@ -28,7 +28,7 @@ const TravelerHomeView = () => {
         <Tab items={['Now', '농촌 체험', '맛집', '관광지', '자연 경관']} activeTab={activeTab} handleTabClick={handleTabClick} />
         <TabView activeTab={activeTab}>{tabContents}</TabView>
       </StyledCommonFullHeigthWhiteWrap>
-      <Navigation userType={'traveler'}/>
+      <Navigation userType={'traveler'} initTabIndex={1} />
     </>
   )
 };
