@@ -35,6 +35,7 @@ const StyledHeader = styled.header`
   background-color: white;
   transform: translateX(-50%);
   justify-content: space-between;
+  z-index: 9;
   @media (min-width: 769px) {
     width: 768px;
   }
