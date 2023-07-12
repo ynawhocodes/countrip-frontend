@@ -4,16 +4,19 @@ import { fontRegular, fontBold, fontMedium } from '../styles/font'
 import { colors } from '../styles/variables'
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList'
 
-const CourseItem = () => {
+interface CourseItemProps {
+  hasPriceInfo?: boolean;
+}
+const CourseItem = ({ hasPriceInfo = true }: CourseItemProps) => {
   return (
     <StyledCourseContainer>
       <StyledTitle style={fontBold}>박물관을 포함한 자연 경관</StyledTitle>
       <StyledGuideInfo style={fontRegular}>양파링 가이드님</StyledGuideInfo>
       <HorizontalScrollSquareBoxList />
-      <StyledInfoWrap>
+      {hasPriceInfo && <StyledInfoWrap>
         <StyledPrice style={fontMedium}>예상 금액</StyledPrice>
         <StyledPriceValue style={fontMedium}>70000</StyledPriceValue>
-      </StyledInfoWrap>
+      </StyledInfoWrap>}
     </StyledCourseContainer>
   )
 };
