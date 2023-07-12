@@ -1,15 +1,19 @@
-export default interface ExternalResponseSuccess<T> {
-  timestamp: string;
-  code: string;
-  status: string;
-  detail: string;
-  data: T;
+export interface ExternalResponse<T> {
+  status: number;
+  data: ExternalAllResponse<T>;
 }
-
+export default interface ExternalResponseSuccess<T> {
+  code: string;
+  data: T;
+  detail: string;
+  status: string;
+  timestamp: string;
+}
 export interface ExternalResponseFailure<T> {
   code: string;
-  content: T;
-  message: string;
+  data: T;
+  detail: string;
+  status: string;
+  timestamp: string;
 }
-
-export type ExternalResponse<T> = ExternalResponseSuccess<T> | ExternalResponseFailure<T>;
+export type ExternalAllResponse<T> = ExternalResponseSuccess<T> | ExternalResponseFailure<T>;
