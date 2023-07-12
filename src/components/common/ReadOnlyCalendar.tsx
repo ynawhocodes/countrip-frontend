@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
 import { format } from 'date-fns';
 import { DayPicker, DayClickEventHandler } from 'react-day-picker';
@@ -7,7 +7,10 @@ import { ko } from 'date-fns/locale';
 import TitleWithIconHeader from './TitleWithIconHeader';
 import MyPageIcon from '../../assets/MyPageIcon';
 import SideModal from './SideModal';
-import convertToDateArray from '../../utils/dateUtil';
+import convertToDateArray, { convertToMonthString } from '../../utils/dateUtil';
+import { fetchBookedGuideDatesByCurrentMonth } from '../../api/featureApi';
+import checkResponseStatus from '../../utils/statusUtil';
+import { SUCCESS_STATUS_CODE } from '../../config/status.code.config';
 interface ReadOnlyCalendarProps {
   datas: string[];
 }
@@ -15,7 +18,8 @@ const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bookedStyle = { backgroundColor:`${colors.green}`, fontWeight: `700`, borderBottom: `${colors.green} 3px solid`, color: `white`, width: '28px', height: '28px', marginLeft: '7px', paddingTop: '2px', fontSize: '13px' };
   const [booked, setBooked] = React.useState(false);
-  const bookedDays = convertToDateArray(datas);
+  const [bookedDates, setBookedDates] = useState<string[]>([]);
+  const bookedDays = convertToDateArray(bookedDates);
 
   // TODO: booked 상태에 따라 동적인 변화가 없다면 지울 것
   // const handleDayClick: DayClickEventHandler = (day, modifiers) => {
@@ -26,6 +30,16 @@ const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
     setIsModalOpen(true);
   };
 
+  useEffect(() => {
+    (async () => {
+      const response = await fetchBookedGuideDatesByCurrentMonth(convertToMonthString(new Date()));
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        // TODO: dto 구조 바뀌면 적용하기
+        // setBookedDates(response.data.data.date)
+        setBookedDates(['2023-07-15', '2023-07-25'])
+      }
+    })();
+  }, [])
   return (
     <>
       <style>{css}</style>

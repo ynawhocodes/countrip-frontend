@@ -49,5 +49,5 @@
     "devDependencies": {
         "@types/styled-components": "5.1.26"
     },
-    "proxy": "http://15.165.110.6:9090/api/v1/"
+    "proxy": "http://15.165.110.6:9090"
 }

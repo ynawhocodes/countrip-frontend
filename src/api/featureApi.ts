@@ -14,3 +14,14 @@ export const fetchGuideHomeInfo = async () => {
     return e.response;
   }
 };
+export const fetchBookedGuideDatesByCurrentMonth = async (month: string) => {
+  try {
+    const response = await client.get<ExternalResponseSuccess<{ date: string[] }>>(
+      `/api/v1/home/calendar/${month}`,
+    );
+    return response;
+  } catch (e: any) {
+    console.log('fetchBookedGuideDatesByCurrentMonth)', e.response.data);
+    return e.response;
+  }
+};
