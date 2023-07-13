@@ -90,10 +90,12 @@ export const StyledCommonColumnPostitionOuterWrap = styled.div<{
   height: 100%;
   > .Title {
     position: absolute;
-    top: 20%;
+    top: 15%;
     font-size: 30px;
     font-weight: 900;
-    color: ${colors.gray5}
+    color: ${colors.gray5};
+    font-family: "'Noto Sans KR', sans-serif";
+    font-weight: 900;
   }
 `;
 export const StyledCommonColumnPostitionInnerWrap = styled.div<{
