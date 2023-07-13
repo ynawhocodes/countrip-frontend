@@ -103,3 +103,8 @@ export const StyledCommonColumnPostitionInnerWrap = styled.div<{
   top: ${({ top }) => (top ? top : '0')};
   position: ${({ position }) => (position === 'relative' ? 'relative' : 'absolute')};
 `;
+export const StyledCommonHr = styled.div`
+  border-bottom: 1px #E5E5E5 solid;
+  margin: 20px 0 20px 0;
+  height: 1px;
+`
