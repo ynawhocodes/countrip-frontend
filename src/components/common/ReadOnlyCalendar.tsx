@@ -1,12 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components'
-import { format } from 'date-fns';
-import { DayPicker, DayClickEventHandler } from 'react-day-picker';
+import { DayPicker} from 'react-day-picker';
 import { colors } from '../../styles/variables'
 import { ko } from 'date-fns/locale';
-import TitleWithIconHeader from './TitleWithIconHeader';
-import MyPageIcon from '../../assets/MyPageIcon';
-import SideModal from './SideModal';
 import convertToDateArray, { convertToMonthString } from '../../utils/dateUtil';
 import { fetchBookedGuideDatesByCurrentMonth } from '../../api/featureApi';
 import checkResponseStatus from '../../utils/statusUtil';
