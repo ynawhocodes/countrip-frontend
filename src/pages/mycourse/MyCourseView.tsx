@@ -9,6 +9,7 @@ import { fetchMyCourseList } from '../../api/featureApi';
 import checkResponseStatus from '../../utils/statusUtil';
 import { SUCCESS_STATUS_CODE } from '../../config/status.code.config';
 import CourseDto from '../../@types/CourseDto';
+import SideModal from '../../components/common/SideModal';
 
 const MyCourseView = () => {
   const [courses, setCourses] = useState<CourseDto[]>()
@@ -32,6 +33,7 @@ const MyCourseView = () => {
   return (
     <>
       <TitleWithIconHeader title="내 코스" icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal} />} />
+      <SideModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>ss</SideModal>
       <StyledCommonFullHeigthWhiteWrap>
         {courses?.map((course, index) =>
           <div onClick={() => goToPage(course.id)} key={index}>
