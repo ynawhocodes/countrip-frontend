@@ -35,7 +35,7 @@ const SignInView = () => {
     if (userType == USER_TYPE.TRAVELER) {
       const response = await travelerLogin(userInfo);
       if (response) {
-        navigate('/', );
+        navigate('/');
       }
       else {
         setIsValid(false);
@@ -44,7 +44,7 @@ const SignInView = () => {
     else if(userType === USER_TYPE.GUIDE) {
       const response = await guideLogin(userInfo);
       if (response) {
-        navigate('/', );
+        navigate('/');
       }
       else {
         setIsValid(false);

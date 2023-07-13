@@ -63,9 +63,9 @@ const Router = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<SignInView />} />
           {!isLoggedIn &&
             <>
+              <Route path="/" element={<SignInView />} />
               <Route path="/signup/*" element={<TravelerTypeSignUpRouter />} />
               <Route path="/signup/complete" element={<SignUpCompleteView />} />
             </>
