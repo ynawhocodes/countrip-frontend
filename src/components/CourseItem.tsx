@@ -1,18 +1,20 @@
 import React from 'react'
 import styled from 'styled-components'
+import CourseDto from '../@types/CourseDto'
 import { fontRegular, fontBold, fontMedium } from '../styles/font'
 import { colors } from '../styles/variables'
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList'
 
 interface CourseItemProps {
   hasPriceInfo?: boolean;
+  data: CourseDto;
 }
-const CourseItem = ({ hasPriceInfo = true }: CourseItemProps) => {
+const CourseItem = ({ hasPriceInfo = true, data }: CourseItemProps) => {
   return (
     <StyledCourseContainer>
-      <StyledTitle style={fontBold}>박물관을 포함한 자연 경관</StyledTitle>
-      <StyledGuideInfo style={fontRegular}>양파링 가이드님</StyledGuideInfo>
-      {/* <HorizontalScrollSquareBoxList /> */}
+      <StyledTitle style={fontBold}>{data.title}</StyledTitle>
+      <StyledGuideInfo style={fontRegular}>{data.guideName}</StyledGuideInfo>
+      <HorizontalScrollSquareBoxList datas={data.spots} />
       {hasPriceInfo && <StyledInfoWrap>
         <StyledPrice style={fontMedium}>예상 금액</StyledPrice>
         <StyledPriceValue style={fontMedium}>70000</StyledPriceValue>

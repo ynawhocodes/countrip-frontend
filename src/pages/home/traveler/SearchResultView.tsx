@@ -20,10 +20,10 @@ const SearchResultView = () => {
       <StyledCommonFullHeigthWhiteWrap>
         <Filter items={filterTypeList} />
         <div onClick={() => goToPage(2)}>
-          <CourseItem/>
+          {/* <CourseItem/> */}
         </div>
-        <CourseItem/>
-        <CourseItem />
+        {/* <CourseItem/> */}
+        {/* <CourseItem /> */}
       </StyledCommonFullHeigthWhiteWrap>
     </>
   )
