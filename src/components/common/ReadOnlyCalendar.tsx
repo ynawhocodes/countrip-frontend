@@ -43,8 +43,6 @@ const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
   return (
     <>
       <style>{css}</style>
-      <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal} />} />
-      <SideModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>ss</SideModal>
       <StyledGuideCalendar>
         <DayPicker
           locale={ko}
@@ -61,11 +59,11 @@ export default ReadOnlyCalendar;
 
 const StyledGuideCalendar = styled.div`
   background-color: ${colors.gray1};
-  height: 30%;
+  height: 360px;
   border-radius: 30px;
   display: flex;
   justify-content: center;
-  padding: 5px 0 40px 0;
+  padding: 5px 0 5px 0;
 `
 const css = `
   .rdp {
