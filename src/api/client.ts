@@ -1,7 +1,11 @@
 import axios, { AxiosInstance } from 'axios'
 
 const client: AxiosInstance = axios.create({
-  baseURL: '',
+  baseURL: 'http://15.165.110.6:9090',
+  withCredentials: true,
+});
+const travelerClient: AxiosInstance = axios.create({
+  baseURL: 'http://15.165.110.6:9090',
   withCredentials: true,
 });
 
