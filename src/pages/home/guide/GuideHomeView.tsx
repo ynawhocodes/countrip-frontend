@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import { fetchGuideHomeInfo } from '../../../api/featureApi'
+import { TodayGuideScheduleDto } from '../../../@types/GuideDto'
+import { fetchGuideHomeInfo, fetchGuideTodaySchedule } from '../../../api/featureApi'
 import MyPageIcon from '../../../assets/MyPageIcon'
 import Navigation from '../../../components/common/Navigation'
 import ReadOnlyCalendar from '../../../components/common/ReadOnlyCalendar'
@@ -20,13 +21,18 @@ const GuideHomeView = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [tabIndex, setTabIndex] = useState(1);
   const [hasAlert, setHasAlert] = useState(false);
+  const [guideSchedule, setGuideSchedule] = useState<TodayGuideScheduleDto[]>([]);
 
   const openModal = () => {
     setIsModalOpen(true);
   };
+  // TODO: 함수명 변경
   const goToPage = () => {
     navigate('/myguide', { state: { initTabIndex: 1 } });
     setTabIndex(0);
+  }
+  const goToPageByGuideScheduleTicket = (id: number) => {
+    navigate(`/course/${id}`);
   }
 
   useEffect(() => {
@@ -36,8 +42,13 @@ const GuideHomeView = () => {
         setHasAlert(response.data.data.existUncheckedReservation)
       }
     })();
+    (async () => {
+      const response = await fetchGuideTodaySchedule();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        setGuideSchedule(response.data.data)
+      }
+    })();
   }, [])
-  
   return (
     <>
       <SideModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>ss</SideModal>
@@ -46,9 +57,7 @@ const GuideHomeView = () => {
         {hasAlert && <StyledAlertItem style={fontMedium} onClick={goToPage} />}
         <ReadOnlyCalendar datas={dummyDateDatas} />
         <SectionTitle title="오늘의 가이딩 일정" isMore={true} />
-        <GuideScheduleTicket />
-        <GuideScheduleTicket />
-        <GuideScheduleTicket />
+        {guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType={'guide'} initTabIndex={tabIndex} />
     </>

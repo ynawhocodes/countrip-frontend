@@ -1,21 +1,29 @@
 import React from 'react'
 import styled from 'styled-components'
+import { TodayGuideScheduleDto } from '../@types/GuideDto'
 import { fontBold, fontMedium } from '../styles/font'
 import { colors } from '../styles/variables'
 
-const GuideScheduleTicket = () => {
-  return (<>
-     <StyledTicketWrap>
-    <StyledGradient />
-    <StyledOverlay>
-      <StyledTicketTitle style={fontMedium}>박물관을 포함한 자연 경관</StyledTicketTitle>
-      <StyledInfoWrap>
-        <StyledTravelerName>양파링</StyledTravelerName>
-        <StyledTravelerNum>1</StyledTravelerNum>
-      </StyledInfoWrap>
-    </StyledOverlay>
-  </StyledTicketWrap>
-  </>)
+interface GuideScheduleTicketProps {
+  data: TodayGuideScheduleDto
+}
+const GuideScheduleTicket = ({ data }: GuideScheduleTicketProps) => {
+  return (
+    <>
+      <StyledTicketWrap>
+        <StyledGradient />
+        <StyledOverlay>
+          <StyledTicketTitle style={fontMedium}>
+            {data.courseTitle}
+          </StyledTicketTitle>
+          <StyledInfoWrap>
+            <StyledTravelerName>{data.travelerName}</StyledTravelerName>
+            <StyledTravelerNum>{data.totalTravelerCount}</StyledTravelerNum>
+          </StyledInfoWrap>
+        </StyledOverlay>
+      </StyledTicketWrap>
+    </>
+  )
 };
 export default GuideScheduleTicket;
 
@@ -62,15 +70,15 @@ const StyledInfoWrap = styled.div`
 const StyledTravelerName = styled.p`
   font-size: 12px;
   &::before {
-    content: '예약자: '
+    content: '예약자: ';
   }
 `
 const StyledTravelerNum = styled.p`
   font-size: 12px;
- &::before {
-    content: '총: '
+  &::before {
+    content: '총: ';
   }
- &::after {
-    content: '명'
+  &::after {
+    content: '명';
   }
 `
