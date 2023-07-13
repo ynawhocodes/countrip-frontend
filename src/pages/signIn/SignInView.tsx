@@ -10,7 +10,8 @@ import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import InputText, { focusRef } from '../../components/common/InputText'
 import { useNavigate } from 'react-router-dom'
-import { login } from '../../api/authApi'
+import { guideLogin, travelerLogin } from '../../api/authApi'
+import { USER_TYPE } from '../../constants'
 
 const SignInView = () => {
   const [userInfo, setUserInfo] = useState({
@@ -19,6 +20,7 @@ const SignInView = () => {
   });
   const passwordRef = useRef<focusRef>(null);
   const [isValid, setIsValid] = useState(true);
+  const [userType, setUserType] = useState('TRAVELER');
   const navigate = useNavigate();
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -28,18 +30,33 @@ const SignInView = () => {
       [name]: value,
     }))
   };
+  // TODO: 함수 구조 바꾸기
   const onClickLogin = async () => {
-    const response = await login(userInfo);
-    if (response) {
-      navigate('/');
+    if (userType == USER_TYPE.TRAVELER) {
+      const response = await travelerLogin(userInfo);
+      if (response) {
+        navigate('/', );
+      }
+      else {
+        setIsValid(false);
+      }
+    }
+    else if(userType === USER_TYPE.GUIDE) {
+      const response = await guideLogin(userInfo);
+      if (response) {
+        navigate('/', );
+      }
+      else {
+        setIsValid(false);
+      }
     }
     else {
-      // TODO: isValid 사용
       setIsValid(false);
-      alert('로그인 실패!');
     }
-    setIsValid(true);
   };
+  const handleUserType = (type: string) => {
+    setUserType(type)
+  }
 
   return (
     <StyledCommonGreenLightWrap>
@@ -47,12 +64,13 @@ const SignInView = () => {
         <div className="Title">Welcome!</div>
         <StyledCommonColumnPostitionInnerWrap top={'30%'} position={'relative'}>
           <StyledFolderContainer>
-            <StyledFolderSelectTypeContainer>
+            <StyledFolderSelectTypeContainer active={userType === USER_TYPE.TRAVELER} onClick={() => handleUserType(USER_TYPE.TRAVELER)}>
               여행러
             </StyledFolderSelectTypeContainer>
-            <StyledFolderUnselectTypeContainer>
+            <StyledFolderUnselectTypeContainer active={userType === USER_TYPE.GUIDE} onClick={() => handleUserType(USER_TYPE.GUIDE)}>
               가이드
             </StyledFolderUnselectTypeContainer>
+            {!isValid && <StyledNotice>로그인 정보가 일치하지 않습니다.</StyledNotice>}
             <InputText
               ref={passwordRef}
               type="id"
@@ -93,7 +111,7 @@ const StyledFolderContainer = styled.div`
   background-color: white;
   border-radius: 20px;
   text-align: center;
-  padding: 20% 20px;
+  padding: 85px 20px;
   z-index: 10;
 `
 const StyledFolderTypeContainer = styled.div`
@@ -104,18 +122,21 @@ const StyledFolderTypeContainer = styled.div`
   font-size: 14px;
   font-weight: 700;
   z-index: 1;
-  line-height: 5rem;
+  line-height: 4rem;
 `
-const StyledFolderUnselectTypeContainer = styled(StyledFolderTypeContainer)`
-  background-color: ${colors.gray1};
-  color: ${colors.gray2};
+const StyledFolderUnselectTypeContainer = styled(StyledFolderTypeContainer) <{ active: boolean }>`
+  background-color: ${({ active }) => active ? `white` : `${colors.gray1}`};
+  color:  ${({ active }) => active ? `black` : `${colors.gray2}`};
   left: 50%;
   border-radius: 20px 20px 0 20px;
+  cursor: pointer;
 `
-const StyledFolderSelectTypeContainer = styled(StyledFolderTypeContainer)`
-  background-color: white;
+const StyledFolderSelectTypeContainer = styled(StyledFolderTypeContainer)<{active: boolean}>`
+  background-color: ${({ active }) => active ? `white` : `${colors.gray1}`};
+  color:  ${({ active }) => active ? `black` : `${colors.gray2}`};
   left: 0;
-  border-radius: 20px 20px 0 0px;
+  border-radius: 20px 20px 20px 0;
+  cursor: pointer;
 `
 const StyledButton = styled.button`
   all: unset;
@@ -123,4 +144,9 @@ const StyledButton = styled.button`
   color: ${colors.gray5};
   margin-top: 10px;
   padding: 0 5px;
+`
+const StyledNotice = styled.p`
+  font-size: 12px;
+  color: ${colors.warning};
+  margin-bottom: 40px;
 `
