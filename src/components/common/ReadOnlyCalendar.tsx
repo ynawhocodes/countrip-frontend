@@ -34,9 +34,7 @@ const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
     (async () => {
       const response = await fetchBookedGuideDatesByCurrentMonth(convertToMonthString(new Date()));
       if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-        // TODO: dto 구조 바뀌면 적용하기
-        // setBookedDates(response.data.data.date)
-        setBookedDates(['2023-07-15', '2023-07-25'])
+        setBookedDates(response.data.data.date)
       }
     })();
   }, [])
