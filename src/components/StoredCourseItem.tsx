@@ -4,6 +4,7 @@ import { GuideScheduleDto } from '../@types/GuideDto';
 import { StyledCommonHr } from '../styles/common';
 import { fontMedium, fontBold, fontRegular } from '../styles/font';
 import { colors } from '../styles/variables';
+import { formatPeriodDate } from '../utils/dateUtil';
 import formatPhoneNumber from '../utils/stringUtil';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
 
@@ -15,7 +16,7 @@ const StoredCourseItem = ({ datas }: StoredCourseItemProps) => {
     <>
       {datas?.map(data => (
         <StyledContainer>
-          <StyledDate style={fontMedium}>{data?.travelDate}</StyledDate>
+          <StyledDate style={fontMedium}>{formatPeriodDate(data?.travelDate)}</StyledDate>
           {data.reservations?.map((reservation) => ( <StyledItemContainer>
             <StyledTitle style={fontBold}>{reservation?.courseTitle}</StyledTitle>
             <HorizontalScrollSquareBoxList datas={reservation?.spots} />

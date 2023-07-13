@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLocation } from 'react-router-dom';
 import { GuideScheduleDto } from '../../@types/GuideDto';
-import { fetchGuideSchedule } from '../../api/featureApi';
+import { fetchGuideReservationList, fetchGuideSchedule } from '../../api/featureApi';
 import MyPageIcon from "../../assets/MyPageIcon";
 import CenterModal from '../../components/CenterModal';
 import Navigation from '../../components/common/Navigation';
@@ -22,6 +22,7 @@ const MyGuideView = () => {
   // TODO: isCenterModalOpen 전역 상태 관리
   const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
   const [guideSchedule, setGuideSchedule] = useState<GuideScheduleDto[]>([]);
+  const [guideReservations, setGuideReservations] = useState<GuideScheduleDto[]>([]);
 
   const handleTabClick = (index: number) => {
     setActiveTab(index);
@@ -36,8 +37,14 @@ const MyGuideView = () => {
         setGuideSchedule(response.data.data)
       }
     })();
+    (async () => {
+      const response = await fetchGuideReservationList();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        setGuideReservations(response.data.data)
+      }
+    })();
   }, [])
-  const tabContents = [(<><StoredCourseItem datas={guideSchedule}></StoredCourseItem></>), (<><ReservationPendingCourseItem isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}></ReservationPendingCourseItem></>)]
+  const tabContents = [(<><StoredCourseItem datas={guideSchedule}></StoredCourseItem></>), (<><ReservationPendingCourseItem datas={guideReservations} isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}></ReservationPendingCourseItem></>)]
   return (
     <>
       <TitleWithIconHeader title="내 가이드" icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal} />}></TitleWithIconHeader>

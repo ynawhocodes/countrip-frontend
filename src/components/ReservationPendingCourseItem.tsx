@@ -1,35 +1,40 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
+import { GuideScheduleDto } from '../@types/GuideDto';
 import { StyledCommonBlackButton } from '../styles/common';
 import { fontMedium, fontBold, fontRegular } from '../styles/font';
 import { colors } from '../styles/variables';
+import { formatPeriodDate } from '../utils/dateUtil';
 import CenterModal from './CenterModal';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
 
 interface CenterModalProps {
+  datas: GuideScheduleDto[];
   isOpen: boolean;
   setIsOpen: any;
 }
-const ReservationPendingCourseItem = ({ isOpen, setIsOpen}: CenterModalProps) => {
+const ReservationPendingCourseItem = ({ datas, isOpen, setIsOpen }: CenterModalProps) => {
   return (
     <>
-      <StyledContainer>
-        <StyledDate style={fontMedium}>07.20 목</StyledDate>
-        <StyledItemContainer>
-          <StyledTitle style={fontBold}>박물관을 포함한 자연 경관</StyledTitle>
-          {/* <HorizontalScrollSquareBoxList /> */}
-          <div style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />
-          <StyledTitle style={fontBold}>예약자</StyledTitle>
-          <StyledContent style={fontRegular}>숨겨진 맛집 소개해주세요.</StyledContent>
-          <hr style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />
-          <StyledTitle style={fontBold}>요청사항</StyledTitle>
-          <StyledContent style={fontRegular}>숨겨진 맛집 소개해주세요.</StyledContent>
-          <StyledButtonWrap>
-            <StyledButton>수락</StyledButton>
-            <StyledButton style={{ marginLeft: 15 }} onClick={() => setIsOpen(!isOpen)}>취소</StyledButton>
-          </StyledButtonWrap>
-        </StyledItemContainer>
-      </StyledContainer>
+      {datas.map((data, index) => (
+        <StyledContainer key={index}>
+          <StyledDate style={fontMedium}>{formatPeriodDate(data.travelDate)}</StyledDate>
+          <StyledItemContainer>
+            <StyledTitle style={fontBold}>박물관을 포함한 자연 경관</StyledTitle>
+            {/* <HorizontalScrollSquareBoxList /> */}
+            <div style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />
+            <StyledTitle style={fontBold}>예약자</StyledTitle>
+            <StyledContent style={fontRegular}>숨겨진 맛집 소개해주세요.</StyledContent>
+            <hr style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />
+            <StyledTitle style={fontBold}>요청사항</StyledTitle>
+            <StyledContent style={fontRegular}>숨겨진 맛집 소개해주세요.</StyledContent>
+            <StyledButtonWrap>
+              <StyledButton>수락</StyledButton>
+              <StyledButton style={{ marginLeft: 15 }} onClick={() => setIsOpen(!isOpen)}>취소</StyledButton>
+            </StyledButtonWrap>
+          </StyledItemContainer>
+        </StyledContainer>
+      ))}
     </>
   )
 };
