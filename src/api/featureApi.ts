@@ -2,7 +2,7 @@
 import ExternalResponseSuccess from "./response";
 import SignInParamsDto, { SignInResponseDto } from "../@types/SignInDto";
 import client from "./client";
-import { GuideReservationDto, TodayGuideScheduleDto } from "../@types/GuideDto";
+import { GuideReservationDto, GuideScheduleDto, TodayGuideScheduleDto } from "../@types/GuideDto";
 import CourseDto from "../@types/CourseDto";
 
 export const fetchGuideHomeInfo = async () => {
@@ -34,13 +34,13 @@ export const fetchGuideTodaySchedule = async () => {
     );
     return response;
   } catch (e: any) {
-    console.log('fetchGuideSchedule)', e.response.data);
+    console.log('fetchGuideTodaySchedule)', e.response.data);
     return e.response;
   }
 };
 export const fetchGuideSchedule = async () => {
   try {
-    const response = await client.get<ExternalResponseSuccess<GuideReservationDto>>(
+    const response = await client.get<ExternalResponseSuccess<GuideScheduleDto[]>>(
       `/api/v1/guides/plans`,
     );
     return response;
