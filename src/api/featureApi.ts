@@ -83,6 +83,7 @@ export const fetchCourse = async (courseId: number) => {
     return e.response;
   }
 };
+// TODO: cancel > reject 이름 변경
 export const fetchCancleReservationReasons = async () => {
   try {
     const response = await client.get<ExternalResponseSuccess<CancelReason[]>>(
@@ -91,6 +92,17 @@ export const fetchCancleReservationReasons = async () => {
     return response;
   } catch (e: any) {
     console.log('fetchCancleReservationReasons)', e.response.data);
+    return e.response;
+  }
+};
+export const patchRejectReservation = async ( courseId: number) => {
+  try {
+    const response = await client.post<ExternalResponseSuccess<CancelReason[]>>(
+      `/api/v1/guides/reservations/${courseId}/reject`,
+    );
+    return response;
+  } catch (e: any) {
+    console.log('patchRejectReservation)', e.response.data);
     return e.response;
   }
 };

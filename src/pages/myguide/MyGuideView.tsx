@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GuideScheduleDto } from '../../@types/GuideDto';
 import { CancelReason } from '../../@types/ReservationDto';
-import { fetchCancleReservationReasons, fetchGuideReservationList, fetchGuideSchedule } from '../../api/featureApi';
+import { fetchCancleReservationReasons, fetchGuideReservationList, fetchGuideSchedule, patchRejectReservation } from '../../api/featureApi';
 import MyPageIcon from "../../assets/MyPageIcon";
 import CenterModal from '../../components/CenterModal';
 import Navigation from '../../components/common/Navigation';
@@ -49,6 +49,7 @@ const MyGuideView = () => {
         setGuideReservations(response.data.data)
       }
     })();
+    // TODO: 버튼 누를 때 조회되도록 변경
     (async () => {
       const response = await fetchCancleReservationReasons();
       if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
@@ -56,6 +57,12 @@ const MyGuideView = () => {
       }
     })();
   }, [])
+  const onClickRejectButton = async(courseId: number) => {
+    const response = await patchRejectReservation(courseId);
+    if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+      alert('예약 취소가 완료되었습니다.')
+    }
+  }
   const tabContents = [(<><StoredCourseItem datas={guideSchedule}></StoredCourseItem></>), (<><ReservationPendingCourseItem datas={guideReservations} isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}></ReservationPendingCourseItem></>)]
   return (
     <>
@@ -64,7 +71,7 @@ const MyGuideView = () => {
       <StyledCommonFullHeigthWhiteWrap>
         <Tab items={['가이딩 일정', '예약 신청']} activeTab={activeTab} handleTabClick={handleTabClick} />
         <TabView activeTab={activeTab}>{tabContents}</TabView>
-        <CenterModal isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}><div><StyledModalTitle style={fontBold}>취소 사유</StyledModalTitle><div style={{width: 'auto'}}>{cancleReasons.map((reason, index) => <StyledButton key={index} active={index === activeButton } style={fontRegular} onClick={() => setActiveButton(index)}>{reason?.reason}</StyledButton>)}</div></div></CenterModal>
+        <CenterModal isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}><div><StyledModalTitle style={fontBold}>취소 사유</StyledModalTitle><div style={{ width: 'auto' }}>{cancleReasons.map((reason, index) => <StyledButton key={index} active={index === activeButton} style={fontRegular} onClick={() => { setActiveButton(index); }} >{reason?.reason}</StyledButton>)}</div></div></CenterModal>
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType='guide' initTabIndex={0}></Navigation>
     </>
