@@ -67,4 +67,5 @@ const StyledBoxTitle = styled.p`
   color: white;
   line-height: 12px;
   text-align: center;
+  z-index: 1;
 `;
