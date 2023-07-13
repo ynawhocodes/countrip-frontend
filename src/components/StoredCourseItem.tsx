@@ -36,7 +36,6 @@ const StoredCourseItem = ({ datas }: StoredCourseItemProps) => {
             <StyledContent style={fontRegular}>{reservation?.requestMessage}</StyledContent>
           </StyledItemContainer>
           ))}
-       
         </StyledContainer>
       ))
       }
@@ -54,6 +53,7 @@ const StyledItemContainer = styled.div`
   background-color: ${colors.gray1};
   padding: 30px 20px;
   border-radius: 20px;
+  margin-bottom: 20px;
 `
 const StyledTitle = styled.h1`
   font-size: 18px;
@@ -76,6 +76,10 @@ const StyledFlexCountWrap = styled.div`
  display: flex;
  align-items: center;
  & > :nth-child(1), & > :nth-child(2) {
+  margin-right: 10px;
+ }
+ & > ::after {
+  content: '명';
   margin-right: 10px;
  }
 `

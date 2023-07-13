@@ -49,6 +49,17 @@ export const fetchGuideSchedule = async () => {
     return e.response;
   }
 };
+export const fetchGuideReservationList = async () => {
+  try {
+    const response = await client.get<ExternalResponseSuccess<GuideScheduleDto[]>>(
+      `/api/v1/guides/reservations`,
+    );
+    return response;
+  } catch (e: any) {
+    console.log('fetchGuideReservationList)', e.response.data);
+    return e.response;
+  }
+};
 export const fetchMyCourseList = async () => {
   try {
     const response = await client.get<ExternalResponseSuccess<CourseDto[]>>(
