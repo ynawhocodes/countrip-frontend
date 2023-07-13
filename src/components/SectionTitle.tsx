@@ -5,20 +5,21 @@ import { colors } from '../styles/variables'
 
 interface SectionType {
   title: string
-  isMore?: boolean
-  url?: string
+  hasMore?: boolean
   paddingHorizontal?: number
+  // TODO: type 정확히
+  onClickMore?: any;
 }
 const SectionTitle = ({
   title,
-  isMore,
-  url,
+  hasMore,
   paddingHorizontal,
+  onClickMore
 }: SectionType) => {
   return (
     <SectionWrap paddingHorizontal={paddingHorizontal}>
       <StyledSectionTitle style={fontBold}>{title}</StyledSectionTitle>
-      {isMore && <StyledMoreButton />}
+      {hasMore && <StyledMoreButton onClick={onClickMore}/>}
     </SectionWrap>
   )
 }

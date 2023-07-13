@@ -35,7 +35,10 @@ const GuideHomeView = () => {
   const goToPageByGuideScheduleTicket = (id: number) => {
     navigate(`/course/${id}`);
   }
-
+  const goToPageByhasMore = () => {
+    navigate('/myguide', { state: { initTabIndex: 0 } });
+    setTabIndex(0);
+  }
   useEffect(() => {
     (async () => {
       const response = await fetchGuideHomeInfo();
@@ -58,7 +61,7 @@ const GuideHomeView = () => {
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         {hasAlert && <StyledAlertItem style={fontMedium} onClick={goToPage} />}
         <ReadOnlyCalendar datas={dummyDateDatas} />
-        <SectionTitle title="오늘의 가이딩 일정" isMore={true}/>
+        <SectionTitle title="오늘의 가이딩 일정" hasMore={true} onClickMore={goToPageByhasMore} />
         {isEmptyStatus ? <StyledTicketEmptyStatus style={fontRegular}/> : guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType={'guide'} initTabIndex={tabIndex} />

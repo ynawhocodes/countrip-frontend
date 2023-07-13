@@ -4,13 +4,16 @@ import { StyledCommonFullHeigthWhiteWrap } from '../../../styles/common'
 import Navigation from '../../../components/common/Navigation'
 import MyPageIcon from '../../../assets/MyPageIcon'
 import TitleWithIconHeader from '../../../components/common/TitleWithIconHeader'
-import { tabContents } from '../../../constants/feature'
 import CourseSearch from '../../../components/CourseSearch'
 import SideModal from '../../../components/common/SideModal'
+import SpotDto from '../../../@types/SpotDto'
+import { tabContents } from '../../../constants/feature'
+
 
 const TravelerHomeView = () => {
   const [activeTab, setActiveTab] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
 
   const handleTabClick = (index: number) => {
     setActiveTab(index);
