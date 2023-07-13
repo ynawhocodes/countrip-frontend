@@ -36,15 +36,17 @@ const SignInView = () => {
       const response = await travelerLogin(userInfo);
       if (response) {
         navigate('/home');
+        window.location.reload();
       }
       else {
         setIsValid(false);
       }
     }
-    else if(userType === USER_TYPE.GUIDE) {
-      const response = await guideLogin(userInfo);
+    else if (userType === USER_TYPE.GUIDE) {
+      const response = await guideLogin({ username: 'guidetestid1', password: 'password123!!' });
       if (response) {
         navigate('/home');
+        window.location.reload();
       }
       else {
         setIsValid(false);

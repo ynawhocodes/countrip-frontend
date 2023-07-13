@@ -28,6 +28,7 @@ export const guideLogin = async ({ username, password }: SignInParamsDto) => {
       '/api/v1/auth/signin',
       {username: username, password: password},
     );
+    console.log(username, password);
     const accessToken = response.data.data.tokenDto.accessToken;
     const refreshToken = response.data.data.tokenDto.refreshToken;
     const userType = response.data.data.userType;
@@ -45,7 +46,7 @@ export const logout = async () => {
     localStorage.setItem('accessToken', '');
     localStorage.setItem('refreshToken', '');
     localStorage.setItem('userType', '');
-    window.location.href = '/signin';
+    window.location.href = '/';
     return true;
   } catch (e: any) {
     console.log('logout)', e.response.data);

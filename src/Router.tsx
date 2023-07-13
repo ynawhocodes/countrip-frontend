@@ -75,6 +75,7 @@ const Router = () => {
               {
                 USERTYPE === `${USER_TYPE.GUIDE}` &&
                 <>
+                  <Route path="/" element={<GuideHomeView />} />
                   <Route path="/home" element={<GuideHomeView />} />
                   <Route path="/myguide" element={<MyGuideView />} />
                   <Route path="/mycourse" element={<MyCourseView />} />
@@ -83,6 +84,7 @@ const Router = () => {
               {
                 USERTYPE === `${USER_TYPE.TRAVELER}` &&
                 <>
+                  <Route path="/" element={<TravelerHomeView />} />
                   <Route path="/home" element={<TravelerHomeView />} />
                   <Route path="/search" element={<SearchResultView />} />
                   <Route path="/magazine" element={<MagazineHomeView />} />
