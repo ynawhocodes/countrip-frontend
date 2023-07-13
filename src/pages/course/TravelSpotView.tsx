@@ -11,10 +11,10 @@ const TravelSpotView = () => {
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         <StyledHeaderContent/>
         <GoBackHeader/>
+        {/* <SpotItem/>
         <SpotItem/>
         <SpotItem/>
-        <SpotItem/>
-        <SpotItem/>
+        <SpotItem/> */}
       </StyledCommonFullHeigthWhiteWrap>
     </>
   )

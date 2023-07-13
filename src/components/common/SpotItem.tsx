@@ -2,25 +2,32 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { colors } from '../../styles/variables'
 import { fontMedium } from '../../styles/font'
+import { SpotDetailDto } from '../../@types/CourseDto';
 
-const SpotItem = () => {
+interface SpotItemProps {
+  data: SpotDetailDto;
+  index: number;
+}
+const SpotItem = ({ data, index }: SpotItemProps) => {
+  // GUIDE) 내 코스에서 상세 눌렀을 경우
   const InfoTitleList = ['주소', '전화번호', '홈페이지']
+  const InfoKeyList = [data.address, data.telephone, data.homepage]
   return (
     <>
       <StyledContainer>
-        <StyledTitle style={fontMedium}>1. 오죽헌</StyledTitle>
-        <StyledBoxContainer />
+        <StyledTitle style={fontMedium}>{index + 1}. {data.title}</StyledTitle>
+        <StyledBoxContainer imageUrl={data.imageUrl} />
         <StyledInfoContainer>
           {InfoTitleList.map((infoTitle, index) => (
             <StyledInfoItemContainer key={index}>
               <StyledInfoTitle style={fontMedium}>
                 {infoTitle}
               </StyledInfoTitle>
-              <StyledInfoContent style={fontMedium}>data</StyledInfoContent>
+              <StyledInfoContent style={fontMedium}>{InfoKeyList[index]}</StyledInfoContent>
             </StyledInfoItemContainer>
           ))}
         </StyledInfoContainer>
-        <StyledContent>{text}</StyledContent>
+        <StyledContent>{data.description}</StyledContent>
       </StyledContainer>
     </>
   )
@@ -28,7 +35,7 @@ const SpotItem = () => {
 export default SpotItem;
 
 const StyledContainer = styled.div`
-  padding-top: 30px;
+  padding-top: 10px;
 `
 const StyledTitle = styled.p`
   font-size: 16px;
@@ -36,12 +43,15 @@ const StyledTitle = styled.p`
 `
 const StyledBoxContainer = styled.div<{
   marginHorizontal?: number;
+  imageUrl: string;
 }>
 `
   height: 200px;
   border-radius: 20px;
   background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
-  margin: ${({ marginHorizontal } ) => marginHorizontal ? `10px  ${marginHorizontal}px;` : `10px 0px`};
+  margin: ${({ marginHorizontal }) => marginHorizontal ? `10px  ${marginHorizontal}px;` : `10px 0px`};
+  background-image: url(${({ imageUrl }) => imageUrl});
+  position: relative;
 `;
 const StyledContent = styled.p`
   font-size: 12px;

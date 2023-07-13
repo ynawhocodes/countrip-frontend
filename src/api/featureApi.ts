@@ -71,3 +71,14 @@ export const fetchMyCourseList = async () => {
     return e.response;
   }
 };
+export const fetchCourse = async (courseId: number) => {
+  try {
+    const response = await client.get<ExternalResponseSuccess<CourseDto>>(
+      `/api/v1/courses/${courseId}`,
+    );
+    return response;
+  } catch (e: any) {
+    console.log('fetchCourse)', e.response.data);
+    return e.response;
+  }
+};
