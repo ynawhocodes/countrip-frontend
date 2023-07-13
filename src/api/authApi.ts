@@ -26,6 +26,7 @@ export const logout = async () => {
     localStorage.setItem('accessToken', '');
     localStorage.setItem('refreshToken', '');
     localStorage.setItem('userType', '');
+    window.location.href = '/signin';
     return true;
   } catch (e: any) {
     console.log('logout)', e.response.data);
