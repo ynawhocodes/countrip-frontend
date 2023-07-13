@@ -64,7 +64,7 @@ const MyGuideView = () => {
       <StyledCommonFullHeigthWhiteWrap>
         <Tab items={['가이딩 일정', '예약 신청']} activeTab={activeTab} handleTabClick={handleTabClick} />
         <TabView activeTab={activeTab}>{tabContents}</TabView>
-        <CenterModal isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}><div><StyledModalTitle style={fontBold}>취소 사유</StyledModalTitle><div>{cancleReasons.map((reason, index) => <StyledButton key={index} active={index === activeButton } style={fontRegular} onClick={() => setActiveButton(index)}>{reason?.reason}</StyledButton>)}</div></div></CenterModal>
+        <CenterModal isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}><div><StyledModalTitle style={fontBold}>취소 사유</StyledModalTitle><div style={{width: 'auto'}}>{cancleReasons.map((reason, index) => <StyledButton key={index} active={index === activeButton } style={fontRegular} onClick={() => setActiveButton(index)}>{reason?.reason}</StyledButton>)}</div></div></CenterModal>
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType='guide' initTabIndex={0}></Navigation>
     </>
@@ -73,11 +73,11 @@ const MyGuideView = () => {
 export default MyGuideView;
 
 const StyledButton = styled(StyledCommonButton)<{active: boolean}>`
-  margin: 5px;
-  width: 45%;
+  margin: 1%;
+  width: 48%;
   color:${({active}) => active ? 'white' : `${colors.gray2}` };
   background-color: ${({active}) => active ? `${colors.gray5}` : 'white' };
-  font-size: 14px;
+  font-size: 12px;
   border: 1.5px ${colors.gray2} solid;
   &:hover {
     background-color: ${colors.gray5};
