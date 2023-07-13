@@ -4,6 +4,7 @@ import SignInParamsDto, { SignInResponseDto } from "../@types/SignInDto";
 import client from "./client";
 import { GuideReservationDto, GuideScheduleDto, TodayGuideScheduleDto } from "../@types/GuideDto";
 import CourseDto from "../@types/CourseDto";
+import { CancelReason } from "../@types/ReservationDto";
 
 export const fetchGuideHomeInfo = async () => {
   try {
@@ -79,6 +80,17 @@ export const fetchCourse = async (courseId: number) => {
     return response;
   } catch (e: any) {
     console.log('fetchCourse)', e.response.data);
+    return e.response;
+  }
+};
+export const fetchCancleReservationReasons = async () => {
+  try {
+    const response = await client.get<ExternalResponseSuccess<CancelReason[]>>(
+      `api/v1/guides/reservations/reject-reasons`,
+    );
+    return response;
+  } catch (e: any) {
+    console.log('fetchCancleReservationReasons)', e.response.data);
     return e.response;
   }
 };

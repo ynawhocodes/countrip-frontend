@@ -55,4 +55,7 @@ const ModalContainer = styled.div`
   background-color: #fff;
   border-radius: 8px;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
