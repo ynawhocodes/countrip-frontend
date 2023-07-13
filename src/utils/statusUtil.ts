@@ -4,6 +4,7 @@ import { FAILURE_STATUS_CODE, SUCCESS_STATUS_CODE } from "../config/status.code.
 const checkResponseStatus = (status : number) => {
   if (status === 401) {
     alert('토큰 정보가 만료되어 로그인 화면으로 이동합니다');
+    window.location.href = '/signin';
     logout();
     return FAILURE_STATUS_CODE;
   }
