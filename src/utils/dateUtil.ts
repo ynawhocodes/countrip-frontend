@@ -25,3 +25,24 @@ export const convertToMonthString = (date: Date) => {
   const month = String(date.getMonth() + 1).padStart(2, '0');
   return `${year}-${month}`;
 };
+// 올해인 경우) 2023-07-13 > 07.13.(목)
+// 올해가 아닐 경우) 2022-07-13 > 22.07.13.(수)
+export const formatPeriodDate = (dateString: string) => {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+
+  const options: Intl.DateTimeFormatOptions = {
+    year: '2-digit',
+    month: '2-digit',
+    day: '2-digit',
+    weekday: 'short'
+  };
+  const formattedDate: string = date.toLocaleDateString('ko-KR', options);
+  if (year === new Date().getFullYear()) {
+    return formattedDate.replace(/\./g, '.');
+  } else {
+    return formattedDate.replace(/\./g, '.').replace(/-../, `.${year}`);
+  }
+};
