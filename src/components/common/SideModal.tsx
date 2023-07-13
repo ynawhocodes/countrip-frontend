@@ -109,7 +109,7 @@ const StyledModalContent = styled.div`
 `
 const StyledMenuItem = styled.p`
   font-size: 14px;
-  padding: 20px 0;
+  padding: 7px 0;
 `
 const InfoContainer = () => {
   return (
@@ -135,7 +135,7 @@ const InfoContainer = () => {
               </StyledFlexWrap>
             </div>
           </div>
-          <DefaultProfileIcon style={{ margin: 30 }} />
+          <DefaultProfileIcon style={{ marginLeft: 20 }} />
         </StyledFlexWrap>
       </StyledProfileContainer>
     </>
