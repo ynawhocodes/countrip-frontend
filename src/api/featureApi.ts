@@ -2,7 +2,7 @@
 import ExternalResponseSuccess from "./response";
 import SignInParamsDto, { SignInResponseDto } from "../@types/SignInDto";
 import client from "./client";
-import { TodayGuideScheduleDto } from "../@types/GuideDto";
+import { GuideReservationDto, TodayGuideScheduleDto } from "../@types/GuideDto";
 
 export const fetchGuideHomeInfo = async () => {
   try {
@@ -30,6 +30,17 @@ export const fetchGuideTodaySchedule = async () => {
   try {
     const response = await client.get<ExternalResponseSuccess<TodayGuideScheduleDto[]>>(
       `/api/v1/home/today-plans`,
+    );
+    return response;
+  } catch (e: any) {
+    console.log('fetchGuideSchedule)', e.response.data);
+    return e.response;
+  }
+};
+export const fetchGuideSchedule = async () => {
+  try {
+    const response = await client.get<ExternalResponseSuccess<GuideReservationDto>>(
+      `/api/v1/guides/plans`,
     );
     return response;
   } catch (e: any) {

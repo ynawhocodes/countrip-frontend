@@ -17,8 +17,8 @@ const ReservationPendingCourseItem = ({ isOpen, setIsOpen}: CenterModalProps) =>
         <StyledDate style={fontMedium}>07.20 목</StyledDate>
         <StyledItemContainer>
           <StyledTitle style={fontBold}>박물관을 포함한 자연 경관</StyledTitle>
-          <HorizontalScrollSquareBoxList />
-          <hr style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />
+          {/* <HorizontalScrollSquareBoxList /> */}
+          <div style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />
           <StyledTitle style={fontBold}>예약자</StyledTitle>
           <StyledContent style={fontRegular}>숨겨진 맛집 소개해주세요.</StyledContent>
           <hr style={{ backgroundColor: `${colors.gray1}`, marginTop: 20, marginBottom: 20 }} />

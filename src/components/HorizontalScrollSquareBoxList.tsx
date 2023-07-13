@@ -1,23 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
+import { SpotSquareImageDto } from '../@types/GuideDto';
 import { fontRegular } from '../styles/font';
 
-const HorizontalScrollSquareBoxList = () => {
+interface HorizontalScrollSquareBoxListProps {
+  datas: SpotSquareImageDto[];
+}
+const HorizontalScrollSquareBoxList = ({ datas }: HorizontalScrollSquareBoxListProps) => {
   return (
     <StyledListContainer>
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
-      <HorizontalScrollBoxItem />
+      {datas.map((data, index) => (<HorizontalScrollBoxItem key={index} data={data}/>))}
     </StyledListContainer>
   );
 };
@@ -34,27 +26,42 @@ const StyledListContainer = styled.div`
   }
 `;
 
-const HorizontalScrollBoxItem = () => {
+interface HorizontalScrollBoxItemProps {
+  data: SpotSquareImageDto
+}
+const HorizontalScrollBoxItem = ({ data }: HorizontalScrollBoxItemProps) => {
   return (
     <>
-      <StyledBoxContainer>
-        <StyledBoxTitle style={fontRegular}>호박소 계곡</StyledBoxTitle>
+      <StyledBoxContainer imageUrl={data.imageUrl}>
+        <StyledBoxTitle style={fontRegular}>{data.title}</StyledBoxTitle>
       </StyledBoxContainer>
     </>
   )
 };
-
-const StyledBoxContainer = styled.div`
+const StyledBoxContainer = styled.div<{ imageUrl: string }>`
   flex: 0 0 60px;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-right: 10px;
   border-radius: 30%;
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  background-image: url(${({ imageUrl }) => imageUrl});
+  background-size: cover;
+  background-position: center;
+  position: relative;
   height: 60px;
-`;
 
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 30%;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  }
+`
 const StyledBoxTitle = styled.p`
   font-size: 12px;
   color: white;
