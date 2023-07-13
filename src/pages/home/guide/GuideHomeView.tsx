@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { fontRegular } from '../../../styles/font';
 import { TodayGuideScheduleDto } from '../../../@types/GuideDto'
 import { fetchGuideHomeInfo, fetchGuideTodaySchedule } from '../../../api/featureApi'
 import MyPageIcon from '../../../assets/MyPageIcon'
@@ -22,7 +23,7 @@ const GuideHomeView = () => {
   const [tabIndex, setTabIndex] = useState(1);
   const [hasAlert, setHasAlert] = useState(false);
   const [guideSchedule, setGuideSchedule] = useState<TodayGuideScheduleDto[]>([]);
-
+  const isEmptyStatus = guideSchedule.length === 0
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -49,15 +50,16 @@ const GuideHomeView = () => {
       }
     })();
   }, [])
+
   return (
     <>
       <SideModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}>ss</SideModal>
-      <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal} />} />
+      <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal}/>}/>
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         {hasAlert && <StyledAlertItem style={fontMedium} onClick={goToPage} />}
         <ReadOnlyCalendar datas={dummyDateDatas} />
-        <SectionTitle title="오늘의 가이딩 일정" isMore={true} />
-        {guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
+        <SectionTitle title="오늘의 가이딩 일정" isMore={true}/>
+        {isEmptyStatus ? <StyledTicketEmptyStatus style={fontRegular}/> : guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType={'guide'} initTabIndex={tabIndex} />
     </>
@@ -79,5 +81,18 @@ const StyledAlertItem = styled.div`
   margin-bottom: 20px;
   &::after {
     content: '아직 확인하지 않은 예약이 있습니다!';
+  }
+`
+const StyledTicketEmptyStatus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: ${colors.gray1};
+  color: ${colors.gray2};
+  height: 100px;
+  font-size: 14px;
+  border-radius: 25px;
+  &::after {
+    content: '오늘의 가이딩 일정이 없습니다.';
   }
 `
