@@ -60,7 +60,7 @@ const GuideHomeView = () => {
       <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal}/>}/>
       <StyledCommonFullHeigthWhiteWrap paddingHorizontal={20}>
         {hasAlert && <StyledAlertItem style={fontMedium} onClick={goToPage} />}
-        <ReadOnlyCalendar datas={dummyDateDatas} />
+        <ReadOnlyCalendar/>
         <SectionTitle title="오늘의 가이딩 일정" hasMore={true} onClickMore={goToPageByhasMore} />
         {isEmptyStatus ? <StyledTicketEmptyStatus style={fontRegular}/> : guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
       </StyledCommonFullHeigthWhiteWrap>
@@ -69,8 +69,6 @@ const GuideHomeView = () => {
   )
 };
 export default GuideHomeView;
-
-const dummyDateDatas = ['2023-07-19', '2023-07-30', '2023-08-03']
 
 const StyledAlertItem = styled.div`
   display: flex;

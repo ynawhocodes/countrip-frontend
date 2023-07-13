@@ -11,10 +11,8 @@ import convertToDateArray, { convertToMonthString } from '../../utils/dateUtil';
 import { fetchBookedGuideDatesByCurrentMonth } from '../../api/featureApi';
 import checkResponseStatus from '../../utils/statusUtil';
 import { SUCCESS_STATUS_CODE } from '../../config/status.code.config';
-interface ReadOnlyCalendarProps {
-  datas: string[];
-}
-const ReadOnlyCalendar = ({ datas }: ReadOnlyCalendarProps) => {
+
+const ReadOnlyCalendar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const bookedStyle = { backgroundColor:`${colors.green}`, fontWeight: `700`, borderBottom: `${colors.green} 3px solid`, color: `white`, width: '28px', height: '28px', marginLeft: '7px', paddingTop: '2px', fontSize: '13px' };
   const [booked, setBooked] = React.useState(false);
