@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Checkbox from '../../components/common/Checkbox'
 import {
   StyledCommonBlackBottomButton,
+  StyledCommonHr,
   StyledCommonWhiteWrap,
 } from '../../styles/common'
 import { StyledProgressBar, StyledTitle } from '../../styles/signUp-styles'
@@ -14,10 +15,29 @@ const TermsOfUseAgreeView = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const userInfo = { ...location.state };
+  const [isFirstChecked, setIsFirstChecked] = useState(false);
+  const [isSecondChecked, setIsSecondChecked] = useState(false);
+  const [isAllChecked, setIsAllChecked] = useState(false);
 
   const handleNext = () => {
     navigate('/signup/step3', {state: { userType: userInfo.type, isAgree: true}});
   };
+  const handleFirstCheckboxChange = () => {
+    setIsFirstChecked(!isFirstChecked);
+    setIsAllChecked(isSecondChecked && !isFirstChecked);
+  };
+
+  const handleSecondCheckboxChange = () => {
+    setIsSecondChecked(!isSecondChecked);
+    setIsAllChecked(isFirstChecked && !isSecondChecked);
+  };
+
+  const handleAllCheckboxChange = () => {
+    setIsAllChecked(!isAllChecked);
+    setIsFirstChecked(!isAllChecked);
+    setIsSecondChecked(!isAllChecked);
+  };
+  
   return (
     <>
       <GoBackHeader />
@@ -25,17 +45,17 @@ const TermsOfUseAgreeView = () => {
         <StyledTitle>이용 약관</StyledTitle>
         <StyledProgressBar totalsteps={5} currentstep={2} />
         <StyledFlexWrap>
-          <Checkbox />
+          <Checkbox isChecked={isAllChecked} onChange={handleAllCheckboxChange} />
           <StyledAgreeTitle>모두 확인, 동의합니다.</StyledAgreeTitle>
         </StyledFlexWrap>
-        <hr style={{ backgroundColor: `${colors.gray1}` }} />
+        <StyledCommonHr/>
         <StyledFlexWrap>
-          <Checkbox />
-          <StyledContent>서비스 이용약관 (필수)</StyledContent>
+          <Checkbox isChecked={isFirstChecked} onChange={handleFirstCheckboxChange}/>
+          <StyledContent onClick={() => navigate('/signup/step2/detail')}>서비스 이용약관 (필수)</StyledContent>
         </StyledFlexWrap>
         <StyledFlexWrap>
-          <Checkbox />
-          <StyledContent>개인정보 처리방침 (필수)</StyledContent>
+          <Checkbox isChecked={isSecondChecked} onChange={handleSecondCheckboxChange}/>
+          <StyledContent onClick={() => navigate('/signup/step2/detail')}>개인정보 처리방침 (필수)</StyledContent>
         </StyledFlexWrap>
       </StyledCommonWhiteWrap>
       <StyledCommonBlackBottomButton onClick={handleNext}>다음</StyledCommonBlackBottomButton>

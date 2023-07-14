@@ -8,6 +8,7 @@ import {
 import TermsOfUseAgreeView from './TermsOfUseAgreeView'
 import IdentityVerificationView from './IdentityVerificationView'
 import SelectUserTypeView from './SelectUserTypeView'
+import TermsOfUseView from './TermsOfUseView'
 
 const TravelerTypeSignUpRouter = () => {
 
@@ -17,6 +18,7 @@ const TravelerTypeSignUpRouter = () => {
         {/* TODO: path 통일 */}
         <Route index element={<SelectUserTypeView />} />
         <Route path="/step2" element={<TermsOfUseAgreeView />} />
+        <Route path="/step2/detail" element={<TermsOfUseView />} />
         <Route path="/step3" element={<IdentityVerificationView />} />
       </Routes>
     </>

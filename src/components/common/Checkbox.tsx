@@ -2,11 +2,14 @@ import React, {useState} from 'react';
 import styled from 'styled-components';
 import { colors } from '../../styles/variables';
 
-const Checkbox = () => {
-  const [isChecked, setIsChecked] =useState(false);
+interface CheckboxProps {
+  isChecked?: boolean;
+  onChange: () => void;
+}
+const Checkbox = ({isChecked, onChange}: CheckboxProps) => {
 
   const handleCheckboxChange = () => {
-    setIsChecked(prevState => !prevState);
+    onChange();
   };
 
   return (

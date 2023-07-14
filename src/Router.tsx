@@ -63,8 +63,13 @@ const Router = () => {
         <Routes>
           {!isLoggedIn &&
             <>
-              <Route path="/" element={<SignInView />} />
-              <Route path="/signup/*" element={<TravelerTypeSignUpRouter />} />
+            <Route path="/" element={<SignInView />} />
+              {/* TODO: Route 구조 변경 */}
+              {/* <Route path="/signup/*" element={<TravelerTypeSignUpRouter />} /> */}
+              <Route index element={<SelectUserTypeView />} />
+              <Route path="/signup/step2" element={<TermsOfUseAgreeView />} />
+              <Route path="/signup/step2/detail" element={<TermsOfUseView />} />
+              <Route path="/signup/step3" element={<IdentityVerificationView />} />
               <Route path="/signup/complete" element={<SignUpCompleteView />} />
             </>
           }
