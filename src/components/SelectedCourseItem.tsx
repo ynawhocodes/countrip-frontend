@@ -10,14 +10,13 @@ import CenterModal from './CenterModal';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
 
 interface CenterModalProps {
-  datas: GuideScheduleDto[];
-  isOpen: boolean;
-  setIsOpen: any;
+  datas?: GuideScheduleDto[];
 }
-const SelectedCourseItem = ({ datas, isOpen, setIsOpen }: CenterModalProps) => {
+const SelectedCourseItem = ({ datas }: CenterModalProps) => {
   return (
     <>
-      {datas.map((data, index) => (
+      <StyledEmptyStatus/>
+      {/* {datas.map((data, index) => (
         <StyledContainer key={index}>
           <StyledDate style={fontMedium}>{formatPeriodDate(data.travelDate)}</StyledDate>
           {data.reservations.map((reservation, index) => (
@@ -45,7 +44,7 @@ const SelectedCourseItem = ({ datas, isOpen, setIsOpen }: CenterModalProps) => {
             </StyledItemContainer>
           ))}
         </StyledContainer>
-      ))}
+      ))} */}
     </>
   )
 };
@@ -98,4 +97,16 @@ const StyledFlexCountWrap = styled.div`
   content: '명';
   margin-right: 10px;
  }
+`
+const StyledEmptyStatus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.gray2};
+  height: 100px;
+  font-size: 14px;
+  border-radius: 25px;
+  &::after {
+    content: '다음 일정이 없습니다.';
+  }
 `

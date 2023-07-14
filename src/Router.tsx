@@ -31,6 +31,7 @@ import GuideHomeView from './pages/home/guide/GuideHomeView'
 import MyGuideView from './pages/myguide/MyGuideView'
 // mycourse
 import MyCourseView from './pages/mycourse/MyCourseView'
+import MyTripView from './pages/mytrip/MyTripView'
 
 const Router = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
@@ -92,6 +93,7 @@ const Router = () => {
                   <Route path="/magazine/:courseId" element={<TravelSpotView />} />
                   <Route path="/magazine/search" element={<MagazineSearchView />} />
                   <Route path="/magazine/search" element={<MagazineSearchResultView />} />
+                  <Route path="/mytrip" element={<MyTripView />} />
                 </>
               } <Route path="/course/all" element={<TravelCourseListView />} />
                 <Route path="/course/:courseId" element={<TravelCourseView />} />

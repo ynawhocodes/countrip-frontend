@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import MyPageIcon from '../../assets/MyPageIcon';
+import BookedCourseItem from '../../components/BookedCourseItem';
 import Navigation from "../../components/common/Navigation";
 import SideModal from "../../components/common/SideModal";
 import Tab, { TabView } from "../../components/common/Tab";
 import TitleWithIconHeader from "../../components/common/TitleWithIconHeader";
+import SelectedCourseItem from '../../components/SelectedCourseItem';
 import { StyledCommonFullHeigthWhiteWrap } from "../../styles/common";
 
 const MyTripView = () => {
@@ -15,8 +17,7 @@ const MyTripView = () => {
   const handleTabClick = (index: number) => {
     setActiveTab(index);
   };
-  // const tabContents = [(<><BookedCourseItem datas={guideSchedule}></BookedCourseItem></>), (<><SelectedCourseItem datas={guideReservations} isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}></SelectedCourseItem></>)]
-  const tabContents = [(<></>), (<></>)]
+  const tabContents = [(<><BookedCourseItem></BookedCourseItem></>), (<><SelectedCourseItem></SelectedCourseItem></>)]
 
   return (
     <>

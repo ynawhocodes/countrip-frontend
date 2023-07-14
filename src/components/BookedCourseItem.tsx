@@ -9,12 +9,13 @@ import formatPhoneNumber from '../utils/stringUtil';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
 
 interface BookedCourseItemProps {
-  datas: GuideScheduleDto[];
+  datas?: GuideScheduleDto[];
 }
 const BookedCourseItem = ({ datas }: BookedCourseItemProps) => {
   return (
     <>
-      {datas?.map(data => (
+      <StyledEmptyStatus/>
+      {/* {datas?.map(data => (
         <StyledContainer>
           <StyledDate style={fontMedium}>{formatPeriodDate(data?.travelDate)}</StyledDate>
           {data.reservations?.map((reservation) => ( <StyledItemContainer>
@@ -38,7 +39,7 @@ const BookedCourseItem = ({ datas }: BookedCourseItemProps) => {
           ))}
         </StyledContainer>
       ))
-      }
+      } */}
     </>
   )
 };
@@ -82,4 +83,16 @@ const StyledFlexCountWrap = styled.div`
   content: '명';
   margin-right: 10px;
  }
+`
+const StyledEmptyStatus = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${colors.gray2};
+  height: 100px;
+  font-size: 14px;
+  border-radius: 25px;
+  &::after {
+    content: '예약 확정된 일정이 없습니다.';
+  }
 `
