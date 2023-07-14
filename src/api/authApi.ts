@@ -43,9 +43,12 @@ export const guideLogin = async ({ username, password }: SignInParamsDto) => {
 };
 export const logout = async () => {
   try {
-    localStorage.setItem('accessToken', '');
-    localStorage.setItem('refreshToken', '');
-    localStorage.setItem('userType', '');
+    // localStorage.setItem('accessToken', '');
+    // localStorage.setItem('refreshToken', '');
+    // localStorage.setItem('userType', '');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('accessToken');
+    localStorage.removeItem('accessToken');
     window.location.href = '/';
     return true;
   } catch (e: any) {
