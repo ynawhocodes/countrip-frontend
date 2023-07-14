@@ -8,7 +8,7 @@ const SignUpCompleteView = () => {
   const navigate = useNavigate();
 
   const handleNext = () => {
-    navigate('/signin');
+    navigate('/');
   };
   return (
     <>
