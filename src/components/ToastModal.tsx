@@ -15,12 +15,12 @@ const ToastModal: React.FC<ToastModalProps> = ({ onClose }) => {
           <div style={{ marginRight: 40}}>
             <StyledText style={fontMedium}>[여행러]</StyledText>
             <StyledText style={fontRegular}>아이디:   testid1</StyledText>
-            <StyledText style={fontRegular}>비밀번호:   passowrd123!!</StyledText>
+            <StyledText style={fontRegular}>비밀번호:   password123!!</StyledText>
           </div>
           <div>
             <StyledText style={fontMedium}>[가이드]</StyledText>
             <StyledText style={fontRegular}>아이디:   guidetestid1</StyledText>
-            <StyledText style={fontRegular}>비밀번호:   passowrd123!!</StyledText>
+            <StyledText style={fontRegular}>비밀번호:   password123!!</StyledText>
           </div>
         </div>
         <StyledText style={{ ...fontMedium , color: `${colors.gray4}`, textAlign: 'center'}}>[토스트 눌러서 닫기]</StyledText>
