@@ -107,6 +107,6 @@ const StyledEmptyStatus = styled.div`
   font-size: 14px;
   border-radius: 25px;
   &::after {
-    content: '다음 일정이 없습니다.';
+    content: '담은 일정이 없습니다.';
   }
 `
