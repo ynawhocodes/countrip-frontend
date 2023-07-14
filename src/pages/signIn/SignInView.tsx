@@ -13,8 +13,10 @@ import { useNavigate } from 'react-router-dom'
 import { guideLogin, travelerLogin } from '../../api/authApi'
 import { USER_TYPE } from '../../constants'
 import { fontBold } from '../../styles/font'
+import ToastModal from '../../components/ToastModal'
 
 const SignInView = () => {
+  const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -22,7 +24,7 @@ const SignInView = () => {
   const passwordRef = useRef<focusRef>(null);
   const [isValid, setIsValid] = useState(true);
   const [userType, setUserType] = useState('TRAVELER');
-  const navigate = useNavigate();
+  const [showToast, setShowToast] = useState(true);
 
   const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, name } = e.currentTarget
@@ -57,53 +59,64 @@ const SignInView = () => {
       setIsValid(false);
     }
   };
+
   const handleUserType = (type: string) => {
     setUserType(type)
   }
+  const handleToastButtonClick = () => {
+    setShowToast(true);
+  };
+
+  const handleToastModalClose = () => {
+    setShowToast(false);
+  };
 
   return (
-    <StyledCommonGreenLightWrap>
-      <StyledCommonColumnPostitionOuterWrap>
-        <StyledTitle style={fontBold}>Welcome!</StyledTitle>
-        <StyledCommonColumnPostitionInnerWrap top={'30%'} position={'relative'}>
-          <StyledFolderContainer>
-            <StyledFolderSelectTypeContainer active={userType === USER_TYPE.TRAVELER} onClick={() => handleUserType(USER_TYPE.TRAVELER)}>
-              여행러
-            </StyledFolderSelectTypeContainer>
-            <StyledFolderUnselectTypeContainer active={userType === USER_TYPE.GUIDE} onClick={() => handleUserType(USER_TYPE.GUIDE)}>
-              가이드
-            </StyledFolderUnselectTypeContainer>
-            {!isValid && <StyledNotice>로그인 정보가 일치하지 않습니다.</StyledNotice>}
-            <InputText
-              ref={passwordRef}
-              type="id"
-              isInValid={false}
-              value={userInfo.username}
-              name="username"
-              text="아이디"
-              onChangeInput={onChangeInput}
-            />
-            <InputText
-              ref={passwordRef}
-              type="password"
-              isInValid={false}
-              value={userInfo.password}
-              name="password"
-              text="비밀번호"
-              onChangeInput={onChangeInput}
-            />
-            <StyledCommonFlexContainer justify="space-between">
-              <div></div>
-              <StyledButton onClick={() => navigate('/signup')}>회원가입</StyledButton>
-              {/* <StyledButton>아이디/비밀번호 찾기</StyledButton> */}
-            </StyledCommonFlexContainer>
-          </StyledFolderContainer>
-          <StyledCommonBlackButton onClick={onClickLogin}>
-            로그인
-          </StyledCommonBlackButton>
-        </StyledCommonColumnPostitionInnerWrap>
-      </StyledCommonColumnPostitionOuterWrap>
-    </StyledCommonGreenLightWrap>
+    <>
+      {showToast && <ToastModal onClose={handleToastModalClose} />}
+      <StyledCommonGreenLightWrap>
+        <StyledCommonColumnPostitionOuterWrap>
+          <StyledTitle style={fontBold}>Welcome!</StyledTitle>
+          <StyledCommonColumnPostitionInnerWrap top={'30%'} position={'relative'}>
+            <StyledFolderContainer>
+              <StyledFolderSelectTypeContainer active={userType === USER_TYPE.TRAVELER} onClick={() => handleUserType(USER_TYPE.TRAVELER)}>
+                여행러
+              </StyledFolderSelectTypeContainer>
+              <StyledFolderUnselectTypeContainer active={userType === USER_TYPE.GUIDE} onClick={() => handleUserType(USER_TYPE.GUIDE)}>
+                가이드
+              </StyledFolderUnselectTypeContainer>
+              {!isValid && <StyledNotice>로그인 정보가 일치하지 않습니다.</StyledNotice>}
+              <InputText
+                ref={passwordRef}
+                type="id"
+                isInValid={false}
+                value={userInfo.username}
+                name="username"
+                text="아이디"
+                onChangeInput={onChangeInput}
+              />
+              <InputText
+                ref={passwordRef}
+                type="password"
+                isInValid={false}
+                value={userInfo.password}
+                name="password"
+                text="비밀번호"
+                onChangeInput={onChangeInput}
+              />
+              <StyledCommonFlexContainer justify="space-between">
+                <div></div>
+                <StyledButton onClick={() => navigate('/signup')}>회원가입</StyledButton>
+                {/* <StyledButton>아이디/비밀번호 찾기</StyledButton> */}
+              </StyledCommonFlexContainer>
+            </StyledFolderContainer>
+            <StyledCommonBlackButton onClick={onClickLogin}>
+              로그인
+            </StyledCommonBlackButton>
+          </StyledCommonColumnPostitionInnerWrap>
+        </StyledCommonColumnPostitionOuterWrap>
+      </StyledCommonGreenLightWrap>
+    </>
   )
 };
 export default SignInView;
