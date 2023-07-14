@@ -43,7 +43,7 @@ const SignInView = () => {
       }
     }
     else if (userType === USER_TYPE.GUIDE) {
-      const response = await guideLogin({ username: 'guidetestid1', password: 'password123!!' });
+      const response = await guideLogin(userInfo);
       if (response) {
         navigate('/home');
         window.location.reload();

@@ -37,18 +37,19 @@ export const guideLogin = async ({ username, password }: SignInParamsDto) => {
     localStorage.setItem('userType', userType);
     return true;
   } catch (e: any) {
-    console.log('login)', e.response.data);
+    // console.log('login)', e.response.data);
     return false;
   }
 };
 export const logout = async () => {
   try {
+    // TODO
     // localStorage.setItem('accessToken', '');
     // localStorage.setItem('refreshToken', '');
     // localStorage.setItem('userType', '');
     localStorage.removeItem('accessToken');
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('accessToken');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('userType');
     window.location.href = '/';
     return true;
   } catch (e: any) {
