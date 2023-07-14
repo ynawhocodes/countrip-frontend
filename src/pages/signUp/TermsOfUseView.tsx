@@ -13,7 +13,7 @@ const TermsOfUseView = () => {
         <StyledTitle>서비스 이용약관</StyledTitle>
         <StyledContent>{text}</StyledContent>
       </StyledCommonWhiteWrap>
-      <StyledCommonBlackBottomButton>확인 및 동의</StyledCommonBlackBottomButton>
+      <StyledCommonBlackBottomButton>확인</StyledCommonBlackBottomButton>
     </>
   )
 
