@@ -91,14 +91,15 @@ const Router = () => {
                   <Route path="/home" element={<TravelerHomeView />} />
                   <Route path="/search" element={<SearchResultView />} />
                   <Route path="/magazine" element={<MagazineHomeView />} />
-                  <Route path="/magazine/all" element={<MagazineListView />} />
-                  <Route path="/magazine/:courseId" element={<TravelSpotView />} />
+                  {/* <Route path="/magazine/all" element={<MagazineListView />} /> */}
+                  <Route path="/magazine/:id" element={<MagazineListView />} />
                   <Route path="/magazine/search" element={<MagazineSearchView />} />
                   <Route path="/magazine/search" element={<MagazineSearchResultView />} />
                   <Route path="/mytrip" element={<MyTripView />} />
                 </>
               } <Route path="/course/all" element={<TravelCourseListView />} />
                 <Route path="/course/:courseId" element={<TravelCourseView />} />
+                <Route path="/trip/:id" element={<MagazineListView />} />
                 <Route path="/spot/:courseId" element={<TravelSpotView />} />
             </>
           }
