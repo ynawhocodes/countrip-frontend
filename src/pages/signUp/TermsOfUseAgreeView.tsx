@@ -1,14 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
-import Checkbox from '../../../components/common/Checkbox'
+import Checkbox from '../../components/common/Checkbox'
 import {
   StyledCommonBlackBottomButton,
   StyledCommonWhiteWrap,
-} from '../../../styles/common'
-import { StyledProgressBar, StyledTitle } from '../../../styles/signUp-styles'
-import { colors } from '../../../styles/variables'
+} from '../../styles/common'
+import { StyledProgressBar, StyledTitle } from '../../styles/signUp-styles'
+import { colors } from '../../styles/variables'
 import { useNavigate } from 'react-router-dom';
-import GoBackHeader from '../../../components/common/GoBackHeader'
+import GoBackHeader from '../../components/common/GoBackHeader'
 
 const TermsOfUseAgreeView = () => {
   const navigate = useNavigate();

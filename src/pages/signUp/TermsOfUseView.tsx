@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import GoBackHeader from '../../../components/common/GoBackHeader';
-import { StyledCommonBlackBottomButton, StyledCommonWhiteWrap } from '../../../styles/common';
-import { StyledTitle } from '../../../styles/signUp-styles';
-import { colors } from '../../../styles/variables'
+import GoBackHeader from '../../components/common/GoBackHeader';
+import { StyledCommonBlackBottomButton, StyledCommonWhiteWrap } from '../../styles/common';
+import { StyledTitle } from '../../styles/signUp-styles';
+import { colors } from '../../styles/variables'
 
 const TermsOfUseView = () => {
   return (

@@ -92,7 +92,7 @@ const SignInView = () => {
               onChangeInput={onChangeInput}
             />
             <StyledCommonFlexContainer justify="space-between">
-              <StyledButton>회원가입</StyledButton>
+              <StyledButton onClick={() => navigate('/signup')}>회원가입</StyledButton>
               <StyledButton>아이디/비밀번호 찾기</StyledButton>
             </StyledCommonFlexContainer>
           </StyledFolderContainer>

@@ -1,10 +1,10 @@
 import React, {useState, useRef} from 'react'
 import styled from 'styled-components'
-import RoundInputText, { RoundfocusRef } from '../../../components/common/RoundInputText';
-import { StyledCommonBlackBottomButton, StyledCommonWhiteWrap } from '../../../styles/common';
-import { StyledProgressBar, StyledTitle } from '../../../styles/signUp-styles';
+import RoundInputText, { RoundfocusRef } from '../../components/common/RoundInputText';
+import { StyledCommonBlackBottomButton, StyledCommonWhiteWrap } from '../../styles/common';
+import { StyledProgressBar, StyledTitle } from '../../styles/signUp-styles';
 import { useNavigate } from 'react-router-dom';
-import GoBackHeader from '../../../components/common/GoBackHeader';
+import GoBackHeader from '../../components/common/GoBackHeader';
 
 const IdentityVerificationView = () => {
   const [userInfo, setUserInfo] = useState({

@@ -4,11 +4,11 @@ import { USER_TYPE } from './constants'
 // ----------------------------------------common----------------------------------------
 // sign up
 import SelectUserTypeView from './pages/signUp/SelectUserTypeView'
-import TermsOfUseAgreeView from './pages/signUp/traveler/TermsOfUseAgreeView'
-import TermsOfUseView from './pages/signUp/traveler/TermsOfUseView'
-import IdentityVerificationView from './pages/signUp/traveler/IdentityVerificationView'
+import TermsOfUseAgreeView from './pages/signUp/TermsOfUseAgreeView'
+import TermsOfUseView from './pages/signUp/TermsOfUseView'
+import IdentityVerificationView from './pages/signUp/IdentityVerificationView'
 import SignUpCompleteView from './pages/signUp/SignUpCompleteView'
-import TravelerTypeSignUpRouter from './pages/signUp/traveler/TravelerTypeSignUpRouter'
+import TravelerTypeSignUpRouter from './pages/signUp/TravelerTypeSignUpRouter'
 // sign in
 import SignInView from './pages/signIn/SignInView'
 // ----------------------------------------traveler----------------------------------------
