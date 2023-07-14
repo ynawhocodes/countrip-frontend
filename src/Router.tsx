@@ -57,9 +57,6 @@ const Router = () => {
     })();
   }, []);
 
-  // TODO: 최종 작업 후 삭제
-  console.log('isLoggedIn: ', isLoggedIn);
-  console.log('USERTYPE: ', USERTYPE);
   return (
     <>
       <BrowserRouter>
