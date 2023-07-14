@@ -103,13 +103,14 @@ const StyledModalContainer = styled.div<{ open: boolean }>`
   background-color: #fff;
   z-index: 9999;
   animation: ${({ open }) => (open ? slideIn : slideOut)} 0.3s forwards;
-`
-const StyledModalContent = styled.div`
+  `
+  const StyledModalContent = styled.div`
   padding: 20px;
+  height: 100%;
 `
 const StyledMenuItem = styled.p`
-  font-size: 14px;
-  padding: 7px 0;
+  font-size: 13px;
+  padding: 5px 0;
 `
 const InfoContainer = () => {
   return (
@@ -142,7 +143,7 @@ const InfoContainer = () => {
   )
 }
 const StyledProfileContainer = styled.div`
-  height: 300px;
+  height: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
