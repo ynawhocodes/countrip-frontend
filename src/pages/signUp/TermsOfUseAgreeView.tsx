@@ -20,7 +20,8 @@ const TermsOfUseAgreeView = () => {
   const [isAllChecked, setIsAllChecked] = useState(false);
 
   const handleNext = () => {
-    navigate('/signup/step3', {state: { userType: userInfo.type, isAgree: true}});
+    if(isAllChecked)
+      navigate('/signup/step3', {state: { userType: userInfo.type}});
   };
   const handleFirstCheckboxChange = () => {
     setIsFirstChecked(!isFirstChecked);
@@ -58,7 +59,7 @@ const TermsOfUseAgreeView = () => {
           <StyledContent onClick={() => navigate('/signup/step2/detail')}>개인정보 처리방침 (필수)</StyledContent>
         </StyledFlexWrap>
       </StyledCommonWhiteWrap>
-      <StyledCommonBlackBottomButton onClick={handleNext}>다음</StyledCommonBlackBottomButton>
+      <StyledButton active={isAllChecked} onClick={handleNext}>다음</StyledButton>
     </>
   )
 };
@@ -75,4 +76,8 @@ const StyledContent = styled.p`
 const StyledFlexWrap = styled.div`
   display: flex;
   align-items: center;
+`
+const StyledButton = styled(StyledCommonBlackBottomButton)<{active: boolean}>`
+  color:${({active}) => active ? 'white' : `${colors.gray1}` };
+  background-color: ${({active}) => active ? `${colors.gray5}` : `${colors.gray2}`};
 `
