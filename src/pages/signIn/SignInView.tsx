@@ -93,8 +93,9 @@ const SignInView = () => {
               onChangeInput={onChangeInput}
             />
             <StyledCommonFlexContainer justify="space-between">
+              <div></div>
               <StyledButton onClick={() => navigate('/signup')}>회원가입</StyledButton>
-              <StyledButton>아이디/비밀번호 찾기</StyledButton>
+              {/* <StyledButton>아이디/비밀번호 찾기</StyledButton> */}
             </StyledCommonFlexContainer>
           </StyledFolderContainer>
           <StyledCommonBlackButton onClick={onClickLogin}>
