@@ -1,11 +1,13 @@
 import axios, { AxiosInstance } from 'axios'
 
 export const travelerClient: AxiosInstance = axios.create({
-  baseURL: 'http://15.165.110.6:8080',
+  baseURL: 'http://countrip.site:8080',
+  // baseURL: 'http://15.165.110.6:8080',
   withCredentials: true,
 });
 const guideClient: AxiosInstance = axios.create({
-  baseURL: 'http://15.165.110.6:9090',
+  baseURL: 'http://countrip.site:909?0',
+  // baseURL: 'http://15.165.110.6:909?0',
   withCredentials: true,
 });
 
