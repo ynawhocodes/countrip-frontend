@@ -83,6 +83,7 @@ export const StyledCommonBlackBottomButton = styled(StyledCommonButton)`
     width: 768px;
   }
 `;
+// TODO: Title side effect 고려 후 삭제
 export const StyledCommonColumnPostitionOuterWrap = styled.div<{
   top?: string;
 }>`

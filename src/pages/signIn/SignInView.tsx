@@ -12,6 +12,7 @@ import InputText, { focusRef } from '../../components/common/InputText'
 import { useNavigate } from 'react-router-dom'
 import { guideLogin, travelerLogin } from '../../api/authApi'
 import { USER_TYPE } from '../../constants'
+import { fontBold } from '../../styles/font'
 
 const SignInView = () => {
   const [userInfo, setUserInfo] = useState({
@@ -63,7 +64,7 @@ const SignInView = () => {
   return (
     <StyledCommonGreenLightWrap>
       <StyledCommonColumnPostitionOuterWrap>
-        <div className="Title">Welcome!</div>
+        <StyledTitle style={fontBold}>Welcome!</StyledTitle>
         <StyledCommonColumnPostitionInnerWrap top={'30%'} position={'relative'}>
           <StyledFolderContainer>
             <StyledFolderSelectTypeContainer active={userType === USER_TYPE.TRAVELER} onClick={() => handleUserType(USER_TYPE.TRAVELER)}>
@@ -106,6 +107,12 @@ const SignInView = () => {
 };
 export default SignInView;
 
+const StyledTitle = styled.p`
+  position: absolute;
+  top: 15%;
+  font-size: 30px;
+  color: ${colors.gray5};
+`
 const StyledFolderContainer = styled.div`
   position: relative;
   padding: 20px;
