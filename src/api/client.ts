@@ -6,8 +6,8 @@ export const travelerClient: AxiosInstance = axios.create({
   withCredentials: true,
 });
 const guideClient: AxiosInstance = axios.create({
-  baseURL: 'http://countrip.site:909?0',
-  // baseURL: 'http://15.165.110.6:909?0',
+  baseURL: 'http://countrip.site:9090',
+  // baseURL: 'http://15.165.110.6:9090',
   withCredentials: true,
 });
 
