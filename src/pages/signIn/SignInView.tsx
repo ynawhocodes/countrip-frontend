@@ -109,7 +109,7 @@ export default SignInView;
 
 const StyledTitle = styled.p`
   position: absolute;
-  top: 15%;
+  top: 10%;
   font-size: 30px;
   color: ${colors.gray5};
 `
