@@ -20,10 +20,6 @@ const SelectUserTypeView = () => {
     navigate('/signup/step2', { state: { userType: userType} });
   };
 
-  // const handleButton = () => {
-  //   set
-  // }
-
   return (
     <>
       <GoBackHeader />
