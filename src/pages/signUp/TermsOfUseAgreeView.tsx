@@ -7,14 +7,16 @@ import {
 } from '../../styles/common'
 import { StyledProgressBar, StyledTitle } from '../../styles/signUp-styles'
 import { colors } from '../../styles/variables'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import GoBackHeader from '../../components/common/GoBackHeader'
 
 const TermsOfUseAgreeView = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const userInfo = { ...location.state };
 
   const handleNext = () => {
-    navigate('/signup/step3');
+    navigate('/signup/step3', {state: { userType: userInfo.type, isAgree: true}});
   };
   return (
     <>
