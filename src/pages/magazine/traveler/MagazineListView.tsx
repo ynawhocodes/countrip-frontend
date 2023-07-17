@@ -6,7 +6,7 @@ import { fontMedium } from '../../../styles/font'
 import GoBackButton from '../../../components/common/GoBackButton';
 import { StyledCommonFullHeigthWhiteWrap } from '../../../styles/common';
 import GoBackHeader from '../../../components/common/GoBackHeader';
-import magazineImg from '../../../assets/magazine_img.jpg';
+import magazineImg from '../../../assets/sample/magazine/image/magazine_04.jpg';
 
 const data = {date: '5월 ~ 9월 (당일체험 오전 10시 30분 시작)', address: '경기도 양평군 용문면 연수리 167번지', price: '1인당 37,000원', telephone: '031-774-7786 / 010-4400-7786', homepage: 'https://ypnadri.com/shop/item.php?it_id=1686207708'}
 

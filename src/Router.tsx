@@ -92,9 +92,10 @@ const Router = () => {
                   <Route path="/search" element={<SearchResultView />} />
                   <Route path="/magazine" element={<MagazineHomeView />} />
                   {/* <Route path="/magazine/all" element={<MagazineListView />} /> */}
-                  <Route path="/magazine/:id" element={<MagazineListView />} />
+                  {/* <Route path="/magazine/:id" element={<MagazineListView />} /> */}
                   <Route path="/magazine/search" element={<MagazineSearchView />} />
                   <Route path="/magazine/search" element={<MagazineSearchResultView />} />
+                  <Route path="/magazine/:id" element={<TravelSpotView />} />
                   <Route path="/mytrip" element={<MyTripView />} />
                 </>
               } <Route path="/course/all" element={<TravelCourseListView />} />

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import SpotDto from '../@types/SpotDto';
+import { MagazineDto } from '../@types/Magazine';
 import { fontRegular } from '../styles/font';
 interface HorizontalScrollBoxListProps {
-  datas: SpotDto[]
+  datas: MagazineDto[]
 }
 interface HorizontalScrollBoxItemProps {
-  data: SpotDto
+  data: MagazineDto
 }
 const HorizontalScrollBoxList = ({ datas }: HorizontalScrollBoxListProps) => {
   return (
@@ -35,20 +35,35 @@ const HorizontalScrollBoxItem = ({ data }: HorizontalScrollBoxItemProps) => {
 
   return (
     <>
-      <StyledBoxContainer onClick={() => navigate(`/magazine/${data.postId}`)}>
+      <StyledBoxContainer onClick={() => navigate(`/magazine/${data.id}`)} imageUrl={data.imageUrl}>
         <StyledBoxTitle style={fontRegular}>{data.title}</StyledBoxTitle>
       </StyledBoxContainer>
     </>
   )
 };
 
-const StyledBoxContainer = styled.div`
+const StyledBoxContainer = styled.div<{ imageUrl: string}>`
   flex: 0 0 220px;
   position: relative;
+  height: 300px;
   margin-right: 10px;
-  border-radius: 10%;
-  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
-`;
+  border-radius: 20px;
+  cursor: pointer;
+  background-image: url(${({ imageUrl }) => imageUrl});
+  background-size: cover;
+  background-position: center;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 20px;
+    background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.1));
+  }
+`
 const StyledBoxTitle = styled.p`
   position: absolute ;
   font-size: 15px;

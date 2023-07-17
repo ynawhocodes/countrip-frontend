@@ -4,8 +4,13 @@ import { fontBold } from '../styles/font'
 import styled from 'styled-components'
 import LocationList from './LocationList'
 import LocationDto from '../@types/LocationDto'
-
-const LocationPicker = () => {
+import { StyledCommonBlackButton } from '../styles/common'
+interface PickerProps {
+  isOpen?: boolean;
+  // TODO: handleClose 정확히 하기
+  handleClose?: any;
+}
+const LocationPicker = ({isOpen, handleClose}: PickerProps) => {
   const [activeTab, setActiveTab] = useState(1)
   const [location, setLocation] = useState<LocationDto[]>(testList);
 
@@ -28,6 +33,7 @@ const LocationPicker = () => {
         handleTabClick={handleTabClick}
       />
       <TabView activeTab={activeTab}>{locationTabContents}</TabView>
+      {/* <StyledCommonBlackButton onClick={handleClose}>완료</StyledCommonBlackButton> */}
     </>
   )
 }
