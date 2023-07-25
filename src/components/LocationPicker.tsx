@@ -1,28 +1,49 @@
-import React, { useEffect, useState } from 'react'
-import Tab, { TabView } from './common/Tab'
-import { fontBold } from '../styles/font'
-import styled from 'styled-components'
-import LocationList from './LocationList'
-import LocationDto from '../@types/LocationDto'
-import { StyledCommonBlackButton } from '../styles/common'
+import React, { useEffect, useState } from "react";
+import Tab, { TabView } from "./common/Tab";
+import { fontBold } from "../styles/font";
+import styled from "styled-components";
+import LocationList from "./LocationList";
+import LocationDto from "../@types/LocationDto";
+import { StyledCommonBlackButton } from "../styles/common";
+import { fetchLocationList } from "../api/guideFeatureApi";
+import checkResponseStatus from "../utils/statusUtil";
+import { SUCCESS_STATUS_CODE } from "../config/status.code.config";
+import { USER_TYPE } from "../constants";
 interface PickerProps {
   isOpen?: boolean;
-  // TODO: handleClose 정확히 하기
-  handleClose?: any;
+  handleClose?: () => void;
 }
-const LocationPicker = ({isOpen, handleClose}: PickerProps) => {
-  const [activeTab, setActiveTab] = useState(1)
+const LocationPicker = ({ isOpen, handleClose }: PickerProps) => {
+  const [activeTab, setActiveTab] = useState(1);
   const [location, setLocation] = useState<LocationDto[]>(testList);
+  const [userType, setUserType] = useState<string>("");
 
   const handleTabClick = (index: number) => {
-    setActiveTab(index)
-  }
+    setActiveTab(index);
+  };
+  // useEffect(() => {
+  //   (async () => {
+  //     const type: string | null = await localStorage.getItem("userType");
+  //     if (type) setUserType(type || "");
+  //     console.log(">", userType);
+  //   })();
+  // }, []);
+  useEffect(() => {
+    (async () => {
+      const response = await fetchLocationList();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        setLocation(response.data.data);
+      }
+    })();
+  }, []);
 
-  useEffect(() => { }, []);
-
-  const locationList = location?.map( item => item.name );
-  const locationTabContentDatas = location.map(item => item.cities.map(item => item.name))
-  const locationTabContents = location.map((_, index) => (<LocationList key={index} datas={locationTabContentDatas[index]} />))
+  const locationList = location?.map((item) => item.name);
+  const locationTabContentDatas = location.map((item) =>
+    item.cities.map((item) => item.name)
+  );
+  const locationTabContents = location.map((_, index) => (
+    <LocationList key={index} datas={locationTabContentDatas[index]} />
+  ));
 
   return (
     <>
@@ -35,74 +56,77 @@ const LocationPicker = ({isOpen, handleClose}: PickerProps) => {
       <TabView activeTab={activeTab}>{locationTabContents}</TabView>
       {/* <StyledCommonBlackButton onClick={handleClose}>완료</StyledCommonBlackButton> */}
     </>
-  )
-}
-export default LocationPicker
+  );
+};
+export default LocationPicker;
 
 const StyledTitle = styled.p`
   font-size: 20px;
-`
+`;
 
-const testList = [{
-  "id": 1,
-  "name": "서울",
-  "cities": [
-    {
-      "id": 1,
-      "name": "서울시"
-    },
-    {
-      "id": 18,
-      "name": "강남구"
-    },
-    {
-      "id": 19,
-      "name": "강동구"
-    },
-    {
-      "id": 20,
-      "name": "강북구"
-    },
-    {
-      "id": 21,
-      "name": "강서구"
-    },
-    {
-      "id": 22,
-      "name": "관악구"
-    },
-    {
-      "id": 23,
-      "name": "광진구"
-    }
-  ]},
+const testList = [
   {
-  "id": 2,
-  "name": "경기도",
-  "cities": [
-    {
-      "id": 18,
-      "name": "강남구"
-    },
-    {
-      "id": 19,
-      "name": "강동구"
-    },
-    {
-      "id": 20,
-      "name": "강북구"
-    },
-    {
-      "id": 21,
-      "name": "강서구"
-    },
-    {
-      "id": 22,
-      "name": "관악구"
-    },
-    {
-      "id": 23,
-      "name": "광진구"
-    }
-  ]}    
-]
+    id: 1,
+    name: "서울",
+    cities: [
+      {
+        id: 1,
+        name: "서울시",
+      },
+      {
+        id: 18,
+        name: "강남구",
+      },
+      {
+        id: 19,
+        name: "강동구",
+      },
+      {
+        id: 20,
+        name: "강북구",
+      },
+      {
+        id: 21,
+        name: "강서구",
+      },
+      {
+        id: 22,
+        name: "관악구",
+      },
+      {
+        id: 23,
+        name: "광진구",
+      },
+    ],
+  },
+  {
+    id: 2,
+    name: "경기도",
+    cities: [
+      {
+        id: 18,
+        name: "강남구",
+      },
+      {
+        id: 19,
+        name: "강동구",
+      },
+      {
+        id: 20,
+        name: "강북구",
+      },
+      {
+        id: 21,
+        name: "강서구",
+      },
+      {
+        id: 22,
+        name: "관악구",
+      },
+      {
+        id: 23,
+        name: "광진구",
+      },
+    ],
+  },
+];
