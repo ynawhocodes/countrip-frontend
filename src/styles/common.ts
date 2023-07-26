@@ -42,6 +42,13 @@ export const StyledCommonFlexContainer = styled.div<{
   justify-content: ${({ justify }) => (justify ? justify : "center")};
   padding: ${({ padding }) => (padding ? padding : "0")};
 `;
+export const StyledCommonItemsPerRowContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+`;
 export const StyledCommonButton = styled.button<{
   width?: string;
   height?: string;
