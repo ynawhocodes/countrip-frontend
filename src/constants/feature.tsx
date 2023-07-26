@@ -59,13 +59,7 @@ export const tabContents = [(
   </>), (<>
     <StyledCommonItemsPerRowContainer>{magazineRuralExperienceData.map((data, index) => <SquareBoxItem key={index} data={data} />)}</StyledCommonItemsPerRowContainer>
   </>), (<>
-    <SectionTitle title="지금 당장 가야하는 여행지 Top 7" paddingHorizontal={20} />
-    <HorizontalScrollBoxList datas={magazineNowData} />
-    <SectionTitle title="경험하기 좋은 농촌 체험" hasMore={true} paddingHorizontal={20} />
-    {magazineRuralExperienceData.map((data, index) => <RectangleBoxItem key={index} marginHorizontal={20} data={data} />)}
+    <StyledCommonItemsPerRowContainer>{magazineRuralExperienceData.map((data, index) => <SquareBoxItem key={index} data={data} />)}</StyledCommonItemsPerRowContainer>
   </>), (<>
-    <SectionTitle title="지금 당장 가야하는 여행지 Top 6" paddingHorizontal={20} />
-    <HorizontalScrollBoxList datas={magazineNowData} />
-    <SectionTitle title="경험하기 좋은 농촌 체험" hasMore={true} paddingHorizontal={20} />
-    {magazineRuralExperienceData.map((data, index) => <RectangleBoxItem key={index} marginHorizontal={20} data={data} />)}
+    <StyledCommonItemsPerRowContainer>{magazineRuralExperienceData.map((data, index) => <SquareBoxItem key={index} data={data} />)}</StyledCommonItemsPerRowContainer>
   </>)];
