@@ -52,7 +52,7 @@ const StyledFlexWrap = styled.div`
   align-items: center;
 `
 const StyledContentWrap = styled.div`
-  margin-left: 20px;
+  margin: 0 20px;
 `
 const StyledTitle = styled.p<{hasInfo: boolean}>`
   margin: ${({ hasInfo }) => hasInfo ? '0 0 7px 0' : '0'};
