@@ -32,7 +32,7 @@ export default LocationList;
 const StyledWrap = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: flex-start;max-height: 300px;
 `
 const StyledSquare = styled.div<{ selected: boolean }>`
   height: 45px;
