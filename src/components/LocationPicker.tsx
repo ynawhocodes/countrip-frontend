@@ -9,13 +9,14 @@ import { fetchLocationList } from "../api/guideFeatureApi";
 import checkResponseStatus from "../utils/statusUtil";
 import { SUCCESS_STATUS_CODE } from "../config/status.code.config";
 import { USER_TYPE } from "../constants";
+import { cities } from "../constants/cities";
 interface PickerProps {
   isOpen?: boolean;
   handleClose?: () => void;
 }
 const LocationPicker = ({ isOpen, handleClose }: PickerProps) => {
   const [activeTab, setActiveTab] = useState(1);
-  const [location, setLocation] = useState<LocationDto[]>(testList);
+  const [location, setLocation] = useState<LocationDto[]>(cities);
   const [userType, setUserType] = useState<string>("");
 
   const handleTabClick = (index: number) => {
@@ -28,14 +29,18 @@ const LocationPicker = ({ isOpen, handleClose }: PickerProps) => {
   //     console.log(">", userType);
   //   })();
   // }, []);
-  useEffect(() => {
-    (async () => {
-      const response = await fetchLocationList();
-      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-        setLocation(response.data.data);
-      }
-    })();
-  }, []);
+
+  // guide type 지역 목록 조회
+  // useEffect(() => {
+  //   (async () => {
+  //     const type: string | null = await localStorage.getItem("userType");
+  //     console.log(">", userType);
+  //     const response = await fetchLocationList();
+  //     if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+  //       setLocation(response.data.data);
+  //     }
+  //   })();
+  // }, []);
 
   const locationList = location?.map((item) => item.name);
   const locationTabContentDatas = location.map((item) =>
@@ -63,70 +68,3 @@ export default LocationPicker;
 const StyledTitle = styled.p`
   font-size: 20px;
 `;
-
-const testList = [
-  {
-    id: 1,
-    name: "서울",
-    cities: [
-      {
-        id: 1,
-        name: "서울시",
-      },
-      {
-        id: 18,
-        name: "강남구",
-      },
-      {
-        id: 19,
-        name: "강동구",
-      },
-      {
-        id: 20,
-        name: "강북구",
-      },
-      {
-        id: 21,
-        name: "강서구",
-      },
-      {
-        id: 22,
-        name: "관악구",
-      },
-      {
-        id: 23,
-        name: "광진구",
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: "경기도",
-    cities: [
-      {
-        id: 18,
-        name: "강남구",
-      },
-      {
-        id: 19,
-        name: "강동구",
-      },
-      {
-        id: 20,
-        name: "강북구",
-      },
-      {
-        id: 21,
-        name: "강서구",
-      },
-      {
-        id: 22,
-        name: "관악구",
-      },
-      {
-        id: 23,
-        name: "광진구",
-      },
-    ],
-  },
-];

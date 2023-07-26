@@ -37,7 +37,7 @@ const StyledModalContainer = styled.div<{ isOpen: boolean }>`
   height: auto;
   background-color: #fff;
   margin: 0 auto;
-  z-index: 2;
+  z-index: 999;
   transition: bottom 0.3s ease-in-out;
   box-shadow: ${(props) =>
     props.isOpen ? "0px 2px 10px rgba(0, 0, 0, 0.3)" : "none"};
@@ -57,5 +57,5 @@ const StyledOverlay = styled.div<{ isOpen: boolean }>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: ${(props) => (props.isOpen ? "block" : "none")};
-  z-index: 1;
+  z-index: 99;
 `;
