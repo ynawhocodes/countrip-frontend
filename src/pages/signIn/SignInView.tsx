@@ -14,9 +14,11 @@ import { guideLogin, travelerLogin } from '../../api/authApi'
 import { USER_TYPE } from '../../constants'
 import { fontBold } from '../../styles/font'
 import ToastModal from '../../components/ToastModal'
+import LoadingSpinner from '../../components/common/Loader'
 
 const SignInView = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [userInfo, setUserInfo] = useState({
     username: '',
     password: '',
@@ -36,6 +38,7 @@ const SignInView = () => {
   // TODO: 함수 구조 바꾸기
   const onClickLogin = async () => {
     if (userType == USER_TYPE.TRAVELER) {
+      setLoading(true);
       const response = await travelerLogin(userInfo);
       if (response) {
         navigate('/home');
@@ -44,8 +47,10 @@ const SignInView = () => {
       else {
         setIsValid(false);
       }
+      setLoading(false);
     }
     else if (userType === USER_TYPE.GUIDE) {
+      setLoading(true);
       const response = await guideLogin(userInfo);
       if (response) {
         navigate('/home');
@@ -58,6 +63,7 @@ const SignInView = () => {
     else {
       setIsValid(false);
     }
+    setLoading(false);
   };
 
   const handleUserType = (type: string) => {
@@ -73,6 +79,7 @@ const SignInView = () => {
 
   return (
     <>
+      {loading && <LoadingSpinner/>}
       {showToast && <ToastModal onClose={handleToastModalClose} />}
       <StyledCommonGreenLightWrap>
         <StyledCommonColumnPostitionOuterWrap>
