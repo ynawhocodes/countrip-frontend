@@ -49,14 +49,20 @@ const InputText = forwardRef(({
 });
 export default InputText;
 
+
 const StyledInput = styled.input<{ isInValid: boolean }>`
   width: 100%;
   height: 50px;
   padding-left: 8px;
-  border: 1px solid ${({ isInValid }) => (isInValid ? `${colors.warning}` : `${colors.gray1}`)};
+  border: 0;
+  border-bottom: 1px solid ${({ isInValid }) => (isInValid ? `${colors.warning}` : `${colors.gray2}`)};
   border-radius: 4px;
   box-sizing: border-box;
   margin: 5px 0;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 InputText.displayName = `inputText`;
