@@ -5,8 +5,12 @@ import { colors } from "../../styles/variables";
 import GoBackButton from "./GoBackButton";
 interface SelectableHeaderType {
   handleOption: () => void;
+  onClickRegister: () => void;
 }
-const SelectableHeader = ({ handleOption }: SelectableHeaderType) => {
+const SelectableHeader = ({
+  handleOption,
+  onClickRegister,
+}: SelectableHeaderType) => {
   return (
     <>
       <StyledHeader>
@@ -14,7 +18,7 @@ const SelectableHeader = ({ handleOption }: SelectableHeaderType) => {
         <StyledOptionContainer onClick={handleOption}>
           지역 &#9660;
         </StyledOptionContainer>
-        <div>등록</div>
+        <StyledRegister onClick={onClickRegister}>등록</StyledRegister>
       </StyledHeader>
     </>
   );
@@ -40,5 +44,8 @@ const StyledHeader = styled.header`
   }
 `;
 const StyledOptionContainer = styled.div`
+  cursor: pointer;
+`;
+const StyledRegister = styled.div`
   cursor: pointer;
 `;

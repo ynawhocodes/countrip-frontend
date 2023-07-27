@@ -8,30 +8,136 @@ import SelectableHeader from "../../components/common/SelectableHeader";
 import ModalBottom from "../../components/common/ModalBottom";
 import { MODAL_TYPE } from "../../constants";
 import WriteCourseItem from "../../components/WriteCourseItem";
+import { fontBold } from "../../styles/font";
+import { colors } from "../../styles/variables";
+import HalfLabelInputText from "../../components/common/HalfLabelInputText";
+import {
+  CourseDetailDto,
+  SpotDetailDto,
+  WriteCourseDto,
+} from "../../@types/CourseDto";
 const WriteCoursesView = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [courseInfo, setCourseInfo] = useState<WriteCourseDto>({
+    cityId: 0,
+    withGuide: true,
+    title: "",
+    adultPrice: undefined,
+    childPrice: undefined,
+    babyPrice: undefined,
+    spots: [],
+  });
+  const [spotInfo, setSpotInfo] = useState({
+    title: "",
+    image: "",
+    categoryId: undefined,
+    address: "",
+    telephone: "",
+    homepage: "",
+    description: "",
+    orderNum: 0,
+  });
+  const onChangeSubInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.currentTarget;
+    setSpotInfo((currVal) => ({
+      ...currVal,
+      [name]: value,
+    }));
+  };
   const handleModal = () => {
     setIsModalOpen(true);
   };
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+  const onChangeMainInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, name } = e.currentTarget;
+    setCourseInfo((currVal) => ({
+      ...currVal,
+      [name]: value,
+    }));
+  };
+  const handleRegister = (
+    courseInfo: WriteCourseDto,
+    ...spots: SpotDetailDto[]
+  ) => {
+    const spotsArray = courseInfo.spots ? [...courseInfo.spots] : [];
+
+    spots.forEach((spot) => {
+      spotsArray.push(spot);
+    });
+
+    console.log({ ...courseInfo, spots: spotsArray });
+  };
   return (
     <>
-      <SelectableHeader handleOption={handleModal} />
+      <SelectableHeader
+        handleOption={handleModal}
+        onClickRegister={() => handleRegister(courseInfo, spotInfo)}
+      />
       <ModalBottom
         isOpen={isModalOpen}
         handleClose={handleCloseModal}
         contentType={MODAL_TYPE.WHERE}
       ></ModalBottom>
       <StyledCommonFullHeigthWhiteWrap>
-        <StyledCourseTitle></StyledCourseTitle>
-        <StyledCommonHr />
-        <WriteCourseItem></WriteCourseItem>
+        <StyledCourseTitle
+          placeholder="제목"
+          style={fontBold}
+        ></StyledCourseTitle>
+        <StyledCommonHr />{" "}
+        <StyledPaddingWrap>
+          <StyledPriceTitle style={fontBold}>금액 설정</StyledPriceTitle>
+          <HalfLabelInputText
+            type="text"
+            isInValid={false}
+            value={courseInfo.adultPrice}
+            name="adultPrice"
+            label="대인(13세 이상)"
+            placeholder="0원"
+            onChangeInput={onChangeMainInput}
+          />
+          <HalfLabelInputText
+            type="text"
+            isInValid={false}
+            value={courseInfo.childPrice}
+            name="childPrice"
+            label="소인(13세 미만)"
+            placeholder="0원"
+            onChangeInput={onChangeMainInput}
+          />
+          <HalfLabelInputText
+            type="text"
+            isInValid={false}
+            value={courseInfo.babyPrice}
+            name="babyPrice"
+            label="유아(24개월 미만)"
+            placeholder="0원"
+            onChangeInput={onChangeMainInput}
+          />
+        </StyledPaddingWrap>
+        <WriteCourseItem
+          value={spotInfo}
+          onChangeInput={onChangeSubInput}
+        ></WriteCourseItem>
       </StyledCommonFullHeigthWhiteWrap>
     </>
   );
 };
 export default WriteCoursesView;
 
-const StyledCourseTitle = styled.input``;
+const StyledCourseTitle = styled.input`
+  all: unset;
+  padding: 0 20px;
+  font-size: 20px;
+
+  &::placeholder {
+    color: ${colors.gray2};
+  }
+`;
+const StyledPaddingWrap = styled.div`
+  padding: 0 20px;
+`;
+const StyledPriceTitle = styled.p`
+  font-size: 18px;
+`;

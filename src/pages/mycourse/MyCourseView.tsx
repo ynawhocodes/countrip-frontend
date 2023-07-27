@@ -51,9 +51,9 @@ const MyCourseView = () => {
         ))}
       </StyledCommonFullHeigthWhiteWrap>
       <StyledButtonContainer>
-        {/* <StyledFloatButton onClick={() => navigate(`/mycourse/write`)}>
+        <StyledFloatButton onClick={() => navigate(`/mycourse/write`)}>
           코스 등록
-        </StyledFloatButton> */}
+        </StyledFloatButton>
       </StyledButtonContainer>
       <Navigation userType="guide" initTabIndex={2} />
     </>
