@@ -2,9 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import SpotItem from "../../../components/common/SpotItem";
 import { colors } from "../../../styles/variables";
-import { fontMedium } from "../../../styles/font";
+import { fontMedium, fontRegular } from "../../../styles/font";
 import GoBackButton from "../../../components/common/GoBackButton";
-import { StyledCommonFullHeigthWhiteWrap } from "../../../styles/common";
+import {
+  StyledCommonBlackButton,
+  StyledCommonFlexContainer,
+  StyledCommonFullHeigthWhiteWrap,
+} from "../../../styles/common";
 import GoBackHeader from "../../../components/common/GoBackHeader";
 import magazineImg from "../../../assets/sample/magazine/image/magazine_07.jpg";
 
@@ -48,9 +52,31 @@ const MagazineListView = () => {
                 </StyledInfoContent>
               </StyledInfoItemContainer>
             ))}
+            <StyledInfoContent style={{ ...fontRegular, marginTop: 30 }}>
+              {text}
+            </StyledInfoContent>
           </StyledInfoContainer>
         </StyledContainer>
       </StyledCommonFullHeigthWhiteWrap>
+      {/* TODO 임시 삭제 */}
+      <StyledNavigationContainer>
+        <StyledCommonFlexContainer
+          style={{
+            width: "100%",
+            padding: 25,
+            justifyContent: "space-between",
+          }}
+        >
+          <p style={{ ...fontMedium, fontSize: 14 }}>
+            예약 정원 초과 (사전 예약)
+          </p>
+          <StyledCommonBlackButton
+            style={{ width: "50%", backgroundColor: `${colors.gray4}` }}
+          >
+            여행 코스 담기
+          </StyledCommonBlackButton>
+        </StyledCommonFlexContainer>
+      </StyledNavigationContainer>
     </>
   );
 };
@@ -101,5 +127,22 @@ const StyledInfoContent = styled.p`
 `;
 
 const text = `1963년 보물 제165호로 지정된 오죽헌은 우리나라 대표 어머니상신사임당(1504∼1551)과 그의 아들 율곡 이이(1536∼1584)가 태어난 유서 깊은 곳이다. 집 주위에 까마귀처럼 검은 대나무가 많아 율곡의 이종사촌 권처균이 자신의 호를 오죽헌이라 지은 데서 비롯된 ‘오죽헌’이라고 불린다.
-
 1963년 보물 제165호로 지정된 오죽헌은 우리나라 대표 어머니상 신사임당(1504∼1551)과 그의 아들 율곡 이이(1536∼1584)가 태어난 유서 깊은곳이다. 집 주위에 까마귀처럼 검은 대나무가 많아 율곡의 이종사촌 권처균이 자신의 호를 오죽헌이라 지은 데서 비롯된 ‘오죽헌’이라고 불린다.`;
+
+const StyledNavigationContainer = styled.nav`
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  width: 100%;
+  height: 150px;
+  border-radius: 50px 50px 0px 0px;
+  background-color: white;
+  box-shadow: 0px -20px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+  transform: ${({ hidden }) =>
+    (hidden ? "translateY(100%)" : "translateY(0)") + " translateX(-50%)"};
+  @media (min-width: 769px) {
+    width: 768px;
+  }
+`;
