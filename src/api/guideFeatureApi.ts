@@ -5,8 +5,9 @@ import {
   GuideScheduleDto,
   TodayGuideScheduleDto,
 } from "../@types/GuideDto";
-import CourseDto from "../@types/CourseDto";
+import CourseDto, { WriteCourseDto } from "../@types/CourseDto";
 import { CancelReason } from "../@types/ReservationDto";
+import { Axios, AxiosResponse } from "axios";
 
 export const fetchGuideHomeInfo = async () => {
   try {
@@ -116,6 +117,19 @@ export const fetchLocationList = async () => {
     return response;
   } catch (e: any) {
     console.log("fetchLocationList)", e.response.data);
+    return e.response;
+  }
+};
+export const postCourse = async (data: WriteCourseDto) => {
+  try {
+    const response = await client.post<ExternalResponseSuccess<AxiosResponse>>(
+      `/api/v1/courses`,
+      { data }
+    );
+    console.log("response", response);
+    return response;
+  } catch (e: any) {
+    console.log("postCourse)", e.response.data);
     return e.response;
   }
 };

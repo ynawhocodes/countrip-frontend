@@ -20,6 +20,9 @@ import {
 } from "../../@types/CourseDto";
 import CenterModal from "../../components/CenterModal";
 import { isAnyValueMissingInObject, isEmptyValue } from "../../utils/emptyUtil";
+import { postCourse } from "../../api/guideFeatureApi";
+import checkResponseStatus from "../../utils/statusUtil";
+import { SUCCESS_STATUS_CODE } from "../../config/status.code.config";
 
 const WriteCoursesView = () => {
   const navigate = useNavigate();
@@ -31,7 +34,7 @@ const WriteCoursesView = () => {
   const [isWarningCenterModalOpen, setIsWarningCenterModalOpen] =
     useState(false);
   const [courseInfo, setCourseInfo] = useState<WriteCourseDto>({
-    cityId: 0,
+    cityId: 1,
     withGuide: true,
     title: "",
     adultPrice: undefined,
@@ -47,7 +50,7 @@ const WriteCoursesView = () => {
     telephone: "",
     homepage: "",
     description: "",
-    orderNum: 0,
+    orderNum: 1,
   });
   const onChangeSubInput = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -98,12 +101,20 @@ const WriteCoursesView = () => {
 
     if (isAnyValueMissingInObject(updatedMain))
       setIsWarningCenterModalOpen(true);
-    console.log(updatedMain);
+    else {
+      (async () => {
+        const response = await postCourse(updatedMain);
+        if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+          setIsRegisterCenterModalOpen(true);
+        }
+      })();
+    }
   };
   const handleDelete = () => {
     if (courseInfo || spotInfo) setIsDeleteCenterModalOpen(true);
     else navigate(-1);
   };
+
   const deleteCenterModalContents = (
     <>
       <StyledCenterModalContainer>
