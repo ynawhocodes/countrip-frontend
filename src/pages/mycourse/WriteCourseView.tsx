@@ -62,6 +62,17 @@ const WriteCoursesView = () => {
       [name]: value,
     }));
   };
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files && event.target.files[0];
+
+    if (file) {
+      const fileUrl = URL.createObjectURL(file);
+      setSpotInfo((currVal) => ({
+        ...currVal,
+        ["image"]: fileUrl,
+      }));
+    }
+  };
   const handleRegister = (
     mainObj: WriteCourseDto,
     ...spots: SpotDetailDto[]
@@ -147,6 +158,7 @@ const WriteCoursesView = () => {
         </StyledPaddingWrap>
         <WriteCourseItem
           value={spotInfo}
+          onChangeImage={handleFileChange}
           onChangeInput={onChangeSubInput}
         ></WriteCourseItem>
         <StyledButtonContainer>

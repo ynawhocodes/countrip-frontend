@@ -7,9 +7,14 @@ import { fontBold } from "../styles/font";
 
 interface WriteCourseItemProps {
   value: any;
+  onChangeImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
-const WriteCourseItem = ({ value, onChangeInput }: WriteCourseItemProps) => {
+const WriteCourseItem = ({
+  value,
+  onChangeImage,
+  onChangeInput,
+}: WriteCourseItemProps) => {
   return (
     <>
       <StyledGap />
@@ -23,7 +28,7 @@ const WriteCourseItem = ({ value, onChangeInput }: WriteCourseItemProps) => {
           placeholder="장소명을 입력해주세요."
           onChangeInput={onChangeInput}
         />
-        <InputImage />
+        <InputImage fileContent={value.image} onChangeImage={onChangeImage} />
         <HalfLabelInputText
           type="text"
           isInValid={false}
