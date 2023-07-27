@@ -109,6 +109,7 @@ const StyledModalContainer = styled.div<{ open: boolean }>`
   height: 100%;
 `
 const StyledMenuItem = styled.p`
+  cursor: pointer;
   font-size: 13px;
   padding: 5px 0;
 `
