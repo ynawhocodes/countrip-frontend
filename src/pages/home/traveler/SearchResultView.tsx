@@ -55,7 +55,6 @@ const SearchResultView = () => {
     ],
   };
   const hasPriceInfo = true;
-  console.log(courseInfo);
   return (
     <>
       {loading && <LoadingSpinner />}
@@ -71,7 +70,6 @@ const SearchResultView = () => {
         </StyledCommonFullHeigthWhiteWrap>
       ) : (
         <>
-          {" "}
           <StyledCommonFullHeigthWhiteWrap>
             <Filter items={filterTypeList} />
             <div onClick={() => navigate("/trip/2")}>
