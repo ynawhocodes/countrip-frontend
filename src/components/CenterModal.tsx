@@ -49,7 +49,7 @@ const ModalContainer = styled.div`
   @media (min-width: 769px) {
     width: 40%;
   }
-  height: 70%;
+  height: auto;
   max-height: 30%;
   background-color: #fff;
   border-radius: 8px;
@@ -57,5 +57,5 @@ const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
 `;
