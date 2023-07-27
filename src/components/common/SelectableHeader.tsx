@@ -4,21 +4,23 @@ import { fontBold } from "../../styles/font";
 import { colors } from "../../styles/variables";
 import GoBackButton from "./GoBackButton";
 interface SelectableHeaderType {
+  onClickDelete: () => void;
   handleOption: () => void;
   onClickRegister: () => void;
 }
 const SelectableHeader = ({
+  onClickDelete,
   handleOption,
   onClickRegister,
 }: SelectableHeaderType) => {
   return (
     <>
       <StyledHeader>
-        <div>취소</div>
+        <StyledButton onClick={onClickDelete}>취소</StyledButton>
         <StyledOptionContainer onClick={handleOption}>
           지역 &#9660;
         </StyledOptionContainer>
-        <StyledRegister onClick={onClickRegister}>등록</StyledRegister>
+        <StyledButton onClick={onClickRegister}>등록</StyledButton>
       </StyledHeader>
     </>
   );
@@ -46,6 +48,6 @@ const StyledHeader = styled.header`
 const StyledOptionContainer = styled.div`
   cursor: pointer;
 `;
-const StyledRegister = styled.div`
+const StyledButton = styled.div`
   cursor: pointer;
 `;

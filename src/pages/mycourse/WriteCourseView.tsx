@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import {
   StyledCommonBlackButton,
@@ -17,8 +18,11 @@ import {
   SpotDetailDto,
   WriteCourseDto,
 } from "../../@types/CourseDto";
+import CenterModal from "../../components/CenterModal";
 const WriteCoursesView = () => {
+  const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
   const [courseInfo, setCourseInfo] = useState<WriteCourseDto>({
     cityId: 0,
     withGuide: true,
@@ -74,9 +78,26 @@ const WriteCoursesView = () => {
 
     return updatedMain;
   };
+  const handleDelete = () => {
+    if (courseInfo || spotInfo) setIsCenterModalOpen(true);
+    else navigate(-1);
+  };
+  const centerModalContents = (
+    <>
+      <StyledCenterModalContainer>
+        <StyledCenterModalTitle>
+          작성하던 내용이 있습니다. 작성을 취소하시겠습니까?
+        </StyledCenterModalTitle>
+        <StyledCommonBlackButton onClick={() => navigate(-1)}>
+          취소하기
+        </StyledCommonBlackButton>
+      </StyledCenterModalContainer>
+    </>
+  );
   return (
     <>
       <SelectableHeader
+        onClickDelete={handleDelete}
         handleOption={handleModal}
         onClickRegister={() => handleRegister(courseInfo, spotInfo)}
       />
@@ -85,6 +106,9 @@ const WriteCoursesView = () => {
         handleClose={handleCloseModal}
         contentType={MODAL_TYPE.WHERE}
       ></ModalBottom>
+      <CenterModal isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}>
+        {centerModalContents}
+      </CenterModal>
       <StyledCommonFullHeigthWhiteWrap>
         <StyledCourseTitle
           placeholder="제목"
@@ -154,4 +178,12 @@ const StyledPriceTitle = styled.p`
 const StyledButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+`;
+// center modal
+const StyledCenterModalContainer = styled.div`
+  text-align: center;
+`;
+const StyledCenterModalTitle = styled.p`
+  margin-bottom: 30px;
+  font-size: 14px;
 `;

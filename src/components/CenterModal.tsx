@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
 interface CenterModalProps {
   isOpen: boolean;
@@ -7,7 +7,6 @@ interface CenterModalProps {
   children: React.ReactNode;
 }
 function CenterModal({ isOpen, setIsOpen, children }: CenterModalProps) {
-
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -26,7 +25,7 @@ function CenterModal({ isOpen, setIsOpen, children }: CenterModalProps) {
       )}
     </>
   );
-};
+}
 export default CenterModal;
 
 const ModalOverlay = styled.div`
@@ -39,7 +38,7 @@ const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1;
+  z-index: 999;
 `;
 const ModalContainer = styled.div`
   position: fixed;

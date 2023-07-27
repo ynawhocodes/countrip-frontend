@@ -65,8 +65,8 @@ const StyledButtonContainer = styled.div`
   justify-content: center;
   bottom: 125px;
   position: sticky;
+  z-index: 10;
 `;
 const StyledFloatButton = styled(StyledCommonBlackButton)`
-  z-index: 10;
   width: 148px;
 `;
