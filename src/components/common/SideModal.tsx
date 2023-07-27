@@ -8,6 +8,7 @@ import SettingIcon from "../../assets/SettingIcon";
 import { StyledCommonHr } from "../../styles/common";
 import { fontRegular, fontBold, fontMedium } from "../../styles/font";
 import { colors } from "../../styles/variables";
+import LoadingSpinner from "./LoadingSpinner";
 
 interface SideModalProps {
   isOpen: boolean;
@@ -15,6 +16,7 @@ interface SideModalProps {
   children: React.ReactNode;
 }
 const SideModal = ({ isOpen, setIsOpen, children }: SideModalProps) => {
+  const [loading, setLoading] = useState(false);
   const closeModal = () => {
     setIsOpen(false);
   };
@@ -24,6 +26,7 @@ const SideModal = ({ isOpen, setIsOpen, children }: SideModalProps) => {
 
   return (
     <>
+      {loading && <LoadingSpinner />}
       <StyledModalOverlay open={isOpen} onClick={handleOverlayClick}>
         <StyledModalContainer open={isOpen}>
           <StyledModalContent>
@@ -53,7 +56,11 @@ const SideModal = ({ isOpen, setIsOpen, children }: SideModalProps) => {
               </StyledMenuItem>
               <StyledHr />
               <StyledMenuItem
-                onClick={async () => await logout()}
+                onClick={async () => {
+                  setLoading(true);
+                  await logout();
+                  setLoading(false);
+                }}
                 style={fontMedium}
               >
                 로그아웃
