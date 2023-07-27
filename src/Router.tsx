@@ -104,7 +104,7 @@ const Router = () => {
                     element={<MagazineSearchView />}
                   />
                   <Route
-                    path="/magazine/search"
+                    path="/magazine/search/result"
                     element={<MagazineSearchResultView />}
                   />
                   <Route path="/magazine/:id" element={<TravelSpotView />} />
