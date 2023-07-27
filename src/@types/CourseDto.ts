@@ -16,10 +16,22 @@ export interface CourseDetailDto {
 }
 export interface SpotDetailDto {
   title: string;
-  imageUrl: string;
+  imageUrl?: string;
+  // TODO: 코스 생성 부분에 imageUrl이 아닌 image로 내려옴
+  image?: string;
   address: string;
   telephone: string;
-  homepage: string;
+  homepage?: string;
   description: string;
   orderNum: number;
+  categoryId?: number;
+}
+export interface WriteCourseDto {
+  cityId: number;
+  withGuide: boolean;
+  title: string;
+  adultPrice: number | undefined;
+  childPrice: number | undefined;
+  babyPrice: number | undefined;
+  spots: SpotDetailDto[];
 }
