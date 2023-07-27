@@ -14,7 +14,7 @@ import { guideLogin, travelerLogin } from '../../api/authApi'
 import { USER_TYPE } from '../../constants'
 import { fontBold } from '../../styles/font'
 import ToastModal from '../../components/ToastModal'
-import LoadingSpinner from '../../components/common/Loader'
+import LoadingSpinner from '../../components/common/LoadingSpinner'
 
 const SignInView = () => {
   const navigate = useNavigate();
