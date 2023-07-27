@@ -19,6 +19,7 @@ import {
   WriteCourseDto,
 } from "../../@types/CourseDto";
 import CenterModal from "../../components/CenterModal";
+import { isEmptyValue } from "../../utils/emptyUtil";
 const WriteCoursesView = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -85,11 +86,11 @@ const WriteCoursesView = () => {
       updatedMain.spots = [];
     }
 
-    spots.forEach((spot) => {
-      updatedMain.spots.push(spot);
-    });
+    // spots.forEach((spot) => {
+    //   updatedMain.spots.push(spot);
+    // });
 
-    return updatedMain;
+    console.log(updatedMain);
   };
   const handleDelete = () => {
     if (courseInfo || spotInfo) setIsCenterModalOpen(true);
@@ -126,6 +127,10 @@ const WriteCoursesView = () => {
         <StyledCourseTitle
           placeholder="제목"
           style={fontBold}
+          name="title"
+          value={courseInfo.title}
+          isInValid={isEmptyValue(courseInfo.title)}
+          onChange={onChangeMainInput}
         ></StyledCourseTitle>
         <StyledCommonHr />{" "}
         <StyledPaddingWrap>
@@ -174,13 +179,14 @@ const WriteCoursesView = () => {
 };
 export default WriteCoursesView;
 
-const StyledCourseTitle = styled.input`
+const StyledCourseTitle = styled.input<{ isInValid: boolean }>`
   all: unset;
   padding: 0 20px;
   font-size: 20px;
 
   &::placeholder {
-    color: ${colors.gray2};
+    color: ${({ isInValid }) =>
+      isInValid ? `${colors.warning}` : `${colors.gray2}`};
   }
 `;
 const StyledPaddingWrap = styled.div`
