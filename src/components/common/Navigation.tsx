@@ -1,85 +1,108 @@
-import React, { useEffect, useState } from 'react'
-import styled from 'styled-components'
-import BriefcaseIcon from '../../assets/BriefcaseIcon'
-import DiskIcon from '../../assets/DiskIcon'
-import FlagIcon from '../../assets/FlagIcon'
-import HomeIcon from '../../assets/HomeIcon'
-import MagazineIcon from '../../assets/MagazineIcon'
-import { colors } from '../../styles/variables'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from "react";
+import styled from "styled-components";
+import BriefcaseIcon from "../../assets/BriefcaseIcon";
+import DiskIcon from "../../assets/DiskIcon";
+import FlagIcon from "../../assets/FlagIcon";
+import HomeIcon from "../../assets/HomeIcon";
+import MagazineIcon from "../../assets/MagazineIcon";
+import { colors } from "../../styles/variables";
+import { useNavigate } from "react-router-dom";
 
 interface NavigationType {
   userType: string;
   initTabIndex: number;
 }
 const Navigation = ({ userType, initTabIndex }: NavigationType) => {
-  const [hidden, setHidden] = useState(false)
-  const [activeNavigationTab, setActiveNavigationTab] = useState(initTabIndex)
+  const [hidden, setHidden] = useState(false);
+  const [activeNavigationTab, setActiveNavigationTab] = useState(initTabIndex);
   const navigate = useNavigate();
 
   useEffect(() => {
-    let prevScrollPos = window.pageYOffset
+    let prevScrollPos = window.pageYOffset;
 
     const handleScroll = () => {
-      const currentScrollPos = window.pageYOffset
-      setHidden(prevScrollPos > currentScrollPos)
-      prevScrollPos = currentScrollPos
-    }
+      const currentScrollPos = window.pageYOffset;
+      setHidden(prevScrollPos > currentScrollPos);
+      prevScrollPos = currentScrollPos;
+    };
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const handleTabClick = (index: number) => {
-    setActiveNavigationTab(index)
-  }
+    setActiveNavigationTab(index);
+  };
 
-  const travelerTypeNavigationIconList = [<MagazineIcon />, <HomeIcon />, <BriefcaseIcon />];
-  const guideTypeNavigationIconList = [<FlagIcon />, <HomeIcon />, <DiskIcon />];
+  const travelerTypeNavigationIconList = [
+    <MagazineIcon />,
+    <HomeIcon />,
+    <BriefcaseIcon />,
+  ];
+  const guideTypeNavigationIconList = [
+    <FlagIcon />,
+    <HomeIcon />,
+    <DiskIcon />,
+  ];
   const navigationIconList =
-    userType === 'traveler'
+    userType === "traveler"
       ? travelerTypeNavigationIconList
       : guideTypeNavigationIconList;
 
-  const travelerTypeUrl = ['/magazine', '/', '/mytrip'];
-  const guideTypeUrl = ['/myguide', '/', '/mycourse'];
+  const travelerTypeUrl = ["/magazine", "/", "/mytrip"];
+  const guideTypeUrl = ["/myguide", "/", "/mycourse"];
   const navigationUrlList =
-    userType === 'traveler'
-      ? travelerTypeUrl
-      : guideTypeUrl;
-  
+    userType === "traveler" ? travelerTypeUrl : guideTypeUrl;
+
   const goToPage = (url: string) => {
     navigate(url);
-  }
-  
+  };
+
   return (
     <StyledNavigationContainer hidden={hidden}>
       {navigationIconList.map((item, index) => (
-        <StyledNavigationItemContainer key={index} onClick={() => { handleTabClick(index); goToPage(navigationUrlList[index]) }}>
+        <StyledNavigationItemContainer
+          key={index}
+          onClick={() => {
+            handleTabClick(index);
+            goToPage(navigationUrlList[index]);
+          }}
+        >
           <StyledNavigationItem selected={index === activeNavigationTab}>
-            {item.type === HomeIcon && (<HomeIcon active={index === activeNavigationTab} />)}
-            {userType === 'traveler' ? (
+            {item.type === HomeIcon && (
+              <HomeIcon active={index === activeNavigationTab} />
+            )}
+            {userType === "traveler" ? (
               <>
-                {item.type === MagazineIcon && (<MagazineIcon active={index === activeNavigationTab} />)}
-                {item.type === BriefcaseIcon && (<BriefcaseIcon active={index === activeNavigationTab} />)}
+                {item.type === MagazineIcon && (
+                  <MagazineIcon active={index === activeNavigationTab} />
+                )}
+                {item.type === BriefcaseIcon && (
+                  <BriefcaseIcon active={index === activeNavigationTab} />
+                )}
               </>
             ) : (
               <>
-                {item.type === FlagIcon && (<FlagIcon active={index === activeNavigationTab} />)}
-                {item.type === DiskIcon && (<DiskIcon active={index === activeNavigationTab} />)}
+                {item.type === FlagIcon && (
+                  <FlagIcon active={index === activeNavigationTab} />
+                )}
+                {item.type === DiskIcon && (
+                  <DiskIcon active={index === activeNavigationTab} />
+                )}
               </>
             )}
           </StyledNavigationItem>
         </StyledNavigationItemContainer>
       ))}
     </StyledNavigationContainer>
-  )
-}
-export default Navigation
+  );
+};
+export default Navigation;
 
 const StyledNavigationContainer = styled.nav`
+  z-index: 10;
   display: flex;
   position: fixed;
   bottom: 0;
@@ -91,11 +114,11 @@ const StyledNavigationContainer = styled.nav`
   box-shadow: 0px -20px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease-in-out;
   transform: ${({ hidden }) =>
-    (hidden ? 'translateY(100%)' : 'translateY(0)') + ' translateX(-50%)'};
+    (hidden ? "translateY(100%)" : "translateY(0)") + " translateX(-50%)"};
   @media (min-width: 769px) {
     width: 768px;
   }
-`
+`;
 const StyledNavigationItemContainer = styled.div`
   flex: 1;
   display: flex;
@@ -103,7 +126,7 @@ const StyledNavigationItemContainer = styled.div`
   justify-content: center;
   background-color: white;
   border-radius: 50px 50px 0px 0px;
-`
+`;
 const StyledNavigationItem = styled.div<{ selected: boolean }>`
   display: flex;
   align-items: center;
@@ -111,10 +134,10 @@ const StyledNavigationItem = styled.div<{ selected: boolean }>`
   width: 56px;
   height: 56px;
   background-color: ${({ selected }) =>
-    selected ? `${colors.green}` : 'transparent'};
+    selected ? `${colors.green}` : "transparent"};
   box-shadow: ${({ selected }) =>
-    selected ? `0px 0px 10px ${colors.green}` : 'none'};
+    selected ? `0px 0px 10px ${colors.green}` : "none"};
   transition: background-color 0.3s ease-in-out;
   border-radius: 10px;
   cursor: pointer;
-`
+`;
