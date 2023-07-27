@@ -1,4 +1,4 @@
-import CourseDto from "../@types/CourseDto";
+import CourseDto, { CourseSearchDto } from "../@types/CourseDto";
 import { MagazineDto } from "../@types/Magazine";
 import { travelerClient } from "./client";
 import ExternalResponseSuccess from "./response";
@@ -33,6 +33,26 @@ export const fetchMagazineRestaurantList = async () => {
     return response;
   } catch (e: any) {
     console.log("fetchMagazineNowList)", e.response.data);
+    return e.response;
+  }
+};
+export const fetchCourseSearchResult = async ( {cityId, travelDate, adultCount, childCount, babyCount} : CourseSearchDto, categoryId: number) => {
+  try {
+    const response = await travelerClient.get<
+      ExternalResponseSuccess<CourseDto[]>
+    >(`/api/v1/courses/search?category=${categoryId}`,
+    {
+      params: {
+        cityId: cityId,
+        travelDate: travelDate,
+        adultCount: adultCount,
+        childCount: childCount,
+        babyCount: babyCount,
+      },
+    });
+    return response;
+  } catch (e: any) {
+    console.log("fetchCourseSearchResult)", e.response.data);
     return e.response;
   }
 };

@@ -28,7 +28,6 @@ export const guideLogin = async ({ username, password }: SignInParamsDto) => {
     const response = await guideClient.post<
       ExternalResponseSuccess<SignInResponseDto>
     >("/api/v1/auth/signin", { username: username, password: password });
-    console.log(username, password);
     const accessToken = response.data.data.tokenDto.accessToken;
     const refreshToken = response.data.data.tokenDto.refreshToken;
     const userType = response.data.data.userType;

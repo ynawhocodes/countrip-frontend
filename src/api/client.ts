@@ -1,9 +1,13 @@
 import axios, { AxiosInstance } from 'axios'
 
+const accessToken = localStorage.getItem('accessToken');
 export const travelerClient: AxiosInstance = axios.create({
   baseURL: 'http://countrip.site:8080',
   // baseURL: 'http://15.165.110.6:8080',
   withCredentials: true,
+  headers: {
+    Authorization: `Bearer ${accessToken}`,
+  },
 });
 const guideClient: AxiosInstance = axios.create({
   baseURL: 'http://countrip.site:9090',
@@ -16,6 +20,7 @@ guideClient.interceptors.request.use(async (request: any) => {
   request.headers.Authorization = accessToken ? `Bearer ${accessToken}` : ''
   return request
 });
+
 
 // guideClient.interceptors.response.use(
 //   function (response) {

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import Tab, { TabView } from '../../../components/common/Tab'
 import { StyledCommonFullHeigthWhiteWrap } from '../../../styles/common'
 import Navigation from '../../../components/common/Navigation'
@@ -8,6 +8,9 @@ import CourseSearch from '../../../components/CourseSearch'
 import SideModal from '../../../components/common/SideModal'
 import SpotDto from '../../../@types/SpotDto'
 import { tabContents } from '../../../constants/feature'
+import { fetchMagazineNowList } from '../../../api/travelerFeatureApi'
+import checkResponseStatus from '../../../utils/statusUtil'
+import { SUCCESS_STATUS_CODE } from '../../../config/status.code.config'
 
 
 const TravelerHomeView = () => {
@@ -21,7 +24,14 @@ const TravelerHomeView = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-
+  useEffect(() => {
+    (async () => {
+      const response = await fetchMagazineNowList();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        console.log(response.data.data)
+      }
+    })();
+  }, [])
   return (
     <>
       <TitleWithIconHeader title={"컨트립"} icon={<MyPageIcon style={{ marginRight: 20 }} onClick={openModal} />} />

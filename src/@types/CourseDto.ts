@@ -3,6 +3,7 @@ import { SpotSquareImageDto } from "./GuideDto";
 export default interface CourseDto {
   id: number;
   title: string;
+  totalPrice?: number;
   guideName: string;
   spots: SpotSquareImageDto[];
 }
@@ -34,4 +35,12 @@ export interface WriteCourseDto {
   childPrice: number | undefined;
   babyPrice: number | undefined;
   spots: SpotDetailDto[];
+}
+export interface CourseSearchDto {
+  cityId: number;
+  travelDate: string;
+  // withGuide: boolean;
+  adultCount: number;
+  childCount: number;
+  babyCount: number;
 }
