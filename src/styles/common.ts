@@ -128,6 +128,6 @@ export const StyledCommonColumnPostitionInnerWrap = styled.div<{
 `;
 export const StyledCommonHr = styled.div`
   border-bottom: 1px #e5e5e5 solid;
-  margin: 20px 0 20px 0;
+  margin: 20px 0;
   height: 1px;
 `;

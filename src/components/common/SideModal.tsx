@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
-import styled, { keyframes } from 'styled-components'
-import { logout } from '../../api/authApi'
-import BellIcon from '../../assets/BellIcon'
-import CloseIcon from '../../assets/CloseIcon'
-import DefaultProfileIcon from '../../assets/DefaultProfileIcon'
-import SettingIcon from '../../assets/SettingIcon'
-import { StyledCommonHr } from '../../styles/common'
-import { fontRegular, fontBold, fontMedium } from '../../styles/font'
-import { colors } from '../../styles/variables'
+import React, { useState } from "react";
+import styled, { keyframes } from "styled-components";
+import { logout } from "../../api/authApi";
+import BellIcon from "../../assets/BellIcon";
+import CloseIcon from "../../assets/CloseIcon";
+import DefaultProfileIcon from "../../assets/DefaultProfileIcon";
+import SettingIcon from "../../assets/SettingIcon";
+import { StyledCommonHr } from "../../styles/common";
+import { fontRegular, fontBold, fontMedium } from "../../styles/font";
+import { colors } from "../../styles/variables";
 
 interface SideModalProps {
-  isOpen: boolean
-  setIsOpen: any
-  children: React.ReactNode
+  isOpen: boolean;
+  setIsOpen: any;
+  children: React.ReactNode;
 }
 const SideModal = ({ isOpen, setIsOpen, children }: SideModalProps) => {
   const closeModal = () => {
-    setIsOpen(false)
-  }
+    setIsOpen(false);
+  };
   const handleOverlayClick = () => {
-    closeModal()
-  }
+    closeModal();
+  };
 
   return (
     <>
@@ -38,31 +38,42 @@ const SideModal = ({ isOpen, setIsOpen, children }: SideModalProps) => {
             </div>
             <InfoContainer />
             <div>
-              <StyledMenuItem style={fontMedium}>고객센터/도움말</StyledMenuItem>
-              <StyledCommonHr></StyledCommonHr>
+              <StyledMenuItem style={fontMedium}>
+                고객센터/도움말
+              </StyledMenuItem>
+              <StyledHr />
               <StyledMenuItem style={fontMedium}>버전정보</StyledMenuItem>
-              <StyledCommonHr></StyledCommonHr>
-              <StyledMenuItem style={fontMedium}>서비스 이용약관</StyledMenuItem>
-              <StyledCommonHr></StyledCommonHr>
-              <StyledMenuItem style={fontMedium}>개인정보 처리방침</StyledMenuItem>
-              <StyledCommonHr></StyledCommonHr>
-              <StyledMenuItem onClick={async() => await logout()} style={fontMedium}>로그아웃</StyledMenuItem>
+              <StyledHr />
+              <StyledMenuItem style={fontMedium}>
+                서비스 이용약관
+              </StyledMenuItem>
+              <StyledHr />
+              <StyledMenuItem style={fontMedium}>
+                개인정보 처리방침
+              </StyledMenuItem>
+              <StyledHr />
+              <StyledMenuItem
+                onClick={async () => await logout()}
+                style={fontMedium}
+              >
+                로그아웃
+              </StyledMenuItem>
             </div>
           </StyledModalContent>
         </StyledModalContainer>
       </StyledModalOverlay>
     </>
-  )
-}
-export default SideModal
+  );
+};
+export default SideModal;
 const StyledIconWrap = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 20px 0;
-`
+`;
 const StyledFlexWrap = styled.div`
   display: flex;
-`
+`;
 const slideIn = keyframes`
   0% {
     transform: translateX(100%);
@@ -70,7 +81,7 @@ const slideIn = keyframes`
   100% {
     transform: translateX(0);
   }
-`
+`;
 const slideOut = keyframes`
   0% {
     transform: translateX(0);
@@ -78,7 +89,7 @@ const slideOut = keyframes`
   100% {
     transform: translateX(100%);
   }
-`
+`;
 const StyledModalOverlay = styled.div<{ open: boolean }>`
   position: fixed;
   top: 0;
@@ -86,33 +97,40 @@ const StyledModalOverlay = styled.div<{ open: boolean }>`
   bottom: 0;
   left: 0;
   background-color: ${({ open }) =>
-    open ? 'rgba(0, 0, 0, 0.5)' : 'transparent'};
+    open ? "rgba(0, 0, 0, 0.5)" : "transparent"};
   z-index: 9998;
-  display: ${({ open }) => (open ? 'flex' : 'none')};
+  display: ${({ open }) => (open ? "flex" : "none")};
   justify-content: center;
   align-items: center;
   transition: background-color 0.3s ease-in-out;
-  pointer-events: ${({ open }) => (open ? 'auto' : 'none')};
-`
+  pointer-events: ${({ open }) => (open ? "auto" : "none")};
+`;
 const StyledModalContainer = styled.div<{ open: boolean }>`
   position: fixed;
   top: 0;
-  right: ${({ open }) => (open ? '0' : '100%')};
+  right: ${({ open }) => (open ? "0" : "100%")};
   height: 100vh;
   width: 70%;
   background-color: #fff;
   z-index: 9999;
   animation: ${({ open }) => (open ? slideIn : slideOut)} 0.3s forwards;
-  `
-  const StyledModalContent = styled.div`
+`;
+const StyledModalContent = styled.div`
   padding: 20px;
   height: 100%;
-`
+`;
 const StyledMenuItem = styled.p`
   cursor: pointer;
   font-size: 13px;
-  padding: 5px 0;
-`
+  padding: 20px 10px;
+  margin: 0;
+  &:hover {
+    background-color: ${colors.gray1};
+  }
+`;
+const StyledHr = styled(StyledCommonHr)`
+  margin: 0;
+`;
 const InfoContainer = () => {
   return (
     <>
@@ -141,8 +159,8 @@ const InfoContainer = () => {
         </StyledFlexWrap>
       </StyledProfileContainer>
     </>
-  )
-}
+  );
+};
 const StyledProfileContainer = styled.div`
   height: 30%;
   display: flex;
@@ -152,23 +170,23 @@ const StyledProfileContainer = styled.div`
     width: 400px;
     margin: 0 auto;
   }
-`
+`;
 const StyledUserName = styled.h1`
   font-size: 20px;
-`
+`;
 const StyledInfoItem = styled.div`
   &:nth-child(1) {
     margin-right: 30px;
   }
   width: auto;
-`
+`;
 const StyledInfoTitle = styled.p`
   font-size: 12px;
   color: ${colors.gray3};
   text-align: center;
-`
+`;
 const StyledInfoContent = styled.p`
   font-size: 12px;
   color: ${colors.green};
   text-align: center;
-`
+`;
