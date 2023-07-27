@@ -19,11 +19,17 @@ import {
   WriteCourseDto,
 } from "../../@types/CourseDto";
 import CenterModal from "../../components/CenterModal";
-import { isEmptyValue } from "../../utils/emptyUtil";
+import { isAnyValueMissingInObject, isEmptyValue } from "../../utils/emptyUtil";
+
 const WriteCoursesView = () => {
   const navigate = useNavigate();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCenterModalOpen, setIsCenterModalOpen] = useState(false);
+  // TODO 모달 정리
+  const [isDeleteCenterModalOpen, setIsDeleteCenterModalOpen] = useState(false);
+  const [isRegisterCenterModalOpen, setIsRegisterCenterModalOpen] =
+    useState(false);
+  const [isWarningCenterModalOpen, setIsWarningCenterModalOpen] =
+    useState(false);
   const [courseInfo, setCourseInfo] = useState<WriteCourseDto>({
     cityId: 0,
     withGuide: true,
@@ -86,17 +92,19 @@ const WriteCoursesView = () => {
       updatedMain.spots = [];
     }
 
-    // spots.forEach((spot) => {
-    //   updatedMain.spots.push(spot);
-    // });
+    spots.forEach((spot) => {
+      updatedMain.spots.push(spot);
+    });
 
+    if (isAnyValueMissingInObject(updatedMain))
+      setIsWarningCenterModalOpen(true);
     console.log(updatedMain);
   };
   const handleDelete = () => {
-    if (courseInfo || spotInfo) setIsCenterModalOpen(true);
+    if (courseInfo || spotInfo) setIsDeleteCenterModalOpen(true);
     else navigate(-1);
   };
-  const centerModalContents = (
+  const deleteCenterModalContents = (
     <>
       <StyledCenterModalContainer>
         <StyledCenterModalTitle>
@@ -104,6 +112,30 @@ const WriteCoursesView = () => {
         </StyledCenterModalTitle>
         <StyledCommonBlackButton onClick={() => navigate(-1)}>
           취소하기
+        </StyledCommonBlackButton>
+      </StyledCenterModalContainer>
+    </>
+  );
+  const registerCenterModalContents = (
+    <>
+      <StyledCenterModalContainer>
+        <StyledCenterModalTitle>코스 등록 완료</StyledCenterModalTitle>
+        <StyledCommonBlackButton onClick={() => navigate("/mycourse")}>
+          내 코스 보러가기
+        </StyledCommonBlackButton>
+      </StyledCenterModalContainer>
+    </>
+  );
+  const warningCenterModalContents = (
+    <>
+      <StyledCenterModalContainer>
+        <StyledCenterModalTitle>
+          빈칸을 모두 채워야합니다.
+        </StyledCenterModalTitle>
+        <StyledCommonBlackButton
+          onClick={() => setIsWarningCenterModalOpen(false)}
+        >
+          확인
         </StyledCommonBlackButton>
       </StyledCenterModalContainer>
     </>
@@ -120,8 +152,23 @@ const WriteCoursesView = () => {
         handleClose={handleCloseModal}
         contentType={MODAL_TYPE.WHERE}
       ></ModalBottom>
-      <CenterModal isOpen={isCenterModalOpen} setIsOpen={setIsCenterModalOpen}>
-        {centerModalContents}
+      <CenterModal
+        isOpen={isDeleteCenterModalOpen}
+        setIsOpen={setIsDeleteCenterModalOpen}
+      >
+        {deleteCenterModalContents}
+      </CenterModal>
+      <CenterModal
+        isOpen={isRegisterCenterModalOpen}
+        setIsOpen={setIsRegisterCenterModalOpen}
+      >
+        {registerCenterModalContents}
+      </CenterModal>
+      <CenterModal
+        isOpen={isWarningCenterModalOpen}
+        setIsOpen={setIsWarningCenterModalOpen}
+      >
+        {warningCenterModalContents}
       </CenterModal>
       <StyledCommonFullHeigthWhiteWrap>
         <StyledCourseTitle
@@ -169,9 +216,9 @@ const WriteCoursesView = () => {
           onChangeInput={onChangeSubInput}
         ></WriteCourseItem>
         <StyledButtonContainer>
-          <StyledCommonBlackButton paddingHorizontal={20}>
+          {/* <StyledCommonBlackButton paddingHorizontal={20}>
             코스 추가하기
-          </StyledCommonBlackButton>
+          </StyledCommonBlackButton> */}
         </StyledButtonContainer>
       </StyledCommonFullHeigthWhiteWrap>
     </>
