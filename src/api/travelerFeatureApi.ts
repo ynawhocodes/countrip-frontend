@@ -25,3 +25,14 @@ export const fetchLocationList = async () => {
     return e.response;
   }
 };
+export const fetchMagazineRestaurantList = async () => {
+  try {
+    const response = await travelerClient.get<
+      ExternalResponseSuccess<MagazineDto[]>
+    >("/api/v1/magazines/now");
+    return response;
+  } catch (e: any) {
+    console.log("fetchMagazineNowList)", e.response.data);
+    return e.response;
+  }
+};
