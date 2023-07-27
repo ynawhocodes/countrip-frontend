@@ -7,6 +7,8 @@ import { colors } from '../styles/variables';
 import { formatPeriodDate } from '../utils/dateUtil';
 import formatPhoneNumber from '../utils/stringUtil';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
+import { isEmptyArray } from '../utils/emptyUtil';
+import EmptyStatus from './common/EmptyStatus';
 
 interface BookedCourseItemProps {
   datas?: GuideScheduleDto[];
@@ -14,6 +16,7 @@ interface BookedCourseItemProps {
 const BookedCourseItem = ({ datas }: BookedCourseItemProps) => {
   return (
     <>
+      {/* {isEmptyArray(datas) && <EmptyStatus>확정된 예약이 없습니다.</EmptyStatus>} */}
       <StyledEmptyStatus/>
       {/* {datas?.map(data => (
         <StyledContainer>
@@ -93,6 +96,6 @@ const StyledEmptyStatus = styled.div`
   font-size: 14px;
   border-radius: 25px;
   &::after {
-    content: '예약 확정된 일정이 없습니다.';
+    content: '확정된 예약이 없습니다.';
   }
 `

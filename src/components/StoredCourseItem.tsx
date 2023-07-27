@@ -7,6 +7,8 @@ import { colors } from '../styles/variables';
 import { formatPeriodDate } from '../utils/dateUtil';
 import formatPhoneNumber from '../utils/stringUtil';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
+import EmptyStatus from './common/EmptyStatus';
+import { isEmptyArray } from '../utils/emptyUtil';
 
 interface StoredCourseItemProps {
   datas: GuideScheduleDto[];
@@ -14,6 +16,7 @@ interface StoredCourseItemProps {
 const StoredCourseItem = ({ datas }: StoredCourseItemProps) => {
   return (
     <>
+      {isEmptyArray(datas) && <EmptyStatus>가이딩 일정이 없습니다.</EmptyStatus>}
       {datas?.map(data => (
         <StyledContainer>
           <StyledDate style={fontMedium}>{formatPeriodDate(data?.travelDate)}</StyledDate>

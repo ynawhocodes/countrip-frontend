@@ -1,0 +1,1 @@
+export const isEmptyArray = <T>(arr: T[]): boolean => Array.isArray(arr) && arr.length === 0;

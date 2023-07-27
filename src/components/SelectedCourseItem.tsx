@@ -15,6 +15,7 @@ interface CenterModalProps {
 const SelectedCourseItem = ({ datas }: CenterModalProps) => {
   return (
     <>
+      {/* {isEmptyArray(datas) && <EmptyStatus>담은 일정이 없습니다.</EmptyStatus>} */}
       <StyledEmptyStatus/>
       {/* {datas.map((data, index) => (
         <StyledContainer key={index}>

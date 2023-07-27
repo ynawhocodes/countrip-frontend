@@ -8,6 +8,8 @@ import { formatPeriodDate } from '../utils/dateUtil';
 import formatPhoneNumber from '../utils/stringUtil';
 import CenterModal from './CenterModal';
 import HorizontalScrollSquareBoxList from './HorizontalScrollSquareBoxList';
+import { isEmptyArray } from '../utils/emptyUtil';
+import EmptyStatus from './common/EmptyStatus';
 
 interface CenterModalProps {
   datas: GuideScheduleDto[];
@@ -17,6 +19,7 @@ interface CenterModalProps {
 const ReservationPendingCourseItem = ({ datas, isOpen, setIsOpen }: CenterModalProps) => {
   return (
     <>
+      {isEmptyArray(datas) && <EmptyStatus>신청된 예약이 없습니다.</EmptyStatus>}
       {datas.map((data, index) => (
         <StyledContainer key={index}>
           <StyledDate style={fontMedium}>{formatPeriodDate(data.travelDate)}</StyledDate>

@@ -16,6 +16,8 @@ import { StyledCommonFullHeigthWhiteWrap } from '../../../styles/common'
 import { fontMedium } from '../../../styles/font'
 import { colors } from '../../../styles/variables'
 import checkResponseStatus from '../../../utils/statusUtil'
+import { isEmptyArray } from '../../../utils/emptyUtil';
+import EmptyStatus from '../../../components/common/EmptyStatus';
 
 const GuideHomeView = () => {
   const navigate = useNavigate();
@@ -23,7 +25,6 @@ const GuideHomeView = () => {
   const [tabIndex, setTabIndex] = useState(1);
   const [hasAlert, setHasAlert] = useState(false);
   const [guideSchedule, setGuideSchedule] = useState<TodayGuideScheduleDto[]>([]);
-  const isEmptyStatus = guideSchedule.length === 0
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -62,7 +63,8 @@ const GuideHomeView = () => {
         {hasAlert && <StyledAlertItem style={fontMedium} onClick={goToPage} />}
         <ReadOnlyCalendar/>
         <SectionTitle title="오늘의 가이딩 일정" hasMore={true} onClickMore={goToPageByhasMore} />
-        {isEmptyStatus ? <StyledTicketEmptyStatus style={fontRegular}/> : guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
+        {isEmptyArray(guideSchedule) && <EmptyStatus>가이딩 일정이 없습니다.</EmptyStatus>}
+        {guideSchedule?.map((item) => (<div onClick={()=> goToPageByGuideScheduleTicket(item.courseId)} key={item.courseId}><GuideScheduleTicket data={item}/></div>))}
       </StyledCommonFullHeigthWhiteWrap>
       <Navigation userType={'guide'} initTabIndex={tabIndex} />
     </>
