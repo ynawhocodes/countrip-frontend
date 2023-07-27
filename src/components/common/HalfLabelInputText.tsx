@@ -10,7 +10,9 @@ export type HalfLabelInputTextTypes = {
   placeholder?: string;
   isInValid: boolean;
   disabled?: boolean;
-  onChangeInput(e: React.FormEvent<HTMLInputElement>): void;
+  onChangeInput(
+    e: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>
+  ): void;
 };
 
 export interface focusRef {

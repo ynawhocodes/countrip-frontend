@@ -42,7 +42,9 @@ const WriteCoursesView = () => {
     description: "",
     orderNum: 0,
   });
-  const onChangeSubInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeSubInput = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { value, name } = e.currentTarget;
     setSpotInfo((currVal) => ({
       ...currVal,

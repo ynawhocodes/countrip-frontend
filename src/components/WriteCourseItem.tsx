@@ -8,13 +8,22 @@ import { fontBold } from "../styles/font";
 interface WriteCourseItemProps {
   value: any;
   onChangeImage: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onChangeInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChangeInput: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => void;
 }
 const WriteCourseItem = ({
   value,
   onChangeImage,
   onChangeInput,
 }: WriteCourseItemProps) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleContainerClick = () => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  };
   return (
     <>
       <StyledGap />
@@ -65,13 +74,13 @@ const WriteCourseItem = ({
           placeholder="홈페이지 주소를 입력해주세요."
           onChangeInput={onChangeInput}
         />
-        <StyledDescriptionContainer>
+        <StyledDescriptionContainer onClick={handleContainerClick}>
           <StyledDescriptionTitle style={fontBold}>
             상세 설명
           </StyledDescriptionTitle>
           <StyledInput
-            type="text"
             // isInValid={false}
+            rows={Math.ceil(value.description.length / 30)}
             value={value.description}
             name="description"
             onChange={onChangeInput}
@@ -98,15 +107,18 @@ const StyledDescriptionContainer = styled.div`
   border-radius: 20px;
   margin: 30px 0;
   padding: 10px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
 `;
 const StyledDescriptionTitle = styled.div`
   font-size: 12px;
   margin-bottom: 10px;
   color: ${colors.gray3};
 `;
-const StyledInput = styled.input`
+const StyledInput = styled.textarea`
   all: unset;
   width: 100%;
+  resize: vertical;
   font-size: 12px;
   &::placeholder {
     color: ${colors.gray2};
