@@ -63,6 +63,7 @@ export const tabContents = [(
   </>), (<>
     <StyledCommonItemsPerRowContainer>{magazineRuralExperienceData.map((data, index) => <SquareBoxItem key={index} data={data} />)}</StyledCommonItemsPerRowContainer>
   </>)];
+
 export const tabContentsWithoutNow = [(<>
     {magazineRuralExperienceData.map((data, index) => <RectangleBoxItem key={index} marginHorizontal={20} data={data} />)}
   </>), (<>

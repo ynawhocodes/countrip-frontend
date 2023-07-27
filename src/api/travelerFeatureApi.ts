@@ -6,11 +6,55 @@ import ExternalResponseSuccess from "./response";
 export const fetchMagazineNowList = async () => {
   try {
     const response = await travelerClient.get<
-      ExternalResponseSuccess<MagazineDto[]>
+    ExternalResponseSuccess<MagazineDto[]>
     >("/api/v1/magazines/now");
     return response;
   } catch (e: any) {
     console.log("fetchMagazineNowList)", e.response.data);
+    return e.response;
+  }
+};
+export const fetchMagazineFarmExperienceList = async () => {
+  try {
+    const response = await travelerClient.get<
+      ExternalResponseSuccess<MagazineDto[]>
+    >("/api/v1/magazines/farm");
+    return response;
+  } catch (e: any) {
+    console.log("fetchMagazinFarmExperienceList)", e.response.data);
+    return e.response;
+  }
+};
+export const fetchMagazineRestaurantList = async () => {
+  try {
+    const response = await travelerClient.get<
+      ExternalResponseSuccess<MagazineDto[]>
+    >("/api/v1/magazines/restaurant");
+    return response;
+  } catch (e: any) {
+    console.log("fetchMagazinRestaurantList)", e.response.data);
+    return e.response;
+  }
+};
+export const fetchMagazineTouristAttractionList = async () => {
+  try {
+    const response = await travelerClient.get<
+      ExternalResponseSuccess<MagazineDto[]>
+    >("/api/v1/magazines/tourist");
+    return response;
+  } catch (e: any) {
+    console.log("fetchMagfetchMagazineTouristAttractionListazineNowList)", e.response.data);
+    return e.response;
+  }
+};
+export const fetchMagazineLandscapeList = async () => {
+  try {
+    const response = await travelerClient.get<
+      ExternalResponseSuccess<MagazineDto[]>
+    >("/api/v1/magazines/landscape");
+    return response;
+  } catch (e: any) {
+    console.log("fetchMagazineLandscapeList)", e.response.data);
     return e.response;
   }
 };
@@ -25,23 +69,14 @@ export const fetchLocationList = async () => {
     return e.response;
   }
 };
-export const fetchMagazineRestaurantList = async () => {
-  try {
-    const response = await travelerClient.get<
-      ExternalResponseSuccess<MagazineDto[]>
-    >("/api/v1/magazines/now");
-    return response;
-  } catch (e: any) {
-    console.log("fetchMagazineNowList)", e.response.data);
-    return e.response;
-  }
-};
-export const fetchCourseSearchResult = async ( {cityId, travelDate, adultCount, childCount, babyCount} : CourseSearchDto, categoryId: number) => {
+export const fetchCourseSearchResult = async (
+  { cityId, travelDate, adultCount, childCount, babyCount }: CourseSearchDto,
+  categoryId: number
+) => {
   try {
     const response = await travelerClient.get<
       ExternalResponseSuccess<CourseDto[]>
-    >(`/api/v1/courses/search?category=${categoryId}`,
-    {
+    >(`/api/v1/courses/search?category=${categoryId}`, {
       params: {
         cityId: cityId,
         travelDate: travelDate,
