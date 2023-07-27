@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import {
+  StyledCommonBlackButton,
   StyledCommonFullHeigthWhiteWrap,
   StyledCommonHr,
 } from "../../styles/common";
@@ -58,16 +59,20 @@ const WriteCoursesView = () => {
     }));
   };
   const handleRegister = (
-    courseInfo: WriteCourseDto,
+    mainObj: WriteCourseDto,
     ...spots: SpotDetailDto[]
   ) => {
-    const spotsArray = courseInfo.spots ? [...courseInfo.spots] : [];
+    const updatedMain = { ...mainObj };
+
+    if (!updatedMain.spots) {
+      updatedMain.spots = [];
+    }
 
     spots.forEach((spot) => {
-      spotsArray.push(spot);
+      updatedMain.spots.push(spot);
     });
 
-    console.log({ ...courseInfo, spots: spotsArray });
+    return updatedMain;
   };
   return (
     <>
@@ -120,6 +125,11 @@ const WriteCoursesView = () => {
           value={spotInfo}
           onChangeInput={onChangeSubInput}
         ></WriteCourseItem>
+        <StyledButtonContainer>
+          <StyledCommonBlackButton paddingHorizontal={20}>
+            코스 추가하기
+          </StyledCommonBlackButton>
+        </StyledButtonContainer>
       </StyledCommonFullHeigthWhiteWrap>
     </>
   );
@@ -140,4 +150,8 @@ const StyledPaddingWrap = styled.div`
 `;
 const StyledPriceTitle = styled.p`
   font-size: 18px;
+`;
+const StyledButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;

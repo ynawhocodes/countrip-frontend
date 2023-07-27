@@ -63,7 +63,14 @@ export const StyledCommonButton = styled.button<{
   border-style: none;
   font-weight: 700;
 `;
-export const StyledCommonBlackButton = styled(StyledCommonButton)`
+export const StyledCommonBlackButton = styled(StyledCommonButton)<{
+  paddingHorizontal?: number;
+}>`
+  width: calc(
+    100% -
+      ${({ paddingHorizontal = 0 }) =>
+        paddingHorizontal ? `calc(${paddingHorizontal * 2}px)` : 0}
+  );
   color: white;
   font-size: 12px;
   height: 40px;
