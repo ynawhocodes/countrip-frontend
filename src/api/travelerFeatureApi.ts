@@ -1,5 +1,6 @@
 import CourseDto, { CourseSearchDto } from "../@types/CourseDto";
 import { MagazineDto } from "../@types/Magazine";
+import { MAGAZINE_TYPE } from "../constants";
 import { travelerClient } from "./client";
 import ExternalResponseSuccess from "./response";
 
@@ -18,7 +19,7 @@ export const fetchMagazineFarmExperienceList = async () => {
   try {
     const response = await travelerClient.get<
       ExternalResponseSuccess<MagazineDto[]>
-    >("/api/v1/magazines/farm");
+    >(`/api/v1/magazines/contents?types=${MAGAZINE_TYPE.FARM_EXPERIENCE}`);
     return response;
   } catch (e: any) {
     console.log("fetchMagazinFarmExperienceList)", e.response.data);
@@ -29,7 +30,7 @@ export const fetchMagazineRestaurantList = async () => {
   try {
     const response = await travelerClient.get<
       ExternalResponseSuccess<MagazineDto[]>
-    >("/api/v1/magazines/restaurant");
+    >(`/api/v1/magazines/contents?types=${MAGAZINE_TYPE.RESTAURANT}`);
     return response;
   } catch (e: any) {
     console.log("fetchMagazinRestaurantList)", e.response.data);
@@ -40,10 +41,10 @@ export const fetchMagazineTouristAttractionList = async () => {
   try {
     const response = await travelerClient.get<
       ExternalResponseSuccess<MagazineDto[]>
-    >("/api/v1/magazines/tourist");
+    >(`/api/v1/magazines/contents?types=${MAGAZINE_TYPE.TOURIST_ATTRACTION}`);
     return response;
   } catch (e: any) {
-    console.log("fetchMagfetchMagazineTouristAttractionListazineNowList)", e.response.data);
+    console.log("fetchMagazineTouristAttractionList)", e.response.data);
     return e.response;
   }
 };
@@ -51,7 +52,7 @@ export const fetchMagazineLandscapeList = async () => {
   try {
     const response = await travelerClient.get<
       ExternalResponseSuccess<MagazineDto[]>
-    >("/api/v1/magazines/landscape");
+    >(`/api/v1/magazines/contents?types=${MAGAZINE_TYPE.LANDSCAPE}`);
     return response;
   } catch (e: any) {
     console.log("fetchMagazineLandscapeList)", e.response.data);

@@ -45,7 +45,7 @@ export const StyledCommonFlexContainer = styled.div<{
 export const StyledCommonItemsPerRowContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   padding: 20px;
   gap: 10px;
 `;

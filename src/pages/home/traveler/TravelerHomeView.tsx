@@ -26,14 +26,16 @@ import HorizontalScrollBoxList from "../../../components/HorizontalScrollBoxList
 import RectangleBoxItem from "../../../components/RectangleBoxItem";
 import {
   magazineNowData,
+  magazineRestaurantData,
   magazineRuralExperienceData,
+  magazineTouristData,
 } from "../../../assets/sample/magazine/magazineData";
 import SquareBoxItem from "../../../components/SquareBoxItem";
 import LoadingSpinner from "../../../components/common/LoadingSpinner";
 
 const TravelerHomeView = () => {
   const [loading, setLoading] = useState(false);
-  const [activeTab, setActiveTab] = useState(1);
+  const [activeTab, setActiveTab] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [now, setNow] = useState<MagazineDto[]>([]);
   const [farmExperience, setFarmExperience] = useState<MagazineDto[]>([]);
@@ -47,48 +49,45 @@ const TravelerHomeView = () => {
   const openModal = () => {
     setIsModalOpen(true);
   };
-  // useEffect(() => {
-  //   (async () => {
-  //     setLoading(true);
-  //     const response = await fetchMagazineNowList();
-  //     if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-  //       setNow(response.data.data);
-  //     }
-  //     setLoading(false);
-  //   })();
-  //   (async () => {
-  //     setLoading(true);
-  //     const response = await fetchMagazineFarmExperienceList();
-  //     if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-  //       setFarmExperience(response.data.data);
-  //     }
-  //     setLoading(false);
-  //   })();
-  //   (async () => {
-  //     setLoading(true);
-  //     const response = await fetchMagazineRestaurantList();
-  //     if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-  //       setRestaurant(response.data.data);
-  //     }
-  //     setLoading(false);
-  //   })();
-  //   (async () => {
-  //     setLoading(true);
-  //     const response = await fetchMagazineTouristAttractionList();
-  //     if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-  //       setTouristAttraction(response.data.data);
-  //     }
-  //     setLoading(false);
-  //   })();
-  //   (async () => {
-  //     setLoading(true);
-  //     const response = await fetchMagazineLandscapeList();
-  //     if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
-  //       setLandscape(response.data.data);
-  //     }
-  //     setLoading(false);
-  //   })();
-  // }, []);
+  useEffect(() => {
+    (async () => {
+      setLoading(true);
+      const response = await fetchMagazineNowList();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        setNow(response.data.data);
+      }
+      setLoading(false);
+    })();
+    (async () => {
+      setLoading(true);
+      const response1 = await fetchMagazineFarmExperienceList();
+      if (checkResponseStatus(response1.status) === SUCCESS_STATUS_CODE) {
+        setFarmExperience(response1.data.data);
+      }
+      const response2 = await fetchMagazineRestaurantList();
+      if (checkResponseStatus(response2.status) === SUCCESS_STATUS_CODE) {
+        setRestaurant(response2.data.data);
+      }
+      setLoading(false);
+    })();
+    (async () => {
+      setLoading(true);
+      const response = await fetchMagazineTouristAttractionList();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        setTouristAttraction(response.data.data);
+      }
+      setLoading(false);
+    })();
+    (async () => {
+      setLoading(true);
+      const response = await fetchMagazineLandscapeList();
+      if (checkResponseStatus(response.status) === SUCCESS_STATUS_CODE) {
+        setLandscape(response.data.data);
+      }
+      setLoading(false);
+    })();
+  }, []);
+
   return (
     <>
       {loading && <LoadingSpinner />}
@@ -140,7 +139,7 @@ const TravelerHomeView = () => {
             // 맛집
             <>
               <StyledCommonItemsPerRowContainer>
-                {magazineRuralExperienceData.map((data, index) => (
+                {magazineRestaurantData.map((data, index) => (
                   <SquareBoxItem key={index} data={data} />
                 ))}
               </StyledCommonItemsPerRowContainer>
@@ -148,7 +147,7 @@ const TravelerHomeView = () => {
             // 관광지
             <>
               <StyledCommonItemsPerRowContainer>
-                {magazineRuralExperienceData.map((data, index) => (
+                {magazineTouristData.map((data, index) => (
                   <SquareBoxItem key={index} data={data} />
                 ))}
               </StyledCommonItemsPerRowContainer>
@@ -156,7 +155,7 @@ const TravelerHomeView = () => {
             // 자연 경관
             <>
               <StyledCommonItemsPerRowContainer>
-                {magazineRuralExperienceData.map((data, index) => (
+                {landscape.map((data, index) => (
                   <SquareBoxItem key={index} data={data} />
                 ))}
               </StyledCommonItemsPerRowContainer>

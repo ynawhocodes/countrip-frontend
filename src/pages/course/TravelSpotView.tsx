@@ -5,12 +5,12 @@ import SpotItem from '../../components/common/SpotItem'
 import { StyledCommonFullHeigthWhiteWrap } from '../../styles/common'
 import { colors } from '../../styles/variables'
 import { useParams } from 'react-router-dom';
-import { magazineRuralExperienceDetailData } from '../../assets/sample/magazine/magazineData'
+import { magazineDetailData } from '../../assets/sample/magazine/magazineData'
 import { fontMedium } from '../../styles/font'
 
 const TravelSpotView = () => {
   const { id } = useParams();
-  const data = magazineRuralExperienceDetailData[Number(id) - 1];
+  const data = magazineDetailData[Number(id) - 1];
   const InfoTitleList = ['기간', '주소', '가격', '전화번호', '홈페이지']
   const InfoKeyList = [data.date, data.address, data.price, data.telephone, data.homepage]
   return (
